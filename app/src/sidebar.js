@@ -9,30 +9,30 @@ class Sidebar extends React.Component {
 
     render(){
         return <>
-            <SemanticSidebar as={Menu} animation='overlay' icon='labeled' inverted vertical width='thin' visible>
+            <SemanticSidebar as={Menu} icon='labeled' inverted vertical width='thin' visible>
 
                 <Menu.Item>
                     <Link to="/">
-                        <SidebarSection icon="chess pawn" title="About Me" />
+                        <SidebarSection icon="user" title="Profile" />
                         <br/>
-                        <Image src={profile} size='medium' circular />
+                        <Image src={profile} size='large' circular />
                     </Link>
                 </Menu.Item>
 
                 <Menu.Item>
                     <SidebarSection icon="lab" title="Side Projects" />
                     <Menu inverted vertical style={{width:"auto"}}>
-                        <Link to="/project/distillery"><Menu.Item as='a'>Distillery</Menu.Item></Link>
-                        <Link to="/project/moistlywet"><Menu.Item as='a'>Moistlywet</Menu.Item></Link>
-                        <Link to="/project/triptracks"><Menu.Item as='a'>Triptracks</Menu.Item></Link>
+                        <Link to="/project/distillery"><Menu.Item >Distillery</Menu.Item></Link>
+                        <Link to="/project/moistlywet"><Menu.Item >Moistlywet</Menu.Item></Link>
+                        <Link to="/project/triptracks"><Menu.Item >Triptracks</Menu.Item></Link>
                     </Menu>
                 </Menu.Item>
 
                 <Menu.Item>
                     <SidebarSection icon="newspaper outline" title="Work History" />
                     <Menu inverted vertical style={{width:"auto"}}>
-                        <Link to="/work/sendwithus"><Menu.Item as='a'>Sendwithus</Menu.Item></Link>
-                        <Link to="/work/socoloco"><Menu.Item as='a'>Socoloco</Menu.Item></Link>
+                        <Link to="/work/sendwithus"><Menu.Item >Sendwithus</Menu.Item></Link>
+                        <Link to="/work/socoloco"><Menu.Item >Socoloco</Menu.Item></Link>
                     </Menu>
                 </Menu.Item>
 

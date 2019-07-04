@@ -12,12 +12,18 @@ code {
     monospace;
 }
 
-#root {
-  background-color: #6e7174;
+html, body {
+  background-color: #6e7174 !important;
   height: 100%;
 }
 
 #pagecontent {
+  margin-left: 150px;
   padding-top: 30px;
-  height: 100%;
+}
+
+#aboutme a {
+  color: black !important;
+  padding-left: 15px;
+  padding-right: 15px;
 }
