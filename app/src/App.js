@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import {Container} from 'semantic-ui-react'
+import {Container, Segment, Sidebar as SemanticSidebar} from 'semantic-ui-react'
 import Sidebar from "./sidebar"
 import { BrowserRouter, Route } from "react-router-dom";
 import AboutMe from "./pages/AboutMe"
@@ -14,15 +14,22 @@ import Triptracks from "./pages/projects/Triptracks"
 function App() {
   return (
     <BrowserRouter>
-        <Sidebar/>
-        <Container id={"pagecontent"}>
-            <Route exact path="/" component={AboutMe} />
-            <Route exact path="/work/sendwithus" component={Sendwithus} />
-            <Route exact path="/work/socoloco" component={Socoloco} />
-            <Route exact path="/project/distillery" component={Distillery} />
-            <Route exact path="/project/moistlywet" component={Moistlywet} />
-            <Route exact path="/project/triptracks" component={Triptracks} />
-        </Container>
+        {/*<SemanticSidebar.Pushable>*/}
+            <Sidebar/>
+            {/*<SemanticSidebar.Pusher>*/}
+            {/*    <div>*/}
+                <Segment id="pagecontent" basic align="center">
+                {/*<Container id={"pagecontent"}>*/}
+                    <Route exact path="/" component={AboutMe} />
+                    <Route exact path="/work/sendwithus" component={Sendwithus} />
+                    <Route exact path="/work/socoloco" component={Socoloco} />
+                    <Route exact path="/project/distillery" component={Distillery} />
+                    <Route exact path="/project/moistlywet" component={Moistlywet} />
+                    <Route exact path="/project/triptracks" component={Triptracks} />
+                </Segment>
+        {/*        </div>*/}
+        {/*    </SemanticSidebar.Pusher>*/}
+        {/*</SemanticSidebar.Pushable>*/}
     </BrowserRouter>
   );
 }
