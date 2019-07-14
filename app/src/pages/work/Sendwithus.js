@@ -1,9 +1,10 @@
 import React from "react";
 import {Grid, Card} from "semantic-ui-react"
-import { Icon } from 'react-icons-kit'
-import { home } from 'react-icons-kit/icomoon/home'
 import BasePage from "../BasePage";
 
+import {Icon} from "react-icons-kit";
+import {firefox} from "react-icons-kit/fa";
+// import {golang}
 
 let dev_description = "Developed the Sendwithus product, including a delivery pipeline with unreliable downstream services.\n" +
     "Core tasks included:\n" +
@@ -25,10 +26,9 @@ let lead_description = "Ran a team of 3-6 devs who developed two products: Sendw
 function Sendwithus() {
   return (<BasePage title="Sendwithus">
       <Grid>
-        <Grid.Row>
+        <Grid.Row columns={7}>
           <Grid.Column>
-            <Icon icon={home} />
-            <i className="icon-go"></i>
+            <Icon icon={firefox} />
             Golang
           </Grid.Column>
           <Grid.Column>
