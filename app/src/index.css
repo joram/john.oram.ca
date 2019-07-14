@@ -27,3 +27,9 @@ html, body {
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.tech-icon {
+  position: relative;
+    top: 5px;
+  left: 5px;
+}
