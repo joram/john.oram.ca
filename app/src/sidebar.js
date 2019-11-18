@@ -22,17 +22,18 @@ class Sidebar extends React.Component {
                 <Menu.Item>
                     <SidebarSection icon="lab" title="Side Projects" />
                     <Menu inverted vertical style={{width:"auto"}}>
-                        <Link to="/project/distillery"><Menu.Item >Distillery</Menu.Item></Link>
-                        <Link to="/project/moistlywet"><Menu.Item >Moistlywet</Menu.Item></Link>
-                        <Link to="/project/triptracks"><Menu.Item >Triptracks</Menu.Item></Link>
+                        <Link to="/project/distillery"><Menu.Item> Distillery </Menu.Item></Link>
+                        <Link to="/project/moistlywet"><Menu.Item> Moistlywet </Menu.Item></Link>
+                        <Link to="/project/triptracks"><Menu.Item> Triptracks </Menu.Item></Link>
                     </Menu>
                 </Menu.Item>
 
                 <Menu.Item>
                     <SidebarSection icon="newspaper outline" title="Work History" />
                     <Menu inverted vertical style={{width:"auto"}}>
-                        <Link to="/work/sendwithus"><Menu.Item >Sendwithus</Menu.Item></Link>
-                        <Link to="/work/socoloco"><Menu.Item >Socoloco</Menu.Item></Link>
+                        <Link to="/work/tutela"><Menu.Item>     Tutela     </Menu.Item></Link>
+                        <Link to="/work/sendwithus"><Menu.Item> Sendwithus </Menu.Item></Link>
+                        <Link to="/work/socoloco"><Menu.Item>   Socoloco   </Menu.Item></Link>
                     </Menu>
                 </Menu.Item>
 

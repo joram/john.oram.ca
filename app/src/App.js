@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import AboutMe from "./pages/AboutMe"
 import Sendwithus from "./pages/work/Sendwithus"
 import Socoloco from "./pages/work/Socoloco"
+import Tutela from "./pages/work/Tutela"
 import Distillery from "./pages/projects/Distillery"
 import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
@@ -21,6 +22,7 @@ function App() {
                 <Segment id="pagecontent" basic align="center">
                 {/*<Container id={"pagecontent"}>*/}
                     <Route exact path="/" component={AboutMe} />
+                    <Route exact path="/work/tutela" component={Tutela} />
                     <Route exact path="/work/sendwithus" component={Sendwithus} />
                     <Route exact path="/work/socoloco" component={Socoloco} />
                     <Route exact path="/project/distillery" component={Distillery} />
