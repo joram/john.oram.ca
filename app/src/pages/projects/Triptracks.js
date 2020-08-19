@@ -4,7 +4,7 @@ import icon from "../../static/triptracks.png";
 
 function Triptracks() {
     let title = <>
-      <img src={icon} />
+      <img src={icon} alt={"icon"} />
       Triptracks
     </>;
 
