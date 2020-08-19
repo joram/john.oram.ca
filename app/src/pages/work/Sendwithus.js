@@ -1,72 +1,30 @@
 import React from "react";
-import {Grid, Card} from "semantic-ui-react"
+import {Grid, Card, Divider} from "semantic-ui-react"
 import BasePage from "../BasePage";
 
-import {Icon} from "react-icons-kit";
-import {firefox} from "react-icons-kit/fa";
-// import {golang}
 
-let dev_description = "Developed the Sendwithus product, including a delivery pipeline with unreliable downstream services.\n" +
-    "Core tasks included:\n" +
-    "Contribute to, and monitor a resilient distributed system\n" +
-    "Building an on-call team, including its procedures and infrastructure.\n" +
-    "Designing new services or refactoring major components to add functionality or scalability\n" +
-    "Promoting a healthy work environment for architecture and system design discourse.\n";
+let dev_description = "Developed the Sendwithus product, including a delivery pipeline with unreliable downstream " +
+    "services. Core tasks included: Contribute to, and monitor a resilient distributed system Building an on-call " +
+    "team, including its procedures and infrastructure. Designing new services or refactoring major components to " +
+    "add functionality or scalability Promoting a healthy work environment for architecture and system design " +
+    "discourse.";
 
-let lead_description = "Ran a team of 3-6 devs who developed two products: Sendwithus and Dyspatch.\n" +
-    "Core tasks included:\n" +
-    "Refactoring old and designing new microservices\n" +
-    "Supporting API ~500 million calls/month\n" +
-    "Coordinating and constructing a Cassandra Cluster writing 2-3 billion records with a <30ms p95 response time\n" +
-    "Building out, coordinating and documenting devops procedures and an on-call rotation\n" +
-    "Hiring, performance reviews, and participating in company direction discussions.\n";
+let lead_description = "Ran a team of 3-6 devs who developed two products: Sendwithus and Dyspatch. Core tasks " +
+    "included: Refactoring old and designing new microservices Supporting API ~500 million calls/month Coordinating " +
+    "and constructing a Cassandra Cluster writing 2-3 billion records with a <30ms p95 response time Building out, " +
+    "coordinating and documenting devops procedures and an on-call rotation Hiring, performance reviews, and " +
+    "participating in company direction discussions.";
 
 
 
 function Sendwithus() {
   return (<BasePage title="Sendwithus">
-      <Grid>
-        <Grid.Row columns={7}>
-          <Grid.Column>
-            <Icon icon={firefox} />
-            Golang
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-python"></i>
-            Python
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-docker"></i>
-            Docker
-          </Grid.Column>
-          <Grid.Column>
-            Redshift
-            <i className="icon-database"></i>
-          </Grid.Column>
-          <Grid.Column>
-              Cassandra
-              <i className="icon-cassandra" style={{float:"right"}}></i>
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-postgres"></i>
-            RDS
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <i className="fa-cubes"></i>
-            Kubernetes
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-terraform"></i>
-            Terraform</Grid.Column>
-          <Grid.Column>GRPC</Grid.Column>
-          <Grid.Column>Protobuf</Grid.Column>
-          <Grid.Column>OpenTracing</Grid.Column>
-          <Grid.Column>SQS</Grid.Column>
-          <Grid.Column>Kinesis</Grid.Column>
-        </Grid.Row>
-      </Grid>
+      The company has two products: Sendwithus and Dispatch. <br/> The former is an email template management,
+      rendering and delivery SaaS product, Dispatch is an enterprise email template management and workflow SaaS
+      product. Sendwithus, was the only product the company had for my first two years. After that, the company
+      dedicated most development effort to build out Dyspatch.
+
+      <Divider horizontal>Roles</Divider>
       <Card.Group>
           <Card
           header='Backend Team Lead'
@@ -79,6 +37,28 @@ function Sendwithus() {
           extra='January 2016 - July 2017'
           />
       </Card.Group>
+
+      <Divider horizontal>Technologies Used</Divider>
+      <Grid>
+        <Grid.Row columns={6}>
+          <Grid.Column>Golang</Grid.Column>
+          <Grid.Column>Python</Grid.Column>
+          <Grid.Column>Docker</Grid.Column>
+          <Grid.Column>Redshift</Grid.Column>
+          <Grid.Column>Cassandra</Grid.Column>
+          <Grid.Column>RDS</Grid.Column>
+        </Grid.Row>
+        <Grid.Row columns={7}>
+          <Grid.Column>Kubernetes</Grid.Column>
+          <Grid.Column>Terraform</Grid.Column>
+          <Grid.Column>GRPC</Grid.Column>
+          <Grid.Column>Protobuf</Grid.Column>
+          <Grid.Column>OpenTracing</Grid.Column>
+          <Grid.Column>SQS</Grid.Column>
+          <Grid.Column>Kinesis</Grid.Column>
+        </Grid.Row>
+      </Grid>
+
     </BasePage>)
 }
 

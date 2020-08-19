@@ -13,27 +13,29 @@ class Sidebar extends React.Component {
 
                 <Menu.Item>
                     <Link to="/">
-                        <SidebarSection icon="user" title="Profile" />
+                        <SidebarSection icon="user" title="John Oram" />
                         <br/>
                         <Image src={profile} size='large' circular />
                     </Link>
                 </Menu.Item>
 
                 <Menu.Item>
-                    <SidebarSection icon="lab" title="Side Projects" />
+                    <SidebarSection icon="lab" title="Side Projects"  style={{textAlign:"left"}} />
                     <Menu inverted vertical style={{width:"auto"}}>
-                        <Link to="/project/distillery"><Menu.Item> Distillery </Menu.Item></Link>
-                        <Link to="/project/moistlywet"><Menu.Item> Moistlywet </Menu.Item></Link>
-                        <Link to="/project/triptracks"><Menu.Item> Triptracks </Menu.Item></Link>
+                        <SidebarLink url="/project/distillery" text="Distillery"/>
+                        <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
+                        <SidebarLink url="/project/triptracks" text="Triptracks"/>
+                        <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
                     </Menu>
                 </Menu.Item>
 
                 <Menu.Item>
                     <SidebarSection icon="newspaper outline" title="Work History" />
-                    <Menu inverted vertical style={{width:"auto"}}>
-                        <Link to="/work/tutela"><Menu.Item>     Tutela     </Menu.Item></Link>
-                        <Link to="/work/sendwithus"><Menu.Item> Sendwithus </Menu.Item></Link>
-                        <Link to="/work/socoloco"><Menu.Item>   Socoloco   </Menu.Item></Link>
+                    <Menu inverted vertical style={{width:"auto"}} >
+                        <SidebarLink url="/work/certn" text="2020 - Certn"/>
+                        <SidebarLink url="/work/tutela" text="2019 - Tutela"/>
+                        <SidebarLink url="/work/sendwithus" text="2016 - Sendwithus"/>
+                        <SidebarLink url="/work/socoloco" text="2012 - Socoloco"/>
                     </Menu>
                 </Menu.Item>
 
@@ -43,9 +45,18 @@ class Sidebar extends React.Component {
 }
 
 
+class SidebarLink extends React.Component {
+    render() {
+        return <Link to={this.props.url}>
+            <Menu.Item style={{textAlign:"left"}}>
+                {this.props.text}
+            </Menu.Item>
+        </Link>
+    }
+}
 class SidebarSection extends React.Component {
     render(){
-        return <div >
+        return <div  style={{textAlign:"left"}}>
                 <Icon name={this.props.icon}  style={{float: "center"}}/>
                 <span style={{float: "center"}}>
                     {this.props.title}

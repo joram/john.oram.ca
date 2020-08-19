@@ -1,53 +1,45 @@
 import React from "react";
-import {Grid, Card} from "semantic-ui-react"
+import {Grid, Card, Divider} from "semantic-ui-react"
 import BasePage from "../BasePage";
 
-import {Icon} from "react-icons-kit";
-import {firefox} from "react-icons-kit/fa";
-
+let devops_description = "Working on an ops team of 4, we coordinated and ran <X> servers."
 let lead_description = ""
 
 
 function Tutela() {
   return (<BasePage title="Tutela">
-      <Grid>
-        <Grid.Row columns={7}>
-          <Grid.Column>
-            <Icon icon={firefox} />
-            Golang
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-java"></i>
-            Java
-	  </Grid.Column>
-          <Grid.Column>
-            <i className="icon-docker"></i>
-            Docker
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-postgres"></i>
-            RDS
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <i className="fa-cubes"></i>
-            Kubernetes
-          </Grid.Column>
-          <Grid.Column>
-            <i className="icon-terraform"></i>
-            Terraform
-	  </Grid.Column>
-          <Grid.Column>Kinesis</Grid.Column>
-        </Grid.Row>
-      </Grid>
+      The company uses an SDK with app partners to record telemetry, anonymized as much as possible,
+      to come up with analytics used by the telcom industry.
+
+      <Divider horizontal>Roles</Divider>
       <Card.Group>
           <Card
           header='Ops Team Lead'
           description={lead_description}
-          extra='July 2017 - April 2019'
+          extra='October 2019 - August 2020'
+          />
+          <Card
+          header='Senior DevOps'
+          description={devops_description}
+          extra='August 2019 - October 2019'
           />
       </Card.Group>
+
+     <Divider horizontal>Technologies Used</Divider>
+      <Grid>
+        <Grid.Row columns={4}>
+          <Grid.Column>Java</Grid.Column>
+          <Grid.Column>Python</Grid.Column>
+          <Grid.Column>Docker</Grid.Column>
+          <Grid.Column>RDS</Grid.Column>
+        </Grid.Row>
+        <Grid.Row columns={3}>
+          <Grid.Column>Kubernetes</Grid.Column>
+          <Grid.Column>Terraform</Grid.Column>
+          <Grid.Column>Kinesis</Grid.Column>
+        </Grid.Row>
+      </Grid>
+
     </BasePage>)
 }
 

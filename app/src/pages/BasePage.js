@@ -1,5 +1,5 @@
 import React from "react";
-import {Header, HeaderContent, Divider, Segment, Container} from "semantic-ui-react";
+import {Header, HeaderContent, Divider, Container} from "semantic-ui-react";
 
 class BasePage extends React.Component {
 
@@ -12,7 +12,7 @@ class BasePage extends React.Component {
 
       {this.props.subtitle}
 
-      <HeaderContent style={{maxWidth:"500px"}}>
+      <HeaderContent style={{maxWidth:"600px"}}>
         <Container textAlign="left">
           {this.props.children}
         </Container>
