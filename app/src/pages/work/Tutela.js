@@ -3,7 +3,12 @@ import {Grid, Card, Divider} from "semantic-ui-react"
 import BasePage from "../BasePage";
 
 let devops_description = "Working on an ops team of 4, we coordinated and ran <X> servers."
-let lead_description = ""
+let lead_description = "Hired as a senior developer on the ops team, promoted to lead of the ops team " +
+    "within two months. Built upon and maintained an ingress API and other core operational infrastructure." +
+    "Functional Responsibilities:" +
+    "Hiring and mentorship, " +
+    "Infrastructure planning, development, and deployment, " +
+    "Responsible for an API with 22 billion monthly invocations"
 
 
 function Tutela() {
