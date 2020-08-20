@@ -17,25 +17,18 @@ import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
 function App() {
   return (
     <BrowserRouter>
-        {/*<SemanticSidebar.Pushable>*/}
-            <Sidebar/>
-            {/*<SemanticSidebar.Pusher>*/}
-            {/*    <div>*/}
-                <Segment id="pagecontent" basic align="center">
-                {/*<Container id={"pagecontent"}>*/}
-                    <Route exact path="/" component={AboutMe} />
-                    <Route exact path="/work/certn" component={Certn} />
-                    <Route exact path="/work/tutela" component={Tutela} />
-                    <Route exact path="/work/sendwithus" component={Sendwithus} />
-                    <Route exact path="/work/socoloco" component={Socoloco} />
-                    <Route exact path="/project/distillery" component={Distillery} />
-                    <Route exact path="/project/moistlywet" component={Moistlywet} />
-                    <Route exact path="/project/triptracks" component={Triptracks} />
-                    <Route exact path="/project/whatisthisapictureof" component={Whatisthisapictureof} />
-                </Segment>
-        {/*        </div>*/}
-        {/*    </SemanticSidebar.Pusher>*/}
-        {/*</SemanticSidebar.Pushable>*/}
+      <Sidebar/>
+      <Segment id="pagecontent" basic align="center">
+        <Route exact path="/" component={AboutMe} />
+        <Route exact path="/work/certn" component={Certn} />
+        <Route exact path="/work/tutela" component={Tutela} />
+        <Route exact path="/work/sendwithus" component={Sendwithus} />
+        <Route exact path="/work/socoloco" component={Socoloco} />
+        <Route exact path="/project/distillery" component={Distillery} />
+        <Route exact path="/project/moistlywet" component={Moistlywet} />
+        <Route exact path="/project/triptracks" component={Triptracks} />
+        <Route exact path="/project/whatisthisapictureof" component={Whatisthisapictureof} />
+      </Segment>
     </BrowserRouter>
   );
 }
