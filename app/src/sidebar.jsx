@@ -25,6 +25,7 @@ class Sidebar extends React.Component {
                         <SidebarLink url="/project/distillery" text="Distillery"/>
                         <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
                         <SidebarLink url="/project/triptracks" text="Triptracks"/>
+                        <SidebarLink url="/project/recipes" text="Recipes"/>
                         <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
                     </Menu>
                 </Menu.Item>

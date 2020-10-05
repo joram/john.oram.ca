@@ -9,11 +9,3 @@ terraform {
     }
   }
 }
-
-//data "terraform_remote_state" "state" {
-//  backend = "local"
-//
-//  config = {
-//    path = "~/terraform.tfstate"
-//  }
-//}
