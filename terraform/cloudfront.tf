@@ -9,7 +9,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   default_root_object = "index.html"
   price_class         = "PriceClass_100"
   tags                = var.default_tags
-  aliases = ["john.oram.ca"]
+  aliases = [aws_s3_bucket.john_oram_ca.bucket]
 
   origin {
     domain_name = aws_s3_bucket.john_oram_ca.bucket_domain_name

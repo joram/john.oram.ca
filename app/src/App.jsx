@@ -13,6 +13,7 @@ import Distillery from "./pages/projects/Distillery"
 import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
 import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
+import Recipes from "./pages/projects/Recipes";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/project/distillery" component={Distillery} />
         <Route exact path="/project/moistlywet" component={Moistlywet} />
         <Route exact path="/project/triptracks" component={Triptracks} />
+        <Route exact path="/project/recipes" component={Recipes} />
         <Route exact path="/project/whatisthisapictureof" component={Whatisthisapictureof} />
       </Segment>
     </BrowserRouter>
