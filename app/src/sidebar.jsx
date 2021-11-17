@@ -53,15 +53,24 @@ class Sidebar extends React.Component {
             <Menu.Item>
                 <SidebarSection icon="video" title="Videos"  style={{textAlign:"left"}} />
                 <Menu inverted vertical style={{width:"auto"}}>
-                    <SidebarLink url="/trip_report/5040" text="skiing Fernwood"/>
+                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/dumplings.mp4" text="Dumplings"/>
+                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6139.MP4" text="skiing Fernwood (1)"/>
+                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6140.MP4" text="skiing Fernwood (2)"/>
+                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6141.MP4" text="skiing Fernwood (3)"/>
+                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR5653+-+john.MP4" text="Goldstream Tressel"/>
                 </Menu>
             </Menu.Item>
         </>
 
-        let menus = personal_menus
-        if(this.state.mode==="professional"){
-            menus = professional_menus
-        }
+        let menus = <>{professional_menus}{personal_menus}</>
+        let selector = <>
+            <Menu.Item>
+                <Button.Group>
+                    <Button active={this.state.mode==="professional"} onClick={() => {this.setMode("professional")}}>Professional</Button>
+                    <Button active={this.state.mode==="personal"} onClick={() => {this.setMode("personal")}}>Personal</Button>
+                </Button.Group>
+            </Menu.Item>
+        </>
         return <>
             <SemanticSidebar as={Menu} icon='labeled' inverted vertical visible>
 
@@ -72,15 +81,7 @@ class Sidebar extends React.Component {
                         <Image src={profile} size='small' circular centered/>
                     </Link>
                 </Menu.Item>
-
-
-                <Menu.Item>
-                    <Button.Group>
-                        <Button active={this.state.mode==="professional"} onClick={() => {this.setMode("professional")}}>Professional</Button>
-                        <Button active={this.state.mode==="personal"} onClick={() => {this.setMode("personal")}}>Personal</Button>
-                    </Button.Group>
-                </Menu.Item>
-
+                {selector}
                 {menus}
 
             </SemanticSidebar>
@@ -88,7 +89,15 @@ class Sidebar extends React.Component {
     }
 }
 
-
+class SidebarExternalLink extends React.Component {
+    render() {
+        return <a href={this.props.url}>
+            <Menu.Item style={{textAlign:"left"}}>
+                {this.props.text}
+            </Menu.Item>
+        </a>
+    }
+}
 class SidebarLink extends React.Component {
     render() {
         return <Link to={this.props.url}>
