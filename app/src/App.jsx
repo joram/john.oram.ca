@@ -14,7 +14,8 @@ import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
 import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
 import Recipes from "./pages/projects/Recipes";
-import TripReport5040 from "./pages/trip_reports/504";
+import TripReport5040 from "./pages/trip_reports/5040";
+import TripReportWardenVictoria from "./pages/trip_reports/warden_victoria";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/project/recipes" component={Recipes} />
         <Route exact path="/project/whatisthisapictureof" component={Whatisthisapictureof} />
         <Route exact path="/trip_report/5040" component={TripReport5040} />
+        <Route exact path="/trip_report/warden_victoria" component={TripReportWardenVictoria} />
       </Segment>
     </BrowserRouter>
   );
