@@ -1,44 +1,87 @@
 import {Icon, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
 import React from "react";
-import {Image} from "semantic-ui-react";
+import {Image, Button} from "semantic-ui-react";
 import profile from "./static/profile.jpg"
 import { Link } from "react-router-dom";
 
 
 class Sidebar extends React.Component {
 
+    state = {
+        mode: "professional"
+    }
+
+    setMode(mode){
+        let state = this.state
+        state.mode = mode
+        this.setState(state)
+    }
     render(){
+
+        let professional_menus = <>
+            <Menu.Item>
+                <SidebarSection icon="lab" title="Side Projects"  style={{textAlign:"left"}} />
+                <Menu inverted vertical style={{width:"auto"}}>
+                    <SidebarLink url="/project/distillery" text="Distillery"/>
+                    <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
+                    <SidebarLink url="/project/triptracks" text="Triptracks"/>
+                    <SidebarLink url="/project/recipes" text="Recipes"/>
+                    <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
+                </Menu>
+            </Menu.Item>
+
+            <Menu.Item>
+                <SidebarSection icon="newspaper outline" title="Work History"  style={{textAlign:"left"}}  />
+                <Menu inverted vertical style={{width:"auto"}} >
+                    <SidebarLink url="/work/certn" text="2020 - Certn"/>
+                    <SidebarLink url="/work/tutela" text="2019 - Tutela"/>
+                    <SidebarLink url="/work/sendwithus" text="2016 - Sendwithus"/>
+                    <SidebarLink url="/work/socoloco" text="2012 - Socoloco"/>
+                </Menu>
+            </Menu.Item>
+        </>
+
+        let personal_menus = <>
+            <Menu.Item>
+                <SidebarSection icon="book" title="Trip Reports"  style={{textAlign:"left"}} />
+                <Menu inverted vertical style={{width:"auto"}}>
+                    <SidebarLink url="/trip_report/5040" text="Warden/Victoria Peaks"/>
+                    <SidebarLink url="/trip_report/5040" text="5040 Peak (winter)"/>
+                </Menu>
+            </Menu.Item>
+
+            <Menu.Item>
+                <SidebarSection icon="video" title="Videos"  style={{textAlign:"left"}} />
+                <Menu inverted vertical style={{width:"auto"}}>
+                    <SidebarLink url="/trip_report/5040" text="skiing Fernwood"/>
+                </Menu>
+            </Menu.Item>
+        </>
+
+        let menus = personal_menus
+        if(this.state.mode==="professional"){
+            menus = professional_menus
+        }
         return <>
-            <SemanticSidebar as={Menu} icon='labeled' inverted vertical width='thin' visible>
+            <SemanticSidebar as={Menu} icon='labeled' inverted vertical visible>
 
                 <Menu.Item>
                     <Link to="/">
-                        <SidebarSection icon="user" title="John Oram" />
+                        <h2><SidebarSection icon="user" title="John Oram" /></h2>
                         <br/>
-                        <Image src={profile} size='large' circular />
+                        <Image src={profile} size='small' circular centered/>
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item>
-                    <SidebarSection icon="lab" title="Side Projects"  style={{textAlign:"left"}} />
-                    <Menu inverted vertical style={{width:"auto"}}>
-                        <SidebarLink url="/project/distillery" text="Distillery"/>
-                        <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
-                        <SidebarLink url="/project/triptracks" text="Triptracks"/>
-                        <SidebarLink url="/project/recipes" text="Recipes"/>
-                        <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
-                    </Menu>
-                </Menu.Item>
 
                 <Menu.Item>
-                    <SidebarSection icon="newspaper outline" title="Work History" />
-                    <Menu inverted vertical style={{width:"auto"}} >
-                        <SidebarLink url="/work/certn" text="2020 - Certn"/>
-                        <SidebarLink url="/work/tutela" text="2019 - Tutela"/>
-                        <SidebarLink url="/work/sendwithus" text="2016 - Sendwithus"/>
-                        <SidebarLink url="/work/socoloco" text="2012 - Socoloco"/>
-                    </Menu>
+                    <Button.Group>
+                        <Button active={this.state.mode==="professional"} onClick={() => {this.setMode("professional")}}>Professional</Button>
+                        <Button active={this.state.mode==="personal"} onClick={() => {this.setMode("personal")}}>Personal</Button>
+                    </Button.Group>
                 </Menu.Item>
+
+                {menus}
 
             </SemanticSidebar>
         </>
@@ -57,7 +100,7 @@ class SidebarLink extends React.Component {
 }
 class SidebarSection extends React.Component {
     render(){
-        return <div  style={{textAlign:"left"}}>
+        return <div style={this.props.style} >
                 <Icon name={this.props.icon}  style={{float: "center"}}/>
                 <span style={{float: "center"}}>
                     {this.props.title}
