@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
             <Menu.Item>
                 <SidebarSection icon="book" title="Trip Reports"  style={{textAlign:"left"}} />
                 <Menu inverted vertical style={{width:"auto"}}>
-                    <SidebarLink url="/trip_report/5040" text="Warden/Victoria Peaks"/>
+                    <SidebarLink url="/trip_report/warden_victoria" text="Warden & Victoria Peaks"/>
                     <SidebarLink url="/trip_report/5040" text="5040 Peak (winter)"/>
                 </Menu>
             </Menu.Item>
@@ -63,14 +63,6 @@ class Sidebar extends React.Component {
         </>
 
         let menus = <>{professional_menus}{personal_menus}</>
-        let selector = <>
-            <Menu.Item>
-                <Button.Group>
-                    <Button active={this.state.mode==="professional"} onClick={() => {this.setMode("professional")}}>Professional</Button>
-                    <Button active={this.state.mode==="personal"} onClick={() => {this.setMode("personal")}}>Personal</Button>
-                </Button.Group>
-            </Menu.Item>
-        </>
         return <>
             <SemanticSidebar as={Menu} icon='labeled' inverted vertical visible>
 
@@ -81,7 +73,6 @@ class Sidebar extends React.Component {
                         <Image src={profile} size='small' circular centered/>
                     </Link>
                 </Menu.Item>
-                {selector}
                 {menus}
 
             </SemanticSidebar>
