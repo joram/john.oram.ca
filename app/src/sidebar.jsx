@@ -1,8 +1,7 @@
-import {Icon, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
+import {Icon, Image, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
 import React from "react";
-import {Image, Button} from "semantic-ui-react";
 import profile from "./static/profile.jpg"
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 class Sidebar extends React.Component {
@@ -45,8 +44,8 @@ class Sidebar extends React.Component {
             <Menu.Item>
                 <SidebarSection icon="book" title="Trip Reports"  style={{textAlign:"left"}} />
                 <Menu inverted vertical style={{width:"auto"}}>
-                    <SidebarLink url="/trip_report/warden_victoria" text="Warden & Victoria Peaks"/>
-                    <SidebarLink url="/trip_report/5040" text="5040 Peak (winter)"/>
+                    <SidebarLink url="/trip/elkhorn" text="Elkhorn Mountain"/>
+                    <SidebarLink url="/trip/warden_victoria" text="Warden & Victoria Peaks"/>
                 </Menu>
             </Menu.Item>
 
