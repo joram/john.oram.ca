@@ -14,9 +14,9 @@ import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
 import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
 import Recipes from "./pages/projects/Recipes";
-import TripReport5040 from "./pages/trip_reports/5040";
 import TripReport from "./pages/TripReport";
 import warden_victoria from "./pages/trip_reports/2021_warden_an_victoria_peak.md";
+import elkhorn from "./pages/trip_reports/2021_elkhorn.md";
 
 function App() {
   return (
@@ -34,10 +34,8 @@ function App() {
           <Route exact path="/project/triptracks" element={<Triptracks/>} />
           <Route exact path="/project/recipes" element={<Recipes/>} />
           <Route exact path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>} />
-          <Route exact path="/trip_report/5040" element={<TripReport5040/>} />
-          <Route exact path="/trip_report/warden_victoria" element={
-              <TripReport markdown_filepath={warden_victoria}/>
-            }/>
+          <Route exact path="/trip/warden_victoria" element={<TripReport filepath={warden_victoria} key="a"/>} />
+          <Route exact path="/trip/elkhorn" element={<TripReport filepath={elkhorn} key="b"/>} />
         </Routes>
       </Segment>
     </BrowserRouter>

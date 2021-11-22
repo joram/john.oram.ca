@@ -1,26 +1,26 @@
 import React from "react";
 import ReactMarkdown from 'react-markdown'
-import BasePage from './BasePage'
 import {Container} from "semantic-ui-react";
 
 
 class TripReport extends React.Component {
-    markdown_filepath;
     state = {
         markdown: ""
     }
 
-    componentDidMount() {
-      fetch(this.props.markdown_filepath)
+    constructor(props) {
+      fetch(props.filepath)
         .then((r) => r.text())
         .then(markdown  => {
+            console.log(props.filepath)
           this.setState({markdown:markdown})
         })
+      super(props);
     }
 
     render(){
         return <Container>
-            <ReactMarkdown>{this.state.markdown}</ReactMarkdown>
+            <ReactMarkdown >{this.state.markdown}</ReactMarkdown>
         </Container>
     }
 }
