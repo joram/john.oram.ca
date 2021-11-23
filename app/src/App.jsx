@@ -24,7 +24,7 @@ function App() {
       <Sidebar/>
       <Segment id="pagecontent" basic align="center">
         <Routes>
-          <Route exact path="/" element={AboutMe} />
+          <Route exact path="/" element={<AboutMe/>} />
           <Route exact path="/work/certn" element={<Certn/>} />
           <Route exact path="/work/tutela" element={<Tutela/>} />
           <Route exact path="/work/sendwithus" element={<Sendwithus/>} />
@@ -34,8 +34,8 @@ function App() {
           <Route exact path="/project/triptracks" element={<Triptracks/>} />
           <Route exact path="/project/recipes" element={<Recipes/>} />
           <Route exact path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>} />
-          <Route exact path="/trip/warden_victoria" element={<TripReport filepath={warden_victoria} key="a"/>} />
-          <Route exact path="/trip/elkhorn" element={<TripReport filepath={elkhorn} key="b"/>} />
+          <Route exact path="/trip/warden_victoria" element={<TripReport filepath={warden_victoria} key="warden_victoria"/>} />
+          <Route exact path="/trip/elkhorn" element={<TripReport filepath={elkhorn} key="elkhorn"/>} />
         </Routes>
       </Segment>
     </BrowserRouter>
