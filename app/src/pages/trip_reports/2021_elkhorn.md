@@ -28,3 +28,5 @@ More route finding, another pitch, and we were on the boulder pile that makes up
 
 ## Descent
 Oh god was it a long way, lots of rappels, and hiking in full shank boots. We were zombies near the end, and my feet were sore. a month later my toe nails fell off from all that time in full shank boots.
+
+Drove home with a sleep in the car for an hour or two on the side of the highway.

@@ -42,4 +42,4 @@ We opted for a 3rd route, something that looked fun from the ground, but after t
 
 Decent went smoothly until the blueberries on the initial slope above the car, where we got lost for a while, and eventually chose a compass angle to travel, hitting the tip of the logging road almost dead on!
 
-Drove home with a sleep in the car for an hour or two on the side of the highway.
+Drove home with a stop at a pub, where Bernie bought the beers, since he lost two bets. One for which peaks were warden/victoria on the drive in, and the other for how long it would take to get back to the car.
