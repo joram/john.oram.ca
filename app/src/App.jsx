@@ -17,6 +17,7 @@ import Recipes from "./pages/projects/Recipes";
 import TripReport from "./pages/TripReport";
 import warden_victoria from "./pages/trip_reports/2021_warden_an_victoria_peak.md";
 import elkhorn from "./pages/trip_reports/2021_elkhorn.md";
+import ast1 from "./pages/trip_reports/2021_AST1.md";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>} />
           <Route exact path="/trip/warden_victoria" element={<TripReport filepath={warden_victoria} key="warden_victoria"/>} />
           <Route exact path="/trip/elkhorn" element={<TripReport filepath={elkhorn} key="elkhorn"/>} />
+          <Route exact path="/trip/ast1" element={<TripReport filepath={ast1} key="ast1"/>} />
         </Routes>
       </Segment>
     </BrowserRouter>
