@@ -19,7 +19,7 @@ class TripReport extends React.Component {
     }
 
     render(){
-        return <Container>
+        return <Container className="markdown">
             <ReactMarkdown >{this.state.markdown}</ReactMarkdown>
         </Container>
     }

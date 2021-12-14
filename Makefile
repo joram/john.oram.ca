@@ -2,4 +2,4 @@ run:
 	cd app; yarn start
 
 deploy:
-	cd app; ./scripts/deploy
+	source .env; cd app; ./scripts/deploy
