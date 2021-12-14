@@ -46,6 +46,7 @@ class Sidebar extends React.Component {
                 <Menu inverted vertical style={{width:"auto"}}>
                     <SidebarLink url="/trip/elkhorn" text="Elkhorn Mountain"/>
                     <SidebarLink url="/trip/warden_victoria" text="Warden & Victoria Peaks"/>
+                    <SidebarLink url="/trip/ast1" text="AST1"/>
                 </Menu>
             </Menu.Item>
 

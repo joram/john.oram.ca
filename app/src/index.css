@@ -23,6 +23,10 @@ html, body {
   padding-top: 30px;
 }
 
+.markdown {
+  text-align: left;
+}
+
 #aboutme a {
   color: black !important;
   padding-left: 15px;
