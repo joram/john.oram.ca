@@ -4,7 +4,7 @@ import {Header, HeaderContent, Divider, Container} from "semantic-ui-react";
 class BasePage extends React.Component {
 
   render(){
-    return (<div id="aboutme">
+    return (<>
 
       <Divider horizontal inverted>
         <Header> {this.props.title} </Header>
@@ -17,7 +17,7 @@ class BasePage extends React.Component {
           {this.props.children}
         </Container>
       </HeaderContent>
-    </div>)
+    </>)
   }
 }
 

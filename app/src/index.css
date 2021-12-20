@@ -12,15 +12,17 @@ code {
     monospace;
 }
 
-html, body {
+html, body, #root{
   background-color: lightgray !important;
   /*background-color: #6e7174 !important;*/
-  height: 100%;
+  height: 100vh;
+  max-width: available;
+  padding: 0;
 }
 
 #pagecontent {
-  margin-left: 150px;
-  padding-top: 30px;
+  margin-top: 30px;
+  padding-bottom: 0;
 }
 
 .markdown {
@@ -35,6 +37,6 @@ html, body {
 
 .tech-icon {
   position: relative;
-    top: 5px;
+  top: 5px;
   left: 5px;
 }

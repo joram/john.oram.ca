@@ -1,4 +1,4 @@
-import {Icon, Image, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
+import {Button, Icon, Image, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
 import React from "react";
 import profile from "./static/profile.jpg"
 import {Link} from "react-router-dom";
@@ -54,17 +54,23 @@ class Sidebar extends React.Component {
                 <SidebarSection icon="video" title="Videos"  style={{textAlign:"left"}} />
                 <Menu inverted vertical style={{width:"auto"}}>
                     <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/dumplings.mp4" text="Dumplings"/>
-                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6139.MP4" text="skiing Fernwood (1)"/>
-                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6140.MP4" text="skiing Fernwood (2)"/>
-                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6141.MP4" text="skiing Fernwood (3)"/>
+                    <SidebarExternalMultiLink
+                        text="skiing Fernwood"
+                        url1="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6139.MP4"
+                        url2="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6140.MP4"
+                        url3="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6141.MP4"
+                    />
                     <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR5653+-+john.MP4" text="Goldstream Tressel"/>
                 </Menu>
             </Menu.Item>
         </>
 
-        let menus = <>{professional_menus}{personal_menus}</>
+        let menus = <></>
+        if(this.state.mode==="professional"){ menus = professional_menus }
+        if(this.state.mode==="personal"){ menus = personal_menus }
+
         return <>
-            <SemanticSidebar as={Menu} icon='labeled' inverted vertical visible>
+            <SemanticSidebar as={Menu} icon='labeled' inverted vertical visible animation="push">
 
                 <Menu.Item>
                     <Link to="/">
@@ -73,6 +79,14 @@ class Sidebar extends React.Component {
                         <Image src={profile} size='small' circular centered/>
                     </Link>
                 </Menu.Item>
+
+                <Button.Group vertical inverted>
+                    <Button active={this.state.mode==="professional"} onClick={() => {this.setMode("professional")}}>Professional</Button>
+                    <Button active={this.state.mode==="personal"} onClick={() => {this.setMode("personal")}}>Personal</Button>
+                </Button.Group>
+                <br/>
+                <br/>
+
                 {menus}
 
             </SemanticSidebar>
@@ -89,6 +103,16 @@ class SidebarExternalLink extends React.Component {
         </a>
     }
 }
+class SidebarExternalMultiLink extends React.Component {
+    render() {
+        return <Menu.Item style={{textAlign:"left"}}>
+           <a href={this.props.url1}>{this.props.text} (1)</a>
+           <a href={this.props.url2}>(2)</a>
+           <a href={this.props.url3}>(3)</a>
+        </Menu.Item>
+    }
+}
+
 class SidebarLink extends React.Component {
     render() {
         return <Link to={this.props.url}>
@@ -98,6 +122,7 @@ class SidebarLink extends React.Component {
         </Link>
     }
 }
+
 class SidebarSection extends React.Component {
     render(){
         return <div style={this.props.style} >
