@@ -6,7 +6,7 @@ import icon from "../../static/moistlywet.png";
 function Moistlywet() {
     let title = <>
       <img src={icon} alt={"icon"} />
-      Distillery
+      Moistlywet
     </>;
 
     return (<BasePage title={title}>
