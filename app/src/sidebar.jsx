@@ -47,6 +47,7 @@ class Sidebar extends React.Component {
                     <SidebarLink url="/trip/elkhorn" text="Elkhorn Mountain"/>
                     <SidebarLink url="/trip/warden_victoria" text="Warden & Victoria Peaks"/>
                     <SidebarLink url="/trip/ast1" text="AST1"/>
+                    <SidebarLink url="/trip/5040" text="5040 Peak"/>
                 </Menu>
             </Menu.Item>
 
