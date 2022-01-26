@@ -18,6 +18,7 @@ import TripReport from "./pages/TripReport";
 import warden_victoria from "./pages/trip_reports/2021_warden_an_victoria_peak.md";
 import elkhorn from "./pages/trip_reports/2021_elkhorn.md";
 import ast1 from "./pages/trip_reports/2021_AST1.md";
+import fifty_fourty from "./pages/trip_reports/2022_5040.md";
 import { useState, useEffect } from 'react';
 
 function getWindowDimensions() {
@@ -65,6 +66,7 @@ function App() {
             <Route exact path="/trip/warden_victoria" element={<TripReport filepath={warden_victoria} key="warden_victoria"/>} />
             <Route exact path="/trip/elkhorn" element={<TripReport filepath={elkhorn} key="elkhorn"/>} />
             <Route exact path="/trip/ast1" element={<TripReport filepath={ast1} key="ast1"/>} />
+            <Route exact path="/trip/5040" element={<TripReport filepath={fifty_fourty} key="5040"/>} />
           </Routes>
         </SemanticUISidebar.Pusher>
       </SemanticUISidebar.Pushable>
