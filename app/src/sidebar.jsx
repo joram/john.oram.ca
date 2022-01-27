@@ -1,96 +1,117 @@
-import {Button, Icon, Image, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
+import {Accordion, Container, Icon, Image, Menu, Segment, Sidebar as SemanticSidebar} from "semantic-ui-react";
 import React from "react";
 import profile from "./static/profile.jpg"
 import {Link} from "react-router-dom";
 
+function SidebarSection(props){
+    return <div style={props.style}>
+            <Icon name={props.icon}  style={{float: "center", color:"#fff"}}/>
+            <span style={{float: "center", color:"#fff"}}>{props.title}</span>
+    </div>
+}
+
+function SidebarAccordianSection(props){
+    let {activeTitle, icon, title, links, handleClick} = props
+    let active = activeTitle === title
+
+    return <>
+        <Accordion.Title
+            active={active}
+            title={title}
+            onClick={handleClick}
+        >
+            <SidebarSection icon={icon} title={title}  style={{textAlign:"left"}} />
+        </Accordion.Title>
+        <Accordion.Content active={active}>
+            {props.children}
+        </Accordion.Content>
+    </>
+}
 
 class Sidebar extends React.Component {
+    state = { activeTitle: "" }
 
-    state = {
-        mode: "professional"
+    handleClick(e, titleProps) {
+        const {title} = titleProps
+        const {activeTitle} = this.state
+        const newTitle = activeTitle === title ? "" : title
+        console.log(title, activeTitle, "new:", newTitle)
+        this.setState({activeTitle: newTitle})
     }
 
-    setMode(mode){
-        let state = this.state
-        state.mode = mode
-        this.setState(state)
-    }
     render(){
+        let { activeTitle } = this.state
+        return <SemanticSidebar icon='labeled' visible animation="push">
+            <Segment inverted style={{height:"100%"}}>
+             <Link to="/">
+                <h2 style={{textAlign:"center"}}><SidebarSection icon="user" title="John Oram" /></h2>
+                <Image src={profile} size='small' circular centered/>
+                 <br/>
+            </Link>
+            <Accordion>
+                <SidebarAccordianSection
+                    icon="lab"
+                    title="Side Projects"
+                    activeTitle={activeTitle}
+                    handleClick={this.handleClick.bind(this)}
+                >
+                    <Menu inverted style={{width:"auto"}} vertical>
+                        <SidebarLink url="/project/distillery" text="Distillery"/>
+                        <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
+                        <SidebarLink url="/project/triptracks" text="Triptracks"/>
+                        <SidebarLink url="/project/recipes" text="Recipes"/>
+                        <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
+                    </Menu>
+                </SidebarAccordianSection>
 
-        let professional_menus = <>
-            <Menu.Item>
-                <SidebarSection icon="lab" title="Side Projects"  style={{textAlign:"left"}} />
-                <Menu inverted vertical style={{width:"auto"}}>
-                    <SidebarLink url="/project/distillery" text="Distillery"/>
-                    <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
-                    <SidebarLink url="/project/triptracks" text="Triptracks"/>
-                    <SidebarLink url="/project/recipes" text="Recipes"/>
-                    <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
-                </Menu>
-            </Menu.Item>
+                <SidebarAccordianSection
+                    icon="newspaper outline"
+                    title="Work History"
+                    activeTitle={activeTitle}
+                    handleClick={this.handleClick.bind(this)}
+                >
+                    <Menu inverted style={{width:"auto"}} vertical>
+                        <SidebarLink url="/work/certn" text="2020 - Certn"/>
+                        <SidebarLink url="/work/tutela" text="2019 - Tutela"/>
+                        <SidebarLink url="/work/sendwithus" text="2016 - Sendwithus"/>
+                        <SidebarLink url="/work/socoloco" text="2012 - Socoloco"/>
+                    </Menu>
+                </SidebarAccordianSection>
 
-            <Menu.Item>
-                <SidebarSection icon="newspaper outline" title="Work History"  style={{textAlign:"left"}}  />
-                <Menu inverted vertical style={{width:"auto"}} >
-                    <SidebarLink url="/work/certn" text="2020 - Certn"/>
-                    <SidebarLink url="/work/tutela" text="2019 - Tutela"/>
-                    <SidebarLink url="/work/sendwithus" text="2016 - Sendwithus"/>
-                    <SidebarLink url="/work/socoloco" text="2012 - Socoloco"/>
-                </Menu>
-            </Menu.Item>
-        </>
+                <SidebarAccordianSection
+                    icon="book"
+                    title="Trip Reports"
+                    activeTitle={activeTitle}
+                    handleClick={this.handleClick.bind(this)}
+                    links={[
+                        {url:"/trip/elkhorn", text:"Elkhorn Mountain"},
+                        {url:"/trip/warden_victoria", text:"Warden & Victoria Peaks"},
+                        {url:"/trip/ast1", text:"AST1"},
+                        {url:"/trip/5040", text:"5040 Peak"},
+                ]}>
+                    <Menu inverted style={{width:"auto"}} vertical>
+                        <SidebarLink url="/trip/elkhorn" text="2021 - Elkhorn Mountain"/>
+                        <SidebarLink url="/trip/warden_victoria" text="2021 - Warden & Victoria"/>
+                        <SidebarLink url="/trip/ast" text="2021 - AST- 1"/>
+                        <SidebarLink url="/trip/5040" text="2022 - 5040 Peak"/>
+                    </Menu>
+                </SidebarAccordianSection>
 
-        let personal_menus = <>
-            <Menu.Item>
-                <SidebarSection icon="book" title="Trip Reports"  style={{textAlign:"left"}} />
-                <Menu inverted vertical style={{width:"auto"}}>
-                    <SidebarLink url="/trip/elkhorn" text="Elkhorn Mountain"/>
-                    <SidebarLink url="/trip/warden_victoria" text="Warden & Victoria Peaks"/>
-                    <SidebarLink url="/trip/ast1" text="AST1"/>
-                </Menu>
-            </Menu.Item>
-
-            <Menu.Item>
-                <SidebarSection icon="video" title="Videos"  style={{textAlign:"left"}} />
-                <Menu inverted vertical style={{width:"auto"}}>
-                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/dumplings.mp4" text="Dumplings"/>
-                    <SidebarExternalMultiLink
-                        text="skiing Fernwood"
-                        url1="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6139.MP4"
-                        url2="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6140.MP4"
-                        url3="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6141.MP4"
-                    />
-                    <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR5653+-+john.MP4" text="Goldstream Tressel"/>
-                </Menu>
-            </Menu.Item>
-        </>
-
-        let menus = <></>
-        if(this.state.mode==="professional"){ menus = professional_menus }
-        if(this.state.mode==="personal"){ menus = personal_menus }
-
-        return <>
-            <SemanticSidebar as={Menu} icon='labeled' inverted vertical visible animation="push">
-
-                <Menu.Item>
-                    <Link to="/">
-                        <h2><SidebarSection icon="user" title="John Oram" /></h2>
-                        <br/>
-                        <Image src={profile} size='small' circular centered/>
-                    </Link>
-                </Menu.Item>
-
-                <Button.Group vertical inverted>
-                    <Button active={this.state.mode==="professional"} onClick={() => {this.setMode("professional")}}>Professional</Button>
-                    <Button active={this.state.mode==="personal"} onClick={() => {this.setMode("personal")}}>Personal</Button>
-                </Button.Group>
-                <br/>
-                <br/>
-
-                {menus}
-
-            </SemanticSidebar>
-        </>
+                <SidebarAccordianSection icon="video" title="Videos" activeTitle={activeTitle} handleClick={this.handleClick.bind(this)} >
+                    <Menu  inverted style={{width:"auto"}} vertical>
+                        <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/dumplings.mp4" text="Dumplings"/>
+                        <SidebarExternalMultiLink
+                            text="skiing Fernwood"
+                            url1="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6139.MP4"
+                            url2="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6140.MP4"
+                            url3="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR6141.MP4"
+                        />
+                        <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR5653+-+john.MP4" text="Goldstream Tressel"/>
+                    </Menu>
+                </SidebarAccordianSection>
+            </Accordion>
+        </Segment>
+    </SemanticSidebar>
     }
 }
 
@@ -122,17 +143,5 @@ class SidebarLink extends React.Component {
         </Link>
     }
 }
-
-class SidebarSection extends React.Component {
-    render(){
-        return <div style={this.props.style} >
-                <Icon name={this.props.icon}  style={{float: "center"}}/>
-                <span style={{float: "center"}}>
-                    {this.props.title}
-                </span>
-        </div>
-    }
-}
-
 
 export default Sidebar;
