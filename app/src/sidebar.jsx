@@ -1,17 +1,10 @@
-import {Accordion, Container, Icon, Image, Menu, Segment, Sidebar as SemanticSidebar} from "semantic-ui-react";
+import {Accordion, Icon, Image, Menu, Sidebar as SemanticSidebar} from "semantic-ui-react";
 import React from "react";
 import profile from "./static/profile.jpg"
 import {Link} from "react-router-dom";
 
-function SidebarSection(props){
-    return <div style={props.style}>
-            <Icon name={props.icon}  style={{float: "center", color:"#fff"}}/>
-            <span style={{float: "center", color:"#fff"}}>{props.title}</span>
-    </div>
-}
-
 function SidebarAccordianSection(props){
-    let {activeTitle, icon, title, links, handleClick} = props
+    let {activeTitle, icon, title, handleClick} = props
     let active = activeTitle === title
 
     return <>
@@ -20,7 +13,11 @@ function SidebarAccordianSection(props){
             title={title}
             onClick={handleClick}
         >
-            <SidebarSection icon={icon} title={title}  style={{textAlign:"left"}} />
+            <div style={{color:"#fff"}}>
+                <Icon name={icon}/>
+                <span>{props.title}</span>
+                <Icon name='dropdown'/>
+            </div>
         </Accordion.Title>
         <Accordion.Content active={active}>
             {props.children}
@@ -35,34 +32,28 @@ class Sidebar extends React.Component {
         const {title} = titleProps
         const {activeTitle} = this.state
         const newTitle = activeTitle === title ? "" : title
-        console.log(title, activeTitle, "new:", newTitle)
         this.setState({activeTitle: newTitle})
     }
 
     render(){
         let { activeTitle } = this.state
-        return <SemanticSidebar icon='labeled' visible animation="push">
-            <Segment inverted style={{height:"100%"}}>
-             <Link to="/">
-                <h2 style={{textAlign:"center"}}><SidebarSection icon="user" title="John Oram" /></h2>
+        return <SemanticSidebar visible animation="push" style={{background: "#1b1c1d", width:"200px", height:"100vh"}}>
+
+            {/* Headshot/home link */}
+            <Link to="/">
+                <h2 style={{textAlign:"center"}}>
+                    <div style={{color:"#fff"}}>
+                        <br/>
+                        <Icon name="user"/>
+                        <span>John Oram</span>
+                    </div>
+
+                </h2>
                 <Image src={profile} size='small' circular centered/>
                  <br/>
             </Link>
+
             <Accordion>
-                <SidebarAccordianSection
-                    icon="lab"
-                    title="Side Projects"
-                    activeTitle={activeTitle}
-                    handleClick={this.handleClick.bind(this)}
-                >
-                    <Menu inverted style={{width:"auto"}} vertical>
-                        <SidebarLink url="/project/distillery" text="Distillery"/>
-                        <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
-                        <SidebarLink url="/project/triptracks" text="Triptracks"/>
-                        <SidebarLink url="/project/recipes" text="Recipes"/>
-                        <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
-                    </Menu>
-                </SidebarAccordianSection>
 
                 <SidebarAccordianSection
                     icon="newspaper outline"
@@ -79,16 +70,26 @@ class Sidebar extends React.Component {
                 </SidebarAccordianSection>
 
                 <SidebarAccordianSection
+                    icon="lab"
+                    title="Side Projects"
+                    activeTitle={activeTitle}
+                    handleClick={this.handleClick.bind(this)}
+                >
+                    <Menu inverted style={{width:"auto"}} vertical>
+                        <SidebarLink url="/project/distillery" text="Distillery"/>
+                        <SidebarLink url="/project/moistlywet" text="Moistlywet"/>
+                        <SidebarLink url="/project/triptracks" text="Triptracks"/>
+                        <SidebarLink url="/project/recipes" text="Recipes"/>
+                        <SidebarLink url="/project/whatisthisapictureof" text="Whatisthisapictureof"/>
+                    </Menu>
+                </SidebarAccordianSection>
+
+                <SidebarAccordianSection
                     icon="book"
                     title="Trip Reports"
                     activeTitle={activeTitle}
                     handleClick={this.handleClick.bind(this)}
-                    links={[
-                        {url:"/trip/elkhorn", text:"Elkhorn Mountain"},
-                        {url:"/trip/warden_victoria", text:"Warden & Victoria Peaks"},
-                        {url:"/trip/ast1", text:"AST1"},
-                        {url:"/trip/5040", text:"5040 Peak"},
-                ]}>
+                >
                     <Menu inverted style={{width:"auto"}} vertical>
                         <SidebarLink url="/trip/elkhorn" text="2021 - Elkhorn Mountain"/>
                         <SidebarLink url="/trip/warden_victoria" text="2021 - Warden & Victoria"/>
@@ -97,7 +98,12 @@ class Sidebar extends React.Component {
                     </Menu>
                 </SidebarAccordianSection>
 
-                <SidebarAccordianSection icon="video" title="Videos" activeTitle={activeTitle} handleClick={this.handleClick.bind(this)} >
+                <SidebarAccordianSection
+                    icon="video"
+                    title="Videos"
+                    activeTitle={activeTitle}
+                    handleClick={this.handleClick.bind(this)}
+                >
                     <Menu  inverted style={{width:"auto"}} vertical>
                         <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/dumplings.mp4" text="Dumplings"/>
                         <SidebarExternalMultiLink
@@ -109,8 +115,8 @@ class Sidebar extends React.Component {
                         <SidebarExternalLink url="https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/GOPR5653+-+john.MP4" text="Goldstream Tressel"/>
                     </Menu>
                 </SidebarAccordianSection>
+
             </Accordion>
-        </Segment>
     </SemanticSidebar>
     }
 }
