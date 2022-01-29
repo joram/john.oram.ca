@@ -12,11 +12,11 @@ class BasePage extends React.Component {
 
       {this.props.subtitle}
 
-      <HeaderContent style={{maxWidth:"600px"}}>
+      <Container style={{maxWidth:"600px"}}>
         <Container textAlign="left">
           {this.props.children}
         </Container>
-      </HeaderContent>
+      </Container>
     </>)
   }
 }

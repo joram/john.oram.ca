@@ -6,17 +6,15 @@ import BasePage from './BasePage'
 class AboutMe extends React.Component {
 
   render(){
-    let subtitle = <>
-      <Segment basic>
-        <a href="https://github.com/joram">
-          <Icon name="github" size="large"/> GitHub
-        </a>
-        <Divider vertical inverted />
-        <a href="https://www.linkedin.com/in/john-oram">
-          <Icon name="linkedin" size="large"/> LinkedIn
-        </a>
-      </Segment>
-    </>
+    let subtitle = <Segment basic style={{textAlign:"center"}}>
+      <a href="https://github.com/joram">
+        <Icon name="github" size="large"/> GitHub
+      </a>
+      <Divider vertical inverted />
+      <a style={{paddingLeft: "10px"}} href="https://www.linkedin.com/in/john-oram">
+        <Icon name="linkedin" size="large"/> LinkedIn
+      </a>
+    </Segment>
 
     return <BasePage title="About Me" subtitle={subtitle} >
       <Container>

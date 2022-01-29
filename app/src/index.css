@@ -29,10 +29,18 @@ html, body, #root{
   text-align: left;
 }
 
+.markdown img {
+  max-width: 90%;
+}
+
 #aboutme a {
   color: black !important;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.main.wide {
+  margin-left: 145px !important;
 }
 
 .tech-icon {
