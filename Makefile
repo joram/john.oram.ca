@@ -1,6 +1,9 @@
 run:
 	cd app; yarn start
 
+audit:
+	cd app; npm audit --production
+
 deploy:
 	cd app; npm run build
 	cd app; aws s3 sync build/ s3://john.oram.ca/ --exclude "*trip_reports*"
