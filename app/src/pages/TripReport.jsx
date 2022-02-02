@@ -6,19 +6,17 @@ import {useParams} from "react-router";
 
 function TripReport(){
     let [markdown, setMarkdown] = useState("")
-    let [currentSlug, setCurrentSlug] = useState("")
-    let [currentYear, setCurrentYear] = useState("")
+    let [currentFilepath, setFilepath] = useState("")
     let {year, slug} = useParams()
+    let trip_name = slug.replaceAll("_", " ")
+    let filepath = "/trip_reports/"+year+"::"+trip_name+".md"
 
-    if(currentSlug!==slug && year!==currentYear){
-        let trip_name = slug.replaceAll("_", " ")
-        let filepath = "/trip_reports/"+year+"::"+trip_name+".md"
+    if(currentFilepath!==filepath){
         fetch(filepath)
         .then((r) => r.text())
         .then(md  => {
           setMarkdown(md)
-          setCurrentSlug(slug)
-          setCurrentYear(year)
+          setFilepath(filepath)
         })
     }
 
