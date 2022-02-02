@@ -1,28 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactMarkdown from 'react-markdown'
 import {Container} from "semantic-ui-react";
+import {useParams} from "react-router";
 
 
-class TripReport extends React.Component {
-    state = {
-        markdown: ""
-    }
+function TripReport(){
+    let [markdown, setMarkdown] = useState("")
+    let [currentSlug, setCurrentSlug] = useState("")
+    let [currentYear, setCurrentYear] = useState("")
+    let {year, slug} = useParams()
 
-    constructor(props) {
-      fetch(props.filepath)
+    if(currentSlug!==slug && year!==currentYear){
+        let trip_name = slug.replaceAll("_", " ")
+        let filepath = "/trip_reports/"+year+"::"+trip_name+".md"
+        fetch(filepath)
         .then((r) => r.text())
-        .then(markdown  => {
-            console.log(props.filepath)
-          this.setState({markdown:markdown})
+        .then(md  => {
+          setMarkdown(md)
+          setCurrentSlug(slug)
+          setCurrentYear(year)
         })
-      super(props);
     }
 
-    render(){
-        return <Container className="markdown">
-            <ReactMarkdown >{this.state.markdown}</ReactMarkdown>
-        </Container>
-    }
+    return <Container className="markdown">
+        <ReactMarkdown >{markdown}</ReactMarkdown>
+    </Container>
 }
 
 export default TripReport

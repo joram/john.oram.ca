@@ -1,5 +1,5 @@
 import React from "react";
-import {Header, HeaderContent, Divider, Container} from "semantic-ui-react";
+import {Container, Divider, Header} from "semantic-ui-react";
 
 class BasePage extends React.Component {
 

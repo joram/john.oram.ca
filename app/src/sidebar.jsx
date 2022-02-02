@@ -4,23 +4,45 @@ import profile from "./static/profile.jpg"
 import {Link} from "react-router-dom";
 
 function SidebarAccordianSection(props) {
-    let {title, icon, isMobile} = props
-    let text = title
+    let {title} = props
     return <Menu inverted>
-        <Dropdown item text={text} size="tiny">
+        <Dropdown item text={title} size="tiny">
             <Dropdown.Menu>{props.children}</Dropdown.Menu>
         </Dropdown>
     </Menu>
 }
 
 class Sidebar extends React.Component {
-    state = { activeTitle: "" }
+    state = {
+        activeTitle: "",
+        trip_report_links: [],
+    }
+
+    componentDidMount() {
+        this.trip_report_links()
+    }
 
     handleClick(e, titleProps) {
         const {title} = titleProps
         const {activeTitle} = this.state
         const newTitle = activeTitle === title ? "" : title
         this.setState({activeTitle: newTitle})
+    }
+
+    trip_report_links(){
+
+        fetch("/trip_reports/list.json").then(response => response.json()).then(trip_reports_json => {
+            let trip_report_links = []
+            trip_reports_json.filenames.forEach(filename => {
+                let [year, pretty_name] = filename.replace(".md", "").split("::", 2)
+                let slug = pretty_name.replaceAll(" ", "_")
+                trip_report_links.push(<Dropdown.Item as={Link} to={"/trip/"+year+"/"+slug} key={filename}>{pretty_name}</Dropdown.Item>)
+            })
+
+            let state = this.state
+            state.trip_report_links = trip_report_links
+            this.setState(state)
+        })
     }
 
     render(){
@@ -68,12 +90,13 @@ class Sidebar extends React.Component {
                 </SidebarAccordianSection>
 
                 <SidebarAccordianSection icon="book" title="Trip Reports" isMobile={isMobile}>
-                    <Dropdown.Header>2021</Dropdown.Header>
-                    <Dropdown.Item as={Link} to="/trip/elkhorn">Elkhorn Mountain</Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/trip/warden_victoria">Warden & Victoria</Dropdown.Item>
-                    <Dropdown.Item as={Link} to="/trip/ast">AST-1</Dropdown.Item>
-                    <Dropdown.Header>2022</Dropdown.Header>
-                    <Dropdown.Item as={Link} to="/trip/5040">5040 Peak</Dropdown.Item>
+                    {this.state.trip_report_links}
+                    {/*<Dropdown.Header>2021</Dropdown.Header>*/}
+                    {/*<Dropdown.Item as={Link} to="/trip/elkhorn">Elkhorn Mountain</Dropdown.Item>*/}
+                    {/*<Dropdown.Item as={Link} to="/trip/warden_victoria">Warden & Victoria</Dropdown.Item>*/}
+                    {/*<Dropdown.Item as={Link} to="/trip/ast">AST-1</Dropdown.Item>*/}
+                    {/*<Dropdown.Header>2022</Dropdown.Header>*/}
+                    {/*<Dropdown.Item as={Link} to="/trip/5040">5040 Peak</Dropdown.Item>*/}
                 </SidebarAccordianSection>
 
             </Menu>
