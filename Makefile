@@ -1,5 +1,5 @@
 run:
-	cd app; yarn start
+	cd app; npm start
 
 audit:
 	cd app; npm audit --production
