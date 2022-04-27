@@ -9,7 +9,7 @@ function TripReport(){
     let [currentFilepath, setFilepath] = useState("")
     let {year, slug} = useParams()
     let trip_name = slug.replaceAll("_", " ")
-    let filepath = "/trip_reports/"+year+"::"+trip_name+".md"
+    let filepath = "../trip_reports/"+year+"::"+trip_name+".md"
 
     if(currentFilepath!==filepath){
         fetch(filepath)

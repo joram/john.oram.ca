@@ -7,8 +7,8 @@
 - canoeing across Buttle lake by 6pm
 - setup base camp and have dinner
 
-![canoe in](/trip_reports/marble_meadows/canoe_in.jpg)
-![basecamp](/trip_reports/marble_meadows/basecamp.jpg)
+![canoe in](../photos/marble_meadows/canoe_in.jpg)
+![basecamp](../photos/marble_meadows/basecamp.jpg)
 
 ## Day 2 (base camp to hut)
 - alarm for 5am
@@ -16,16 +16,16 @@
 - at 1000m elevation we switched to skis
 - skied to hut, and then dug it out
 
-![hike in](/trip_reports/marble_meadows/hike_in.jpg)
-![ski in](/trip_reports/marble_meadows/ski_in.jpg)
-![dig out hut](/trip_reports/marble_meadows/dig_out_hut.jpg)
+![hike in](../photos/marble_meadows/hike_in.jpg)
+![ski in](../photos/marble_meadows/ski_in.jpg)
+![dig out hut](../photos/marble_meadows/dig_out_hut.jpg)
 
 ## Day 3 (descent)
 - 6am alarm, everyone moving by 6:30
 - We ate breakfast and cleaned the hut 
 - out the door by 8:15, leaving the hut in good shape for the next group
 
-![canoe out](/trip_reports/marble_meadows/canoe_out.jpg)
+![canoe out](../photos/marble_meadows/canoe_out.jpg)
 
 ## Future Trip Edits
 - remember dinner and spoon from basecamp
@@ -33,4 +33,4 @@
 - slightly more arch support in ski boots (to avoid blisters)
 - more bungies for backpack (colourful?)
 
-![deep snow](../trip_reports/marble_meadows/deep_snow.jpg)
+![deep snow](../photos/marble_meadows/deep_snow.jpg)

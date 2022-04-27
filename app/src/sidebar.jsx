@@ -31,12 +31,12 @@ class Sidebar extends React.Component {
 
     trip_report_links(){
 
-        fetch("/trip_reports/list.json").then(response => response.json()).then(trip_reports_json => {
+        fetch("../trip_reports/list.json").then(response => response.json()).then(trip_reports_json => {
             let trip_report_links = []
             trip_reports_json.filenames.forEach(filename => {
                 let [year, pretty_name] = filename.replace(".md", "").split("::", 2)
                 let slug = pretty_name.replaceAll(" ", "_")
-                trip_report_links.push(<Dropdown.Item as={Link} to={"/trip/"+year+"/"+slug} key={filename}>{pretty_name}</Dropdown.Item>)
+                trip_report_links.push(<Dropdown.Item as={Link} to={"/trip_"+year+"/"+slug} key={filename}>{pretty_name}</Dropdown.Item>)
             })
 
             let state = this.state
@@ -91,12 +91,6 @@ class Sidebar extends React.Component {
 
                 <SidebarAccordianSection icon="book" title="Trip Reports" isMobile={isMobile}>
                     {this.state.trip_report_links}
-                    {/*<Dropdown.Header>2021</Dropdown.Header>*/}
-                    {/*<Dropdown.Item as={Link} to="/trip/elkhorn">Elkhorn Mountain</Dropdown.Item>*/}
-                    {/*<Dropdown.Item as={Link} to="/trip/warden_victoria">Warden & Victoria</Dropdown.Item>*/}
-                    {/*<Dropdown.Item as={Link} to="/trip/ast">AST-1</Dropdown.Item>*/}
-                    {/*<Dropdown.Header>2022</Dropdown.Header>*/}
-                    {/*<Dropdown.Item as={Link} to="/trip/5040">5040 Peak</Dropdown.Item>*/}
                 </SidebarAccordianSection>
 
             </Menu>

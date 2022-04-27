@@ -3,14 +3,14 @@
 
 ## Getting There
 After an early wake up, we took a 5hr drive from Victoria, and started hiking in right away.
-![people](/trip_reports/elkhorn/group.jpg)
+![people](../photos/elkhorn/group.jpg)
 
 ## Day 1
 With a longer than remembered from previous trips on the ERT, we found the turn off to go up the elkhorn alley.
 
 Crossing logs, we traversed the river. Getting momentarily displaced on the far side, we located the trail again, and moved upwards.
 
-![logs](/trip_reports/elkhorn/logs.jpg)
+![logs](../photos/elkhorn/logs.jpg)
 
 We met another group on their way down <trip report here>, who gave good beta, so we could ditch gear in the woods.
 We left all our crampons, ice axes and snow pickets in a small stash.
@@ -20,7 +20,7 @@ poking our heads out in a granite boulder field with patchy snow.
 
 Debating how far up to push, we settled on a camp near a tarn.
 
-![camp](/trip_reports/elkhorn/camp.jpg)
+![camp](../photos/elkhorn/camp.jpg)
 
 ## Day 2
 Early rise, boil water the moment the alarms went off, and off we went. The ridge line was better travelling, some snow to cross, nie and cool in the summer day.
@@ -31,7 +31,7 @@ After the first pitch we traversed a scree slope, and a rather exposed ledge, as
 
 More route finding, another pitch, and we were on the boulder pile that makes up the rubbley peak.
 
-![peak](/trip_reports/elkhorn/peak.jpg)
+![peak](../photos/elkhorn/peak.jpg)
 
 
 ## Descent

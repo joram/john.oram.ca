@@ -70,10 +70,7 @@ function App() {
         <Route exact path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>}/>
 
         # Trip Reports
-        <Route exact path="/trip/:year/:slug" element={<TripReport key="trip_report"/>}/>
-        {/*<Route exact path="/trip/elkhorn" element={<TripReport filepath={elkhorn} key="elkhorn"/>}/>*/}
-        {/*<Route exact path="/trip/ast1" element={<TripReport filepath={ast1} key="ast1"/>}/>*/}
-        {/*<Route exact path="/trip/5040" element={<TripReport filepath={fifty_fourty} key="5040"/>}/>*/}
+        <Route exact path="/trip_:year/:slug" element={<TripReport key="trip_report"/>}/>
       </Routes>
     </div>
   </BrowserRouter>
