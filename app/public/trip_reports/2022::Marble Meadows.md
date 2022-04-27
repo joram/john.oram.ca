@@ -33,4 +33,4 @@
 - slightly more arch support in ski boots (to avoid blisters)
 - more bungies for backpack (colourful?)
 
-![deep snow](./trip_reports/marble_meadows/deep_snow.jpg)
+![deep snow](../trip_reports/marble_meadows/deep_snow.jpg)
