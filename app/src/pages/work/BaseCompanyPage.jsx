@@ -33,6 +33,11 @@ function BaseCompanyPage(props) {
             value: weight,
           })
     })
+
+    let options = {
+      rotations: 1,
+      rotationAngles: [0],
+    };
   return (<BasePage title={companyName}>
       <center>{description}</center>
       <Divider horizontal>Roles</Divider>
@@ -44,8 +49,9 @@ function BaseCompanyPage(props) {
           <div style={{
             width: "fit-content",
             margin: "auto",
+              height:"200px"
           }}>
-          <ReactWordcloud words={words} size={[500,200]} />
+          <ReactWordcloud rotationAngles={[0,0]} options={options} words={words} size={[500,200]} />
 
           </div>
       </Container>

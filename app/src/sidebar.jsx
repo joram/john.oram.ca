@@ -79,6 +79,7 @@ class Sidebar extends React.Component {
                     <Dropdown.Item as={Link} to="/work/tutela">2019 - Tutela</Dropdown.Item>
                     <Dropdown.Item as={Link} to="/work/sendwithus">2016 - Sendwithus</Dropdown.Item>
                     <Dropdown.Item as={Link} to="/work/socoloco">2012 - Socoloco</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/work/all_roles">all</Dropdown.Item>
                 </SidebarAccordianSection>
 
                 <SidebarAccordianSection icon="lab" title="Side Projects" isMobile={isMobile}>
