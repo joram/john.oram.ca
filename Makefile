@@ -6,7 +6,7 @@ audit:
 
 deploy:
 	cd app; npm run build
-	cd app; aws s3 sync build/ s3://john.oram.ca/ --exclude "*trip_reports*.jpg"
+	cd app; aws s3 sync build/ s3://john.oram.ca/ --exclude "*photos*"
 	cd app; aws cloudfront create-invalidation --distribution-id=E8AZBRUVVXGYV --paths=/index.html
 
 deploy_all:

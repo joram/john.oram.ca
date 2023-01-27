@@ -114,10 +114,22 @@ export let certn_dev = {
     technologies:["Python", "RDS", "SQS", "EC2", "ECS", "EKS", "Docker", "Lambdas", "Step Functions"],
 }
 
+let certn_staff_description = <>
+    <ul>
+        <li>Team related coding 30%</li>
+        <li>Design and estimating 10%</li>
+        <li>design, estimation and support (for other teams) 25%</li>
+        <li>Career building and evaluation 10%</li>
+        <li>knowledge sharing 10%</li>
+        <li>high level project estimation 5%</li>
+        <li>ad hock support 10%</li>
+    </ul>
+</>
 export let certn_staff = {
     company: "Certn",
     jobTitle:'Staff Engineer/Developer',
-    description:"",
+    description: certn_staff_description,
+
     startDate:"June 2022",
     endDate:"Today",
     technologies:["Python", "RDS", "SQS", "EC2", "ECS", "EKS", "Docker", "Lambdas", "Step Functions"],
