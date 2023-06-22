@@ -15,6 +15,9 @@ import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
 import Recipes from "./pages/projects/Recipes";
 import TripReport from "./pages/TripReport";
 import AllRoles from "./pages/work/allRoles";
+import SEO from "./pages/thoughts/seo";
+import GuidingPrincipals from "./pages/thoughts/guidingPrincipals";
+import WorkEnvironment from "./pages/thoughts/workEnvironment";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -73,6 +76,12 @@ function App() {
 
         # Trip Reports
         <Route exact path="/trip_:year/:slug" element={<TripReport key="trip_report"/>}/>
+
+        # Opinions
+        <Route exact path="/opinions/seo" element={<SEO/>}/>
+        <Route exact path="/opinions/guiding_principals" element={<GuidingPrincipals/>}/>
+        <Route exact path="/opinions/work_environment" element={<WorkEnvironment/>}/>
+
       </Routes>
     </div>
   </BrowserRouter>

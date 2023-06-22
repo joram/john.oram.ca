@@ -90,6 +90,12 @@ class Sidebar extends React.Component {
                     <Dropdown.Item as={Link} to="/project/whatisthisapictureof">Whatisthisapictureof</Dropdown.Item>
                 </SidebarAccordianSection>
 
+                <SidebarAccordianSection icon="lab" title="Opinions" isMobile={isMobile}>
+                    <Dropdown.Item as={Link} to="/opinions/seo">SEO</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/opinions/guiding_principals">Guiding Principals</Dropdown.Item>
+                    <Dropdown.Item as={Link} to="/opinions/work_environment">Work Environment</Dropdown.Item>
+                </SidebarAccordianSection>
+
                 <SidebarAccordianSection icon="book" title="Trip Reports" isMobile={isMobile}>
                     {this.state.trip_report_links}
                 </SidebarAccordianSection>
