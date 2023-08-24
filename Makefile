@@ -1,5 +1,5 @@
 setup:
-    cd app; npm install
+	cd app; npm install
 
 run:
 	cd app; npm start
