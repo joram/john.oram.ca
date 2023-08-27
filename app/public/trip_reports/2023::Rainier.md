@@ -5,10 +5,8 @@
 
 # Rainier Via Disappointment Cleaver
 ## Not the peak, but we got to cross a ladder!
-[![Rainier Video](../photos/rainier/Ladder.jpg)](https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/Rainier2.MP4 "Rainier")
-
-Video Here ^^^
-
+- [Video Summary Here](https://s3.us-west-2.amazonaws.com/john.oram.ca/videos/Rainier2.MP4 "Video Summary")
+- [Photo Gallery Here](https://photos.app.goo.gl/2X5mNFAZHhAbwtz79 "Photo Gallery")
 
 ## Day 0
 we left Seattle at 5am, and were at the Rainier parking lot by 7:45am. The weather was clear of clouds, but there was thick smoke from forest fires.
@@ -39,7 +37,7 @@ Their estimate of 20min was WAY off, it took us 23min to gain the base of the bo
 where there was my very first ladder crossing.
 It was two 5ft ladders lashed together, with descent anchoring on our side, and a hand rail rope. It was a little sketchy, but not too bad. We were all happy to be on the other side.
 Then, after rejoicing, we turned around at our highpoint, and Steve lead us down, reversing the rope. I shortened up the rope to steeve so we could commnicate about route choice. Which only minorly went off route once, when Arthur mistoke one skyline boulder for another.
-
+![../photos/rainier/Ladder.jpg](../photos/rainier/Ladder.jpg)
 Descending the volcanic soil we unroped, which was wise so we could set our own paces, and not have the rope snag on rocks.
 Roping back up we crossed the Cowlitz glacier, and then made it back to camp by 10:37am (missing our 10:30 target by 7min!).
 
@@ -56,5 +54,14 @@ We made it back to Seattle by 4pm, Art dropped me and booked it to the 7pm BC fe
 ## Future Trip Edits
 - bring a deck of cards
 - bring more tea bags
-- replentish the first aid kit
+- bring a mixed drink in a flask (minus ice/water)
+- ear plugs for hut (Andy snored like a chainsaw /s)
+- test crampons with boots on a test route (some crampons had issues on ice)
+- replenish the first aid kit
 - bring battery packs, don't trust phone batteries in the cold
+
+## Next Trip
+- go up emmons glacier
+- camp at schurman
+- on the north side, so it's cooler
+- Late June / Early July
