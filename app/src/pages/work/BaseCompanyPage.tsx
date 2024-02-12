@@ -2,7 +2,7 @@ import React from "react";
 import {Card, Divider} from "semantic-ui-react"
 import BasePage from "../BasePage";
 
-function splitList(items, chunkSize){
+function splitList(items: any[], chunkSize: number) {
     let chunks = [];
     for (let i = 0; i < items.length; i += chunkSize) {
         const chunk = items.slice(i, i + chunkSize)
@@ -11,12 +11,11 @@ function splitList(items, chunkSize){
     return chunks
 }
 
-function Technologies(props){
-    let {technologiesUsed} = props
-    technologiesUsed = technologiesUsed.filter((v, i, a) => a.indexOf(v) === i)
+function Technologies({technologiesUsed}: {technologiesUsed: string[]}){
+    technologiesUsed = technologiesUsed.filter((v: any, i: any, a: any) => a.indexOf(v) === i)
 
     let i=0;
-    let rows = []
+    let rows: React.JSX.Element[] = []
     splitList(technologiesUsed, 5).forEach(techUsed => {
         rows.push(<div key={"tech_row_"+i}>
             <center>{techUsed.join(", ")}</center>
@@ -28,11 +27,12 @@ function Technologies(props){
         {rows}
     </>
 }
-function BaseCompanyPage(props) {
-    let {companyName, description, roles} = props
-    let roleCards = []
-    let technologiesUsed = []
-    roles.forEach(role => {
+
+
+function BaseCompanyPage({companyName, description, roles}: {companyName:string, description:string, roles:any}) {
+    let roleCards: any[] = []
+    let technologiesUsed: any[] = []
+    roles.forEach((role: any) => {
         let {company, jobTitle, description, startDate, endDate, technologies} = role
         roleCards.push(<Card
             key={company+jobTitle}
@@ -46,7 +46,7 @@ function BaseCompanyPage(props) {
     })
 
 
-  return (<BasePage title={companyName}>
+  return (<BasePage title={companyName} subtitle="" >
       <center>{description}</center>
       <Divider horizontal>Roles</Divider>
       <Card.Group centered={true}>

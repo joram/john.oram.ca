@@ -1,11 +1,9 @@
 import React from "react";
 import BasePage from "../BasePage";
-import icon from "../../static/moistlywet.png";
-
 
 function Moistlywet() {
     let title = <>
-      <img src={icon} alt={"icon"} />
+      <img src="../../../public/static/moistlywet.png" alt={"icon"} />
       Moistlywet
     </>;
 

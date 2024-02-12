@@ -1,10 +1,9 @@
 import React from "react";
 import BasePage from "../BasePage";
-import icon from "../../static/recipes.png";
 
 function Recipes() {
     let title = <>
-      <img src={icon} alt={"icon"} />
+      <img src="../../../public/static/recipes.png" alt={"icon"} />
       Recipes
     </>;
 

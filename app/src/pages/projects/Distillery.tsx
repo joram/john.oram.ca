@@ -1,11 +1,10 @@
 import React from "react";
 import BasePage from "../BasePage";
-import icon from "../../static/distillery.png";
 
 
 function Distillery() {
     let title = <>
-      <img src={icon} alt={"icon"} />
+      <img src="../../../public/static/distillery.png" alt={"icon"} />
       Distillery
     </>;
 

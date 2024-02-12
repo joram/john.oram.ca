@@ -1,11 +1,11 @@
 import React from "react";
 import BasePage from "../BasePage";
-import {Header, List} from "semantic-ui-react";
+import {List} from "semantic-ui-react";
 import {Link} from "react-router-dom";
 
 
 function SEO() {
-  return <BasePage title={"SEO Best Practices"}>
+  return <BasePage title={"SEO Best Practices"} subtitle="">
     <Link to={"https://www.linkedin.com/posts/robtcase_marketing-seo-google-activity-7063140774732824576-50O3?utm_source=share&utm_medium=member_desktop"}>
         LinkedIn Post
     </Link>

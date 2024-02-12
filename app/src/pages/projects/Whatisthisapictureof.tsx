@@ -1,10 +1,9 @@
 import React from "react";
 import BasePage from "../BasePage";
-import icon from "../../static/whatisthisapictureof.png";
 
 function Whatisthisapictureof() {
     let title = <>
-      <img src={icon} alt={"icon"} />
+      <img src={"../../static/whatisthisapictureof.png"} alt={"icon"} />
       Whatisthisapictureof
     </>;
 

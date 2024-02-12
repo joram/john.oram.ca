@@ -1,10 +1,9 @@
 import React from "react";
 import BasePage from "../BasePage";
-import icon from "../../static/triptracks.png";
 
 function Triptracks() {
     let title = <>
-      <img src={icon} alt={"icon"} />
+      <img src="../../../public/static/triptracks.png" alt={"icon"} />
       Triptracks
     </>;
 
