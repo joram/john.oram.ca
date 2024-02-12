@@ -96,12 +96,12 @@ function App() {
 
         {/*# Trip Reports*/}
         <Route path="/trip/:year">
-          <Route path=":slug" element={<TripReport key="trip_report"/>}/>
+          <Route path=":slug" element={<TripReport/>}/>
         </Route>
 
         {/*# Courses*/}
         <Route path="/course/:year">
-          <Route path=":slug" element={<CourseNotes key="trip_report"/>}/>
+          <Route path=":slug" element={<CourseNotes/>}/>
         </Route>
       </Routes>
     </div>
