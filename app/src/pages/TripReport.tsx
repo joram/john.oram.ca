@@ -3,8 +3,8 @@ import ReactMarkdown from 'react-markdown'
 import {Container} from "semantic-ui-react";
 import {useParams} from "react-router";
 import remarkGfm from "remark-gfm";
-import remarkSlug from "remark-slug";
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeSlug from 'rehype-slug'
 import rehypeRaw from "rehype-raw";
 
 function Markdown({folderName}: {folderName: string}){
@@ -24,7 +24,7 @@ function Markdown({folderName}: {folderName: string}){
     return <Container className="markdown">
         <ReactMarkdown
             remarkPlugins={ [remarkGfm]}
-            rehypePlugins={[rehypeRaw, rehypeAutolinkHeadings]}
+            rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings, rehypeRaw]}
         >{markdown}</ReactMarkdown>
     </Container>
 }
