@@ -114,8 +114,16 @@ extremities cold, gray/pail, cold sweaty
 | Major Deadly Bleed          | | | REDDT (Rest, Elevate, Direct Pressure, Direct Pressure, Tourniquet) |
 | Sucking Chest Wound         | | | |
 | Impalements                | | | |
- 
-
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Causes</th>
+            <th>Symptoms</th>
+            <th>Treatment</th>
+        </tr>
+    </thead>
+</table> 
 
 ## Hyopthermia
 treat similarly to shock

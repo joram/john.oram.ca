@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import {Container} from "semantic-ui-react";
 import {useParams} from "react-router";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 function Markdown({folderName}: {folderName: string}){
     let [markdown, setMarkdown] = useState("")
@@ -19,7 +20,7 @@ function Markdown({folderName}: {folderName: string}){
     })
 
     return <Container className="markdown">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm, rehypeRaw]}>{markdown}</ReactMarkdown>
     </Container>
 }
 
