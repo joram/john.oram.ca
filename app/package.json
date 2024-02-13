@@ -19,7 +19,7 @@
     "remark-gfm": "^4.0.0",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.5",
-    "typescript": "^5.3.3",
+    "typescript": "latest",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

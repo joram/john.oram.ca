@@ -101,7 +101,7 @@ function App() {
 
         {/*# Courses*/}
         <Route path="/course/:year">
-          <Route path=":slug" element={<CourseNotes/>}/>
+          <Route path=":slug" element={<CourseNotes />}/>
         </Route>
       </Routes>
     </div>

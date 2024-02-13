@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+
+div.markdown Table {
+  width: 100%;
+}
+
+div.markdown Table th {
+  text-align: left;
+  border-bottom: solid 3px #ccc;
+}
+
+div.markdown Table td {
+  border-bottom: solid 1px #ccc;
+}
