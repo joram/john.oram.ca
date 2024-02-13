@@ -96,24 +96,7 @@ extremities cold, gray/pail, cold sweaty
 - use an AED if available
 
 ## Table of Sucky Things
-| Name                        | Causes | Symptoms | Treatment |
-|-----------------------------|--------|----------|-----------|
-| Shock                       | blood loss, dehydration, allergic reaction, infection, heart attack, spinal injury | pale, cool, clammy skin, rapid breathing, low blood pressure, shunting | keep dry and warm, calm and reassure, keep resting |
-| Hypothermia (cold stressed) | cold | shivering, blue lips, sluggish, slurred speech, cold extremities, complaints of cold, numbness, lack of coordination, poor judgement, irritability | warm liquids, add clothing, keep dry and warm, get them moving, add heat, feed them, warm the core |
-| Hypothermia (mild)          | cold | shivering, blue lips, sluggish, slurred speech, cold extremities, complaints of cold, numbness, lack of coordination, poor judgement, irritability | warm liquids, add clothing, keep dry and warm, get them moving, add heat, feed them, warm the core |
-| Hypothermia (moderate)      | cold | shivering, blue lips, sluggish, slurred speech, cold extremities, complaints of cold, numbness, lack of coordination, poor judgement, irritability | warm liquids, add clothing, keep dry and warm, get them moving, add heat, feed them, warm the core |
-| Hypothermia (severe)        | cold | shivering, blue lips, sluggish, slurred speech, cold extremities, complaints of cold, numbness, lack of coordination, poor judgement, irritability | warm liquids, add clothing, keep dry and warm, get them moving, add heat, feed them, warm the core |
-| Frostbite                   | cold, wet | | |
-| Asthma                      | allergens, exercise, temperature, smoke, stress, altitude | wheezing, coughing, shortness of breath, chest tightness, rapid breathing, increased heart rate, sweating | calm and reassure, help them take their medication, sitting down is better than standing, if they have a spacer, use it |
-| Hyperventilation            | anxiety, stress, panic, altitude, exercise, pain | rapid breathing, chest tightness | calm and reassure, box breathing (something to focus on), slow breathing |
-| Panic Attacks               | anxiety, stress, panic | rapid breathing, chest tightness, sweating, increased heart rate, trembling, dizziness, nausea | calm and reassure, box breathing (something to focus on), human connection |
-| Anaphylaxis Shock           | allergens, insect stings, medications, food, exercise | hives, swelling, itching, flushing | Epipen, Benadryl afterwards |
-| Seizures                    | epilepsy, head injury, drug withdrawal, shock, temperature | | protect the head, get into recovery position, calm and reassure, don't put anything in their mouth, don't hold them down |
-| Stroke                      | blood clot, bleeding, high blood pressure, high cholesterol, diabetes, smoking, obesity, lack of exercise, poor diet | face drooping, lopsided arm weakness, speech difficulty | call 911, calm and reassure, keep them comfortable, keep them warm |
-| Spinal Injury               | trauma, falls, car accidents | immediate pain (vs deferred pain) | keep them still, minimize movement (especially the head) |
-| Major Deadly Bleed          | | | REDDT (Rest, Elevate, Direct Pressure, Direct Pressure, Tourniquet) |
-| Sucking Chest Wound         | | | |
-| Impalements                | | | |
+
 <table>
     <thead>
         <tr>
@@ -123,58 +106,184 @@ extremities cold, gray/pail, cold sweaty
             <th>Treatment</th>
         </tr>
     </thead>
-</table> 
-
-## Hyopthermia
-treat similarly to shock
-- keep dry and warm
-- calm and reassure
-### Levels:
-- cold stressed
-- mild: 95-89F
-- moderate: 89-82F
-- severe: 82-68F
-### Causes:
-- cold
-### Symptoms:
-stumbles fumbles mumbles grumbles
-#### cold stressed
-- shivering
-- blue lips
-- sluggish
-- slurred speech
-- cold extremities
-- complaints of cold
-- numbness
-- lack of coordination
-- poor judgement
-- irritability
-#### mild
-- still shivering
-#### moderate
-- shivering stops
-#### severe
-- unconscious
-- breathing and pulse measured at 60s
-- @mike, what's this say?
-
-### Treatment:
-#### cold stressed
-- warm liquids
-- add clothing
-- keep dry and warm
-- get them moving
-- add heat
-- feed them
-- warm the core
-#### mild
-- same as cold stressed
-  - except rest, no movement (to conserve energy)
-#### moderate
-- treat as a critical emergency
-- active warming
-- managing shock
-#### severe
+    <tbody>
+        <tr>
+            <td>Hypothermia (cold stressed)</td>
+            <td>cold</td>
+            <td>
+                shivering, blue lips, sluggish, slurred speech,
+                cold extremities, complaints of cold, numbness,
+                lack of coordination, poor judgement, irritability
+            </td>
+            <td>
+                warm liquids, add clothing, keep dry and warm,
+                get them moving, add heat, feed them, warm the core
+            </td>
+        </tr>
+        <tr>
+            <td>Hyopthermia (mild)</td>
+            <td>cold</td>
+            <td>
+                95-89F
+                cold, numb, tingling, stinging, aching, burning,
+                red, white, blue, black, hard, waxy, stiff
+            </td>
+            <td>
+                same as cold stressed, except
+                rest, no movement (to conserve energy)
+            </td>
+        </tr>   
+        <tr>
+            <td>Hyopthermia (moderate)</td>
+            <td>cold</td>
+            <td>
+                89-82F
+                shivering stops
+            </td>
+            <td>
+                same as cold stressed, except
+                treat as a critical emergency
+                active warming, managing shock
+            </td>
+        </tr>
+        <tr>
+            <td>Hyopthermia (severe)</td>
+            <td>cold</td>
+            <td>
+                82-68F
+                unconscious, breathing and pulse measured at 60s
+            </td>
+            <td>
+                @mike, what's this say?
+            </td>
+        </tr>
+        <tr>
+            <td>Asthma Attack</td>
+            <td>allergens, exercise, temperature, smoke, stress, altitude</td>
+            <td>
+                wheezing, coughing, shortness of breath, chest tightness,
+                rapid breathing, increased heart rate, sweating
+            </td>
+            <td>
+                calm and reassure, help them take their medication,
+                sitting down is better than standing, if they have a spacer, use it
+            </td>
+        </tr>
+        <tr>
+            <td>Hyperventilation</td>
+            <td>anxiety, stress, panic, altitude, exercise, pain</td>
+            <td>
+                rapid breathing, chest tightness
+            </td>
+            <td>
+                calm and reassure, box breathing (something to focus on), slow breathing
+            </td>
+        </tr>
+        <tr>
+            <td>Panic/Anxiety Attack</td>
+            <td>anxiety, stress, panic</td>
+            <td>
+                rapid breathing, chest tightness, sweating, increased heart rate,
+                trembling, dizziness, nausea
+            </td>
+            <td>
+                calm and reassure, box breathing (something to focus on), human connection
+            </td>
+        </tr>
+        <tr>
+            <td>Anaphylaxis Shock</td>
+            <td>allergens, insect stings, medications, food, exercise</td>
+            <td>
+                hives, swelling, itching, flushing
+            </td>
+            <td>
+              #### Epipen
+                - remove the blue cap
+                - hold the pen in your fist
+                - press the orange end against the thigh
+                - hold for 10 seconds
+                - massage the area for 30 seconds
+                - another dose may be required in 5-15 minutes
+                - Benadryl afterwards
+                #### Benadryl
+                - 25-50mg   
+            </td>
+        </tr>
+        <tr>
+            <td>Seizures</td>
+            <td>epilepsy, head injury, drug withdrawal, shock, temperature</td>
+            <td>
+                phases: aura, tonic/clonic, postictal
+            </td>
+            <td>
+                protect the head, get into recovery position, calm and reassure,
+                don't put anything in their mouth, don't hold them down
+            </td>
+        </tr>
+        <tr>
+            <td>Stroke</td>
+            <td>blood clot, bleeding, high blood pressure, high cholesterol, diabetes, smoking, obesity, lack of exercise, poor diet</td>
+            <td>
+                face drooping, lopsided arm weakness, speech difficulty
+            </td>
+            <td>
+                call 911, calm and reassure, keep them comfortable, keep them warm
+            </td>
+        </tr>
+        <tr>
+            <td>Heart Attack</td>
+            <td>smoking, high blood pressure, high cholesterol, diabetes, obesity, lack of exercise, poor diet</td>
+            <td>
+                chest pain, shortness of breath, nausea, lightheadedness, cold sweat
+            </td>
+            <td>
+                call 911, calm and reassure, keep them comfortable, keep them warm
+            </td>
+        </tr>
+        <tr>
+            <td>Diabetic Emergency</td>
+            <td>low blood sugar, high blood sugar</td>
+            <td>
+                low: confusion, irritability, sweating, shaking, fast heart rate
+                high: thirst, frequent urination, fatigue, nausea, vomiting, shortness of breath
+            </td>
+            <td>
+                low: give sugar, then protein
+                high: give water, then insulin
+            </td>
+        </tr>
+        <tr>
+            <td>Heat Exhaustion</td>
+            <td>dehydration, heat, humidity, poor physical condition, poor diet</td>
+            <td>
+                heavy sweating, weakness, cold, pale, clammy skin, fast weak pulse, nausea, vomiting, fainting
+            </td>
+            <td>
+                move to a cool place, remove excess clothing, cool the body, give water
+            </td>
+        </tr>
+        <tr>
+            <td>Heat Stroke</td>
+            <td>dehydration, heat, humidity, poor physical condition, poor diet</td>
+            <td>
+                hot, red, dry skin, rapid strong pulse, confusion, unconsciousness, seizures
+            </td>
+            <td>
+                call 911, move to a cool place, remove excess clothing, cool the body
+            </td>
+        </tr>
+        <tr>
+            <td>Spinal Injury/td>
+            <td>trauma, falls, car accidents</td>
+            <td>
+                immediate pain (as opposed to deferred pain)
+            </td>
+            <td>
+                keep them still, minimize movement, stabilize the head
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ### burrito wrap
   - zig zag a rope the length of the patient
@@ -191,149 +300,16 @@ stumbles fumbles mumbles grumbles
     - new through the old loop back and forth
     - tie a not at the head
 
-## Frostbite
-### Causes:
-- cold
-- wet
-### Symptoms:
-
-## Asthma
-### Causes:
-- allergens
-- exercise
-- temperature
-- smoke
-- stress
-- altitude
-### Symptoms:
-- wheezing
-- coughing
-- shortness of breath
-- chest tightness
-- rapid breathing
-- increased heart rate
-- sweating
-### Treatment:
-- calm and reassure
-- help them take their medication
-- Puffer is blue
-- sitting down is better than standing
-- if they have a spacer, use it
-
-## Hyperventilation
-### Causes:
-- anxiety
-- stress
-- panic
-- altitude
-- exercise
-- pain
-### Symptoms:
-- rapid breathing
-- chest tightness
-### Treatment:
-- calm and reassure
-- box breathing (something to focus on)
-- slow breathing
-
-## Panic Attacks
-### Causes:
-- anxiety
-- stress
-- panic
-### Symptoms:
-- rapid breathing
-- chest tightness
-- sweating
-- increased heart rate
-- trembling
-- dizziness
-- nausea
-### Treatment:
-- calm and reassure
-- box breathing (something to focus on)
-- human connection
-
-## Anaphylaxis Shock
-### Causes:
-- allergens
-- insect stings
-- medications
-- food
-- exercise
-### Symptoms:
-- hives
-- swelling
-- itching
-- flushing
-### Treatment:
-#### Epipen
-- remove the blue cap
-- hold the pen in your fist
-- press the orange end against the thigh
-- hold for 10 seconds
-- massage the area for 30 seconds
-- another dose may be required in 5-15 minutes
-- Benadryl afterwards
-
-## Seizures
-### Causes:
-- epilepsy
-- head injury
-- drug withdrawal
-- shock
-- temperature
-### Symptoms (in phases):
-- aura
-- tonic/clonic
-- postictal
-### Treatment:
-- protect the head
-- get into recovery position
-- calm and reassure
-- don't put anything in their mouth
-- don't hold them down
-
-## Stroke
-### Causes:
-- blood clot
-- bleeding
-- high blood pressure
-- high cholesterol
-- diabetes
-- smoking
-- obesity
-- lack of exercise
-- poor diet
-### Symptoms:
-- face drooping
-- lopsided arm weakness
-- speech difficulty
-### Treatment:
-- call 911
-- calm and reassure
-- keep them comfortable
-- keep them warm
-
+    
 ## Spinal Injury
-### Causes:
-- trauma
-- falls
-- car accidents
-### Symptoms:
-- immediate pain (vs deferred pain)
-### Treatment:
-- keep them still
-- minimize movement (especially the head)
-- elbows to the ground, hands on the head, on ears (at the same time)
-#### To hand off:
+### To hand off:
   - elbow on chest, hold cheeks
   - wait for another person to grab the head
   - remove the temporary support
-#### Different ways of stabilizing head
+### Different ways of stabilizing head
   - hold traps, and elbows hold head
   - long+short
-#### Different ways to move (last resort)
+### Different ways to move (last resort)
   - elbow up, slide arm through
   - cross leg 
   - roll onto side (difficult)
@@ -358,7 +334,7 @@ stumbles fumbles mumbles grumbles
 ## Sucking Chest Wound
 - we don't stack gause, we replace so the saturated gause does not prevent air leaving the chest cavity.
 
-## Impalements
+## Impailments
 - don't remove the object (unless...):
   - it prevents us from handling something more critical/life threatening
 - leave the object in place
