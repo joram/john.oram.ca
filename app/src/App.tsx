@@ -63,6 +63,17 @@ function App() {
     marginLeft: isMobile ? "0px" : "200px",
     top: 0,
     display: "block",
+    position: "absolute",
+  }
+
+  if (isMobile) {
+    sidebarStyles.width = "100%"
+    sidebarStyles.display = "absolute"
+    sidebarStyles.position = "relative"
+
+    contentStyles.marginLeft = "0px"
+    contentStyles.display = "inline"
+    contentStyles.position = "relative"
   }
 
   return <>

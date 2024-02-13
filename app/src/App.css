@@ -50,3 +50,11 @@ div.markdown Table th {
 div.markdown Table td {
   border-bottom: solid 1px #ccc;
 }
+
+#nav, #nav h3, #nav a:link, #nav a:visited, #nav a:active, #nav .ui.image {
+  background-color: #1b1c1d;
+}
+
+#nav h3 {
+  color: #ffffff;
+}
