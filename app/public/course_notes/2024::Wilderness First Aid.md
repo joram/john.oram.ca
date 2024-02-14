@@ -339,4 +339,25 @@ extremities cold, gray/pail, cold sweaty
   - it prevents us from handling something more critical/life threatening
 - leave the object in place
 - stabilize the object
-- 
+
+
+## Musclature and Skeletal Injuries
+Bones are more sever, so if unknown, treat like bone.
+| symptom | more likely |
+|---------|-------------|
+| Slow onset | muscle |
+| sharp pain | bone |
+| reduced motion | bone |
+| imediate nausea | bone |
+| heard a crack | bone |
+| deformed | bone |
+| accute tenderness | bone |
+| large area tenderness | muscle |
+
+## RICE
+- Rest
+- Immobilize (splint/sling)
+- cold (reduce the swelling, use Ibuprofen)
+  - 20min on
+  - 40min off
+- elevate
