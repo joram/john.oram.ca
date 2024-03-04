@@ -154,7 +154,7 @@ extremities cold, gray/pail, cold sweaty
                 unconscious, breathing and pulse measured at 60s
             </td>
             <td>
-                @mike, what's this say?
+                “warmer faster better” and to be careful with skin on skin contact because they can easily take all your own body heat
             </td>
         </tr>
         <tr>
@@ -304,6 +304,7 @@ extremities cold, gray/pail, cold sweaty
 ## Spinal Injury
 ### To hand off:
   - elbow on chest, hold cheeks
+  - stabilize your wrist with your other hand
   - wait for another person to grab the head
   - remove the temporary support
 ### Different ways of stabilizing head

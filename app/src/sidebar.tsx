@@ -73,9 +73,9 @@ function Sidebar({isMobile}: {isMobile: boolean}) {
             <Menu.Item>
                 <Menu.Header>Work Opinions</Menu.Header>
                 <Menu.Menu>
-                    <MenuItem path="/opinion/" slug="seo" label="SEO" />
                     <MenuItem path="/opinion/" slug="guiding_principals" label="Guiding Principals" />
                     <MenuItem path="/opinion/" slug="work_environment" label="Work Environment" />
+                    <MenuItem path="/opinion/" slug="seo" label="SEO" />
                 </Menu.Menu>
             </Menu.Item>
 
@@ -87,7 +87,7 @@ function Sidebar({isMobile}: {isMobile: boolean}) {
                     <MenuItem path="project/" slug="moistlywet" label="Moistlywet" />
                     <MenuItem path="project/" slug="triptracks" label="Triptracks" />
                     <MenuItem path="project/" slug="recipes" label="Recipes" />
-                    {/*<MenuItem path="project/" slug="whatisthisapictureof" label="What is this a picture of" />*/}
+                    <MenuItem path="project/" slug="treasurehunt" label="Treasure Hunt" />
                 </Menu.Menu>
             </Menu.Item>
 
