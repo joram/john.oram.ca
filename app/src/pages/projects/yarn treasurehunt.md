@@ -1,8 +1,9 @@
-# Yarn Treasure Hunt
-"Embark on a journey through our memories dear,
+Treasure Hunt
+=============
+Embark on a journey through our memories dear,
 With each clue, let nostalgia draw you near.
 In this treasure hunt, a special prize awaits,
-A collection of yarn that holds our shared fates.
+A collection of yarn that you'll think is great.
 
 Each location holds a story untold,
 A review of passions, both new and old.
@@ -12,10 +13,12 @@ To rediscover what we hold inside.
 Our interests, our dreams, woven in each rhyme,
 As we journey through space and time.
 So follow the clues, as we reminisce,
-And at the end, find the yarn of bliss."
+And at the end, find the yarn of bliss.
 
-### Daddy's Distractions
-- Daddy's homepage (sidebar) john.oram.ca
+(this was written by chatgpt)
+
+
+1) Daddy's homepage (sidebar) john.oram.ca
 
 on a page on any device
 it has tabs, that dad thinks is nice.
@@ -87,8 +90,13 @@ This board is where fingers are strengthened.
 on top of a door, it's where it's hung,
 to fetch this clue, a pull-up is done.
 
-### Mommy's Distractions
 - Mommy's keyboard
+
+click clack goes your fingers on the keys
+it's where you game with mimi
+You may not notice the keyboards wobbly
+but it's where the next clue is probably
+
 - Compressor
 
 Something that helps um make her dice
@@ -96,9 +104,6 @@ It keeps the bubbles small and nice
 Under the chamber you will see
 The next clue is waiting for thee
 
-- knitting/yarn in bedroom
-
-### Kids Interests
 - sticker bin
 
 it is blue
@@ -155,11 +160,25 @@ that swims underwater if it could
 ruby did not want it in her room
 so it's on the landing, not in bloom
 
-
-### Shared Interests
 - Mixer
-- garlic powder container (n fume hood)
+round and round it goes, ever quicker
+in the kitchen it can beat things thicker
+moved out of the way when the kids want to hide
+a lower cupboard it is inside
+
+- garlic powder container (on fume hood)
+
+This spice we love, it's in our bed
+it's also on the fume hood, overhead
+these magnetic containers which we adore
+you picked up at the hardware store?
+
 - tablet holder
+
+It's something that holds electric stuff
+I made in a bit of a rush
+you mocked it out for me to carve
+I made a mistake, but it's not that large
 
 - homemade cheese
   Lactose is not our friend, but we love cheese to no end.
@@ -174,10 +193,48 @@ so it's on the landing, not in bloom
   the way arthur lost his tooth and got some money,
   His tooth did not end up in his tummy. (I think that's funny)
 
-- Willow tree
 - Garlic bed (in the garden)
+
+This spice we love, it's in our bed
+it's grown each year, and it's not dead
+we saw it poking through the ground
+and that's where the next clue can be found
+
 - Lock picks
+
+you can find these in a box
+carrying them with intent? don't get caught
+it's something I like to teach
+and it's something that's within your reach
+forgot your keys? don't you worry
+Jonathan can use them in a hurry
+
 - magic cards
+
+In a box, they are kept
+you threw most out and we wept
+Arthur learnt this game right quick
+this will make him a MtG addict
+
+### Dancing for Willow Tree
+While I'm gone you should have some fun
+This one's for you, our daughter and our son
+To complete this task you're dance card is packed
+I've talked with friends, they've got your back
+They hold your hints, but they have a request
+To get your clue, you must dance your best
+Here's a list of people involved
+if they record, it was not my call
+They may request a particular dance
+So be prepared, and take a chance
+
+- Margo/Chris
+- Fred/Cathy
+- Mira
+- Mike/Kaitlin
+- Momo (available 6-7pst)
+- Baba/Opa
+
 
 ### Aux Locations
 - taped under the dinning room table
