@@ -271,7 +271,17 @@ function TreasureHunt() {
                 "Here's a list of people involved\n" +
                 "if they record, it was not my call\n" +
                 "They may request a particular dance\n" +
-                "So be prepared, and take a chance\n",
+                "So be prepared, and take a chance\n" +
+                "      1 - Louise (8am-noon pst (5-9pm their time))\n" +
+                "      2 - Baba/Opa\n" +
+                "      3 - Fred/Cathy\n" +
+                "      4 - Aurora/Malcolm\n" +
+                "      5 - Margo/Chris (requested something scottish)\n" +
+                "      6 - Mike/Kaitlin\n" +
+                "      7 - Colin/Brittany\n" +
+                "      8 - Momo\n" +
+                "      9 - Mimi\n" +
+                "      10 - Jonathan Sharman (Tuesday and Wednesday night should be free)\n",
             location: "They should each give you a single letter, spelling out WILLOWTREE, so in the tree outside",
         34: {
             hint: "I rest my feet here, in the place where I work away\n" +
