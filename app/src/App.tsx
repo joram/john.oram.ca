@@ -19,6 +19,7 @@ import SEO from "./pages/thoughts/seo";
 import GuidingPrincipals from "./pages/thoughts/guidingPrincipals";
 import WorkEnvironment from "./pages/thoughts/workEnvironment";
 import TreasureHunt from "./pages/projects/TreasureHunt";
+import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
@@ -106,6 +107,8 @@ function App() {
         <Route path="/opinion/seo" element={<SEO/>}/>
         <Route path="/opinion/guiding_principals" element={<GuidingPrincipals/>}/>
         <Route path="/opinion/work_environment" element={<WorkEnvironment/>}/>
+
+        <Route path="/trip/2024/wapta_traverse" element={<WaptaTraverse/>}/>
 
         {/*# Trip Reports*/}
         <Route path="/trip/:year">

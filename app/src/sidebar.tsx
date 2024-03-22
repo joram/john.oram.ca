@@ -59,7 +59,7 @@ function Sidebar({isMobile}: {isMobile: boolean}) {
         <div style={style as CSSProperties} >
             <Menu borderless compact={!isMobile} vertical inverted pointing>
             <Menu.Item>
-                Work
+                <Menu.Header>Work</Menu.Header>
                 <Menu.Menu>
                     <MenuItem path="/work/" slug="socoloco" label="Socoloco" />
                     <MenuItem path="/work/" slug="sendwithus" label="Sendwithus" />
@@ -81,7 +81,7 @@ function Sidebar({isMobile}: {isMobile: boolean}) {
 
 
             <Menu.Item>
-                Projects
+                <Menu.Header>Projects</Menu.Header>
                 <Menu.Menu>
                     <MenuItem path="project/" slug="distillery" label="Distillery" />
                     <MenuItem path="project/" slug="moistlywet" label="Moistlywet" />
@@ -115,6 +115,7 @@ function Sidebar({isMobile}: {isMobile: boolean}) {
                     <MenuItem path="/trip/" slug="2023/Rainier" label='Rainier' />
                     <MenuItem path="/trip/" slug="2023/Redwall" label='Redwall' />
                     <MenuItem path="/trip/" slug="2024/5040_Peak" label='5040 Peak (2024)' />
+                    <MenuItem path="/trip/" slug="2024/Wapta_Traverse" label='Wapta Traverse' />
                 </Menu.Menu>
             </Menu.Item>
         </Menu>
