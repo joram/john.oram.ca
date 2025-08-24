@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount the source code for hot reloading
+      - ./app/src:/app/src
+      - ./app/public:/app/public
+      # Mount these files individually so they can be modified without rebuilding
+      - ./app/package.json:/app/package.json
+      - ./app/package-lock.json:/app/package-lock.json
+      - ./app/tsconfig.json:/app/tsconfig.json
+      # Anonymous volume for node_modules to use container's version
+      - /app/node_modules
+    environment:
+      - WATCHPACK_POLLING=true  # Enable file watching in Docker on some systems
+      - CHOKIDAR_USEPOLLING=true  # Enable polling for hot reload
+    stdin_open: true  # Required for react-scripts start
+    tty: true  # Required for react-scripts start
