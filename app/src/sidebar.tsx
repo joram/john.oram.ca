@@ -34,7 +34,7 @@ function Sidebar({isMobile}: {isMobile: boolean}) {
         flex:"1",
     }
 
-    return <span id="nav">
+    return <span id="nav" style={{backgroundColor:"deeppink"}}>
         <Link to="/">
             <h3 style={{textAlign:"center"}}>
                 <div>
