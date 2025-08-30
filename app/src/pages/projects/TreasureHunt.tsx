@@ -1,7 +1,17 @@
 import React, {useState} from "react";
 import BasePage from "../BasePage";
-import {Button, ButtonGroup, Form, Input, Modal} from "semantic-ui-react";
-
+import { 
+    Button, 
+    ButtonGroup, 
+    TextField, 
+    Dialog, 
+    DialogTitle, 
+    DialogContent, 
+    DialogActions,
+    Typography,
+    Box,
+    Divider
+} from "@mui/material";
 
 function TreasureHunt() {
     const [open, setOpen] = useState(false)
@@ -297,67 +307,105 @@ function TreasureHunt() {
 
     };
 
-    return (<BasePage title="Treasure Hunt">
-        While on a mountaineering trip, I left behind a treasure hunt for my kids and wife to be entertained.
-        Each hint attempts to rhyme, and thi page is the first place they will find, since then we can have a "I am
-        stuck" answer sheet, since I won't be there to give extra clues.
+    return (
+        <BasePage title="Treasure Hunt">
+            <Typography paragraph>
+                While on a mountaineering trip, I left behind a treasure hunt for my kids and wife to be entertained.
+                Each hint attempts to rhyme, and thi page is the first place they will find, since then we can have a "I am
+                stuck" answer sheet, since I won't be there to give extra clues.
+            </Typography>
 
-        <br/>
-        <br/>
-        <hr/>
-        <code>
-            <p>for Location number two,<br/>this rhyme will have to do</p>
-            <p>Mapping out the way to go,<br/>behind the toilet you should go</p>
-            <p>From black walnut this art was made,<br/>From the fumes it may one day fade</p>
-            <p>If you need the answer to any clue<br/>There is a modal just for you</p>
-            <p>Click below for the form<br/>Lets hope it's use is not the norm</p>
-        </code>
-        <hr/>
+            <Divider sx={{ my: 2, borderColor: 'white' }} />
+            <Box component="code" sx={{ 
+                display: 'block', 
+                backgroundColor: '#1b1c1d', 
+                p: 2, 
+                borderRadius: 1,
+                border: '1px solid #444',
+                fontFamily: 'monospace'
+            }}>
+                <Typography component="p">for Location number two,<br/>this rhyme will have to do</Typography>
+                <Typography component="p">Mapping out the way to go,<br/>behind the toilet you should go</Typography>
+                <Typography component="p">From black walnut this art was made,<br/>From the fumes it may one day fade</Typography>
+                <Typography component="p">If you need the answer to any clue<br/>There is a modal just for you</Typography>
+                <Typography component="p">Click below for the form<br/>Lets hope it's use is not the norm</Typography>
+            </Box>
+            <Divider sx={{ my: 2, borderColor: 'white' }} />
 
-        <Modal
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
-            open={open}
-            trigger={<Button>Show Modal</Button>}
-        >
-            <Modal.Header>Treasure Hunt Answers</Modal.Header>
-            <Modal.Content>
-                <Form>
-                <Input type="number" onChange={(e)=> setAnswerRequested(parseInt(e.target.value))}/>
-                <br/>
+            <Button 
+                variant="contained" 
+                onClick={() => setOpen(true)}
+                sx={{ mb: 2 }}
+            >
+                Show Modal
+            </Button>
 
-                 <ButtonGroup>
-                    <Button type="button" onClick={()=> {
-                        const shownAnswer = answers[answerRequested].location;
-                        console.log(shownAnswer)
-                        setAnswer(shownAnswer)
-                    }}>
-                        Show Answer
+            <Dialog
+                open={open}
+                onClose={() => setOpen(false)}
+                maxWidth="sm"
+                fullWidth
+            >
+                <DialogTitle>Treasure Hunt Answers</DialogTitle>
+                <DialogContent>
+                    <TextField 
+                        type="number" 
+                        label="Clue Number"
+                        onChange={(e) => setAnswerRequested(parseInt(e.target.value))}
+                        fullWidth
+                        sx={{ mb: 2, mt: 1 }}
+                    />
+
+                    <ButtonGroup sx={{ mb: 2 }}>
+                        <Button 
+                            variant="contained"
+                            onClick={() => {
+                                const shownAnswer = answers[answerRequested]?.location;
+                                console.log(shownAnswer)
+                                setAnswer(shownAnswer || "")
+                            }}
+                        >
+                            Show Answer
+                        </Button>
+
+                        <Button 
+                            variant="contained"
+                            onClick={() => {
+                                const shownHint = answers[answerRequested]?.hint;
+                                console.log(shownHint)
+                                setHint(shownHint || "")
+                            }}
+                        >
+                            Show Hint
+                        </Button>
+                    </ButtonGroup>
+
+                    {hint && (
+                        <Typography variant="body2" sx={{ mb: 2, whiteSpace: 'pre-line' }}>
+                            {hint}
+                        </Typography>
+                    )}
+                    
+                    {answer && (
+                        <Typography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
+                            {answer}
+                        </Typography>
+                    )}
+                </DialogContent>
+                <DialogActions>
+                    <Button 
+                        onClick={() => {
+                            setOpen(false)
+                            setAnswer("")
+                            setHint("")
+                        }}
+                    >
+                        Close
                     </Button>
-
-                    <Button type="button" onClick={()=> {
-                        const shownHint = answers[answerRequested].hint;
-                        console.log(shownHint)
-                        setHint(shownHint)
-                    }}>Show Hint</Button>
-                 </ButtonGroup>
-                <br/>
-                {hint}
-                <br/>
-                {answer}
-                </Form>
-            </Modal.Content>
-            <Modal.Actions>
-                <Button color='black' onClick={() => {
-                    setOpen(false)
-                    setAnswer("")
-                }} >
-                    close
-                </Button>
-            </Modal.Actions>
-        </Modal>
-
-    </BasePage>)
+                </DialogActions>
+            </Dialog>
+        </BasePage>
+    );
 }
 
-export default TreasureHunt
+export default TreasureHunt;
