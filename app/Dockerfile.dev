@@ -32,4 +32,4 @@ ENV GENERATE_SOURCEMAP=false
 EXPOSE 3000
 
 # Start the development server with memory optimization
-CMD ["npm", "start", "--", "--max-old-space-size=512"]
+CMD ["npm", "start", "--", "--max-old-space-size=1024"]
