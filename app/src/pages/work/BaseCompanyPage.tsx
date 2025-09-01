@@ -40,7 +40,7 @@ function BaseCompanyPage({companyName, description, roles}: {companyName:string,
     roles.forEach((role: any) => {
         let {company, jobTitle, description, startDate, endDate, technologies} = role
         roleCards.push(
-            <Card key={company+jobTitle} sx={{ backgroundColor: '#3d3e3f', color: 'white' }}>
+            <Card key={company+jobTitle} sx={{ backgroundColor: '#3d3e3f', color: 'white', mb: 2 }}>
                 <CardHeader 
                     title={jobTitle} 
                     sx={{ color: 'white' }}
@@ -70,12 +70,7 @@ function BaseCompanyPage({companyName, description, roles}: {companyName:string,
             <Typography variant="h6" sx={{ color: 'white' }}>Roles</Typography>
         </Divider>
         
-        <Box sx={{ 
-            display: 'grid', 
-            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' },
-            gap: 2, 
-            mb: 3 
-        }}>
+        <Box sx={{ mb: 3 }}>
             {roleCards}
         </Box>
         
