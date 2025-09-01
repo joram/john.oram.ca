@@ -40,7 +40,7 @@ function AppContent() {
           flex: 1,
           marginLeft: isMobile ? 0 : '200px',
           padding: '20px',
-          backgroundColor: '#1b1c1d',
+          backgroundColor: '#2a2b2c',
           color: '#ffffff',
         }}>
           <Routes>

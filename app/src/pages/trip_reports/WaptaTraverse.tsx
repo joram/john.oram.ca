@@ -4,7 +4,7 @@ import { Paper, Typography, Box } from "@mui/material";
 
 function WaptaTraverse(props: any){
     return (
-        <Paper sx={{ p: 3, backgroundColor: '#2d2d2d', color: 'white' }}>
+        <Paper sx={{ p: 3, backgroundColor: '#3d3e3f', color: 'white' }}>
             <Typography variant="h4" component="h1" sx={{ color: 'white', mb: 2 }}>
                 Wapta Traverse
             </Typography>

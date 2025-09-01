@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography, Divider, Avatar } from "@mui/material";
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon } from "@mui/icons-material";
 import BasePage from './BasePage';
 
@@ -20,6 +20,20 @@ function AboutMe(){
 
   return (
     <BasePage title="About Me" subtitle={subtitle}>
+      <Box sx={{ textAlign: 'center', mb: 4 }}>
+        <Avatar
+          src="/static/profile.jpg"
+          sx={{ 
+            width: 120, 
+            height: 120, 
+            mx: 'auto', 
+            mb: 2,
+            border: '3px solid rgba(255, 255, 255, 0.2)',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)'
+          }}
+        />
+      </Box>
+
       <Typography paragraph>
         I'm a software developer with many professional interests and side hobbies.
         My primary professional interest is in secure, scalable and resilient end to end systems.

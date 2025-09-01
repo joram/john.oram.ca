@@ -27,7 +27,7 @@ function Markdown({folderName}: {folderName: string}){
                 className="markdown" 
                 sx={{ 
                     p: 3, 
-                    backgroundColor: '#2d2d2d',
+                    backgroundColor: '#3d3e3f',
                     color: 'white',
                     '& table': {
                         width: '100%',

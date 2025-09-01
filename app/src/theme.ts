@@ -10,8 +10,8 @@ const theme = createTheme({
       main: '#ffffff',
     },
     background: {
-      default: '#1b1c1d',
-      paper: '#2d2d2d',
+      default: '#2a2b2c',
+      paper: '#3d3e3f',
     },
     text: {
       primary: '#ffffff',
@@ -32,7 +32,7 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          backgroundColor: '#2d2d2d',
+          backgroundColor: '#3d3e3f',
         },
       },
     },
