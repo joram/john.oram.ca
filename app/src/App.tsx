@@ -19,7 +19,6 @@ import AllRoles from "./pages/work/allRoles";
 import SEO from "./pages/thoughts/seo";
 import GuidingPrincipals from "./pages/thoughts/guidingPrincipals";
 import WorkEnvironment from "./pages/thoughts/workEnvironment";
-import TreasureHunt from "./pages/projects/TreasureHunt";
 import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
 import theme from './theme';
 
@@ -59,7 +58,6 @@ function AppContent() {
             <Route path="/project/triptracks" element={<Triptracks/>}/>
             <Route path="/project/recipes" element={<Recipes/>}/>
             <Route path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>}/>
-            <Route path="/project/treasurehunt" element={<TreasureHunt/>}/>
 
             {/*# Opinions*/}
             <Route path="/opinion/seo" element={<SEO/>}/>

@@ -66,7 +66,6 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
         { path: "/project/", slug: "moistlywet", label: "Moistlywet" },
         { path: "/project/", slug: "triptracks", label: "Triptracks" },
         { path: "/project/", slug: "recipes", label: "Recipes" },
-        { path: "/project/", slug: "treasurehunt", label: "Treasure Hunt" },
       ]
     },
     {
