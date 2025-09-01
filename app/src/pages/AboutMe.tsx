@@ -19,7 +19,7 @@ function AboutMe(){
   );
 
   return (
-    <BasePage title="About Me" subtitle={subtitle}>
+    <BasePage title="John Oram" subtitle={subtitle}>
       <Box sx={{ textAlign: 'center', mb: 4 }}>
         <Avatar
           src="/static/profile.jpg"
