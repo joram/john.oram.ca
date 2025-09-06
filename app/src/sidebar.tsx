@@ -119,7 +119,38 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           <Avatar
             src="/static/profile.jpg"
-            sx={{ width: 64, height: 64, mx: 'auto', mb: 1 }}
+            sx={{ 
+              width: 64, 
+              height: 64, 
+              mx: 'auto', 
+              mb: 1,
+              border: '4px solid',
+              borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff) 1',
+              animation: 'neonBorder 3s linear infinite',
+              boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00',
+              '@keyframes neonBorder': {
+                '0%': {
+                  borderImage: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
+                  boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00'
+                },
+                '25%': {
+                  borderImage: 'linear-gradient(90deg, #00ffff, #ffff00, #ff00ff, #00ffff) 1',
+                  boxShadow: '0 0 15px #00ffff, 0 0 30px #ffff00, 0 0 45px #ff00ff'
+                },
+                '50%': {
+                  borderImage: 'linear-gradient(180deg, #ffff00, #ff00ff, #00ffff, #ffff00) 1',
+                  boxShadow: '0 0 15px #ffff00, 0 0 30px #ff00ff, 0 0 45px #00ffff'
+                },
+                '75%': {
+                  borderImage: 'linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
+                  boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00'
+                },
+                '100%': {
+                  borderImage: 'linear-gradient(360deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
+                  boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00'
+                }
+              }
+            }}
           />
           <Typography variant="h6" sx={{ color: 'white' }}>
             <PersonIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
@@ -135,8 +166,14 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
               onClick={() => handleSectionToggle(section.title)}
               sx={{
                 color: 'white',
+                border: '1px solid transparent',
+                borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00) 1',
+                margin: '2px',
+                borderRadius: '4px',
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  backgroundColor: 'rgba(255, 0, 255, 0.1)',
+                  borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
+                  boxShadow: '0 0 10px #ff00ff, 0 0 20px #00ffff',
                 },
               }}
             >
@@ -160,9 +197,15 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
                     sx={{
                       pl: 4,
                       color: 'white',
-                      backgroundColor: isItemActive(item) ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+                      backgroundColor: isItemActive(item) ? 'rgba(255, 0, 255, 0.2)' : 'transparent',
+                      border: '1px solid transparent',
+                      borderImage: isItemActive(item) ? 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00) 1' : 'linear-gradient(45deg, transparent, transparent, transparent) 1',
+                      margin: '1px',
+                      borderRadius: '4px',
                       '&:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                        backgroundColor: 'rgba(0, 255, 255, 0.1)',
+                        borderImage: 'linear-gradient(45deg, #00ffff, #ffff00, #ff00ff) 1',
+                        boxShadow: '0 0 8px #00ffff, 0 0 16px #ffff00',
                       },
                     }}
                   >
