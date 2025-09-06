@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ReactMarkdown from 'react-markdown'
-import {Container, Segment} from "semantic-ui-react";
+import { Box, Paper } from "@mui/material";
 import {useParams} from "react-router";
 import remarkGfm from "remark-gfm";
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -21,14 +21,36 @@ function Markdown({folderName}: {folderName: string}){
         })
     })
 
-    return <Container>
-        <Segment className="markdown">
-            <ReactMarkdown
-                remarkPlugins={ [remarkGfm]}
-                rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings, rehypeRaw]}
-            >{markdown}</ReactMarkdown>
-        </Segment>
-    </Container>
+    return (
+        <Box sx={{ maxWidth: "800px", mx: "auto" }}>
+            <Paper 
+                className="markdown" 
+                sx={{ 
+                    p: 3, 
+                    backgroundColor: '#3d3e3f',
+                    color: 'white',
+                    '& table': {
+                        width: '100%',
+                        borderCollapse: 'collapse',
+                    },
+                    '& th': {
+                        borderBottom: 'solid 3px #ccc',
+                        padding: '8px',
+                        textAlign: 'left',
+                    },
+                    '& td': {
+                        borderBottom: 'solid 1px #ccc',
+                        padding: '8px',
+                    },
+                }}
+            >
+                <ReactMarkdown
+                    remarkPlugins={ [remarkGfm]}
+                    rehypePlugins={[rehypeSlug, rehypeAutolinkHeadings, rehypeRaw]}
+                >{markdown}</ReactMarkdown>
+            </Paper>
+        </Box>
+    );
 }
 
 function TripReport(){
