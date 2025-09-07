@@ -22,7 +22,7 @@ RUN mkdir -p /app/node_modules/.cache && \
 
 # Install dependencies with memory optimization
 # Install all dependencies at once to reduce layers and memory usage
-RUN npm ci --no-optional && \
+RUN npm install --no-optional && \
     npm cache clean --force
 
 # Copy the rest of the application
