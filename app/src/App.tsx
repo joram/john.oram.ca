@@ -14,12 +14,15 @@ import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
 import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
 import Recipes from "./pages/projects/Recipes";
+import Envariants from "./pages/projects/Envariants";
 import {TripReport, CourseNotes} from "./pages/TripReport";
 import AllRoles from "./pages/work/allRoles";
 import SEO from "./pages/thoughts/seo";
 import GuidingPrincipals from "./pages/thoughts/guidingPrincipals";
 import WorkEnvironment from "./pages/thoughts/workEnvironment";
 import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
+import Settings from "./pages/Settings";
+import { GaudyProvider } from './contexts/GaudyContext';
 import theme from './theme';
 
 function AppContent() {
@@ -58,6 +61,7 @@ function AppContent() {
             <Route path="/project/triptracks" element={<Triptracks/>}/>
             <Route path="/project/recipes" element={<Recipes/>}/>
             <Route path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>}/>
+            <Route path="/project/envariants" element={<Envariants/>}/>
 
             {/*# Opinions*/}
             <Route path="/opinion/seo" element={<SEO/>}/>
@@ -65,6 +69,9 @@ function AppContent() {
             <Route path="/opinion/work_environment" element={<WorkEnvironment/>}/>
 
             <Route path="/trip/2024/wapta_traverse" element={<WaptaTraverse/>}/>
+
+            {/*# Settings*/}
+            <Route path="/settings" element={<Settings/>}/>
 
             {/*# Trip Reports*/}
             <Route path="/trip/:year">
@@ -86,7 +93,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppContent />
+      <GaudyProvider>
+        <AppContent />
+      </GaudyProvider>
     </ThemeProvider>
   );
 }

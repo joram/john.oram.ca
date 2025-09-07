@@ -11,12 +11,15 @@ services:
       # Mount the source code for hot reloading
       - ./app/src:/app/src
       - ./app/public:/app/public
+      - ./app/server:/app/server
       # Mount these files individually so they can be modified without rebuilding
       - ./app/package.json:/app/package.json
       - ./app/package-lock.json:/app/package-lock.json
       - ./app/tsconfig.json:/app/tsconfig.json
-      # Anonymous volume for node_modules to use container's version
-      - ./app/node_modules:/app/node_modules
+      - ./app/craco.config.js:/app/craco.config.js
+      # Let container use its own node_modules to avoid permission issues
+      # Exclude node_modules from host to prevent conflicts and reduce memory usage
+      - /app/node_modules
     environment:
       - WATCHPACK_POLLING=true  # Enable file watching in Docker on some systems
       - CHOKIDAR_USEPOLLING=true  # Enable polling for hot reload
@@ -31,6 +34,6 @@ services:
         limits:
           memory: 1G
         reservations:
-          memory: 512M
+          memory: 256M  # Reduced reservation for development
     stdin_open: true  # Required for react-scripts start
     tty: true  # Required for react-scripts start
