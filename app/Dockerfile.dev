@@ -40,8 +40,8 @@ ENV FAST_REFRESH=true
 ENV WATCHPACK_POLLING=true
 ENV CHOKIDAR_USEPOLLING=true
 
-# Expose ports for frontend and backend
-EXPOSE 3000 5000
+# Expose port for frontend
+EXPOSE 3000
 
 # Start both frontend and backend servers
 CMD ["npm", "run", "dev"]
