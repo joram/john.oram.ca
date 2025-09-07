@@ -4,23 +4,28 @@ services:
   web:
     build:
       context: ./app
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     ports:
-      - "5000:5000"  # Express backend serving static files
+      - "3000:3000"  # Express server serving React app
     environment:
       - NODE_ENV=production
-      - NODE_OPTIONS=--max-old-space-size=512
-      - PORT=5000
+      - NODE_OPTIONS=--max-old-space-size=256
+      - PORT=3000
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 512M  # Reduced from 1G
         reservations:
-          memory: 256M
+          memory: 128M  # Minimal reservation
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
-      timeout: 10s
+      timeout: 3s
       retries: 3
-      start_period: 40s
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
