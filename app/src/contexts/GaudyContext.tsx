@@ -21,9 +21,9 @@ interface GaudyProviderProps {
 
 export const GaudyProvider: React.FC<GaudyProviderProps> = ({ children }) => {
   const [isGaudy, setIsGaudy] = useState<boolean>(() => {
-    // Initialize from localStorage, default to true (gaudy enabled)
+    // Initialize from localStorage, default to false (gaudy disabled)
     const saved = localStorage.getItem('gaudy-mode');
-    return saved !== null ? JSON.parse(saved) : true;
+    return saved !== null ? JSON.parse(saved) : false;
   });
 
   useEffect(() => {
