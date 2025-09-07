@@ -34,34 +34,6 @@ function AboutMe(){
             boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00',
             '@keyframes neonBorder': {
               '0%': {
-<<<<<<< Updated upstream
-                borderImage: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff) 1',
-                boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00'
-              },
-              '16.66%': {
-                borderImage: 'linear-gradient(60deg, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff, #00ffff) 1',
-                boxShadow: '0 0 20px #00ffff, 0 0 40px #ffff00, 0 0 60px #ff00ff'
-              },
-              '33.33%': {
-                borderImage: 'linear-gradient(120deg, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff, #00ffff, #ffff00) 1',
-                boxShadow: '0 0 20px #ffff00, 0 0 40px #ff00ff, 0 0 60px #00ff00'
-              },
-              '50%': {
-                borderImage: 'linear-gradient(180deg, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ff00, 0 0 60px #ff0000'
-              },
-              '66.66%': {
-                borderImage: 'linear-gradient(240deg, #00ff00, #ff0000, #0000ff, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00) 1',
-                boxShadow: '0 0 20px #00ff00, 0 0 40px #ff0000, 0 0 60px #0000ff'
-              },
-              '83.33%': {
-                borderImage: 'linear-gradient(300deg, #ff0000, #0000ff, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000) 1',
-                boxShadow: '0 0 20px #ff0000, 0 0 40px #0000ff, 0 0 60px #ff00ff'
-              },
-              '100%': {
-                borderImage: 'linear-gradient(360deg, #0000ff, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff) 1',
-                boxShadow: '0 0 20px #0000ff, 0 0 40px #ff00ff, 0 0 60px #00ffff'
-=======
                 borderImage: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
                 boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00'
               },
@@ -80,7 +52,6 @@ function AboutMe(){
               '100%': {
                 borderImage: 'linear-gradient(360deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
                 boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00'
->>>>>>> Stashed changes
               }
             }
           }}
