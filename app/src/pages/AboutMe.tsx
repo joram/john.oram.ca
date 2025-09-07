@@ -24,44 +24,68 @@ function AboutMe(){
   return (
     <BasePage title="John Oram" subtitle={subtitle}>
       <Box sx={{ textAlign: 'center', mb: 4 }}>
-        <Avatar
-          src="/static/profile.jpg"
-          sx={{
-            width: 120,
-            height: 120,
-            mx: 'auto',
-            mb: 2,
-            ...(isGaudy && {
-              border: '8px solid',
-              borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff) 1',
-              borderRadius: '50%', // Make border circular
+        <Box sx={{
+          display: 'inline-block',
+          position: 'relative',
+          ...(isGaudy && {
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: '-8px',
+              left: '-8px',
+              right: '-8px',
+              bottom: '-8px',
+              borderRadius: '50%',
+              background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff)',
               animation: 'neonBorder 3s linear infinite',
-              boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00',
+              zIndex: -1,
               '@keyframes neonBorder': {
                 '0%': {
-                  borderImage: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                  boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00'
+                  background: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff)',
                 },
                 '25%': {
-                  borderImage: 'linear-gradient(90deg, #00ffff, #ffff00, #ff00ff, #00ffff) 1',
-                  boxShadow: '0 0 20px #00ffff, 0 0 40px #ffff00, 0 0 60px #ff00ff'
+                  background: 'linear-gradient(90deg, #00ffff, #ffff00, #ff00ff, #00ffff)',
                 },
                 '50%': {
-                  borderImage: 'linear-gradient(180deg, #ffff00, #ff00ff, #00ffff, #ffff00) 1',
-                  boxShadow: '0 0 20px #ffff00, 0 0 40px #ff00ff, 0 0 60px #00ffff'
+                  background: 'linear-gradient(180deg, #ffff00, #ff00ff, #00ffff, #ffff00)',
                 },
                 '75%': {
-                  borderImage: 'linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                  boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00'
+                  background: 'linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff00ff)',
                 },
                 '100%': {
-                  borderImage: 'linear-gradient(360deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                  boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00'
+                  background: 'linear-gradient(360deg, #ff00ff, #00ffff, #ffff00, #ff00ff)',
                 }
               }
-            })
-          }}
-        />
+            },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: '-8px',
+              left: '-8px',
+              right: '-8px',
+              bottom: '-8px',
+              borderRadius: '50%',
+              background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff)',
+              filter: 'blur(10px)',
+              opacity: 0.7,
+              animation: 'neonBorder 3s linear infinite',
+              zIndex: -2,
+            }
+          })
+        }}>
+          <Avatar
+            src="/static/profile.jpg"
+            sx={{
+              width: 120,
+              height: 120,
+              mx: 'auto',
+              mb: 2,
+              ...(isGaudy && {
+                boxShadow: '0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 60px #ffff00',
+              })
+            }}
+          />
+        </Box>
       </Box>
 
       <Typography 

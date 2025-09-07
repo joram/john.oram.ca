@@ -126,44 +126,68 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
     }}>
       <Box sx={{ textAlign: 'center', py: 2 }}>
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Avatar
-            src="/static/profile.jpg"
-            sx={{ 
-              width: 64, 
-              height: 64, 
-              mx: 'auto', 
-              mb: 1,
-              ...(isGaudy && {
-                border: '4px solid',
-                borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff) 1',
-                borderRadius: '50%', // Make border circular
+          <Box sx={{
+            display: 'inline-block',
+            position: 'relative',
+            ...(isGaudy && {
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: '-4px',
+                left: '-4px',
+                right: '-4px',
+                bottom: '-4px',
+                borderRadius: '50%',
+                background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff)',
                 animation: 'neonBorder 3s linear infinite',
-                boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00',
+                zIndex: -1,
                 '@keyframes neonBorder': {
                   '0%': {
-                    borderImage: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                    boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00'
+                    background: 'linear-gradient(0deg, #ff00ff, #00ffff, #ffff00, #ff00ff)',
                   },
                   '25%': {
-                    borderImage: 'linear-gradient(90deg, #00ffff, #ffff00, #ff00ff, #00ffff) 1',
-                    boxShadow: '0 0 15px #00ffff, 0 0 30px #ffff00, 0 0 45px #ff00ff'
+                    background: 'linear-gradient(90deg, #00ffff, #ffff00, #ff00ff, #00ffff)',
                   },
                   '50%': {
-                    borderImage: 'linear-gradient(180deg, #ffff00, #ff00ff, #00ffff, #ffff00) 1',
-                    boxShadow: '0 0 15px #ffff00, 0 0 30px #ff00ff, 0 0 45px #00ffff'
+                    background: 'linear-gradient(180deg, #ffff00, #ff00ff, #00ffff, #ffff00)',
                   },
                   '75%': {
-                    borderImage: 'linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                    boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00'
+                    background: 'linear-gradient(270deg, #ff00ff, #00ffff, #ffff00, #ff00ff)',
                   },
                   '100%': {
-                    borderImage: 'linear-gradient(360deg, #ff00ff, #00ffff, #ffff00, #ff00ff) 1',
-                    boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00'
+                    background: 'linear-gradient(360deg, #ff00ff, #00ffff, #ffff00, #ff00ff)',
                   }
                 }
-              })
-            }}
-          />
+              },
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                top: '-4px',
+                left: '-4px',
+                right: '-4px',
+                bottom: '-4px',
+                borderRadius: '50%',
+                background: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff)',
+                filter: 'blur(8px)',
+                opacity: 0.7,
+                animation: 'neonBorder 3s linear infinite',
+                zIndex: -2,
+              }
+            })
+          }}>
+            <Avatar
+              src="/static/profile.jpg"
+              sx={{ 
+                width: 64, 
+                height: 64, 
+                mx: 'auto', 
+                mb: 1,
+                ...(isGaudy && {
+                  boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00',
+                })
+              }}
+            />
+          </Box>
           <Typography variant="h6" sx={{ color: 'white' }}>
             <PersonIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
             John Oram
