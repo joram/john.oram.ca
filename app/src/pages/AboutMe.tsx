@@ -74,7 +74,7 @@ function AboutMe(){
           })
         }}>
           <Avatar
-            src="/static/profile.jpg"
+            src="/static/John.png"
             sx={{
               width: 120,
               height: 120,

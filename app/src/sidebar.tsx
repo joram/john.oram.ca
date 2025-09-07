@@ -176,7 +176,7 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
             })
           }}>
             <Avatar
-              src="/static/profile.jpg"
+              src="/static/John.png"
               sx={{ 
                 width: 64, 
                 height: 64, 
