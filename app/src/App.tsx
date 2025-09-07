@@ -14,7 +14,6 @@ import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
 import Whatisthisapictureof from "./pages/projects/Whatisthisapictureof";
 import Recipes from "./pages/projects/Recipes";
-import Envariants from "./pages/projects/Envariants";
 import {TripReport, CourseNotes} from "./pages/TripReport";
 import AllRoles from "./pages/work/allRoles";
 import SEO from "./pages/thoughts/seo";
@@ -61,7 +60,6 @@ function AppContent() {
             <Route path="/project/triptracks" element={<Triptracks/>}/>
             <Route path="/project/recipes" element={<Recipes/>}/>
             <Route path="/project/whatisthisapictureof" element={<Whatisthisapictureof/>}/>
-            <Route path="/project/envariants" element={<Envariants/>}/>
 
             {/*# Opinions*/}
             <Route path="/opinion/seo" element={<SEO/>}/>
