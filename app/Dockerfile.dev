@@ -43,4 +43,4 @@ ENV HOST=0.0.0.0
 EXPOSE 3000
 
 # Start the development server with memory optimization
-CMD ["npm", "start", "--"]
+CMD ["npm", "start", "--", "--max-old-space-size=1024"]
