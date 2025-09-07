@@ -30,10 +30,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "NODE_OPTIONS='--max-old-space-size=768' craco build",
+    "build:prod": "NODE_OPTIONS='--max-old-space-size=768' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "server": "NODE_OPTIONS='--max-old-space-size=512' node server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
+    "start:prod": "NODE_OPTIONS='--max-old-space-size=256' node server/server.js"
   },
   "eslintConfig": {
     "extends": [
