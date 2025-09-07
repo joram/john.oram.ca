@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, Divider, Typography, Box } from "@mui/material";
 import BasePage from "../BasePage";
+import { useGaudy } from '../../contexts/GaudyContext';
 
 function splitList(items: any[], chunkSize: number) {
     let chunks = [];
@@ -35,12 +36,22 @@ function Technologies({technologiesUsed}: {technologiesUsed: string[]}){
 }
 
 function BaseCompanyPage({companyName, description, roles}: {companyName:string, description:string, roles:any}) {
+    const { isGaudy } = useGaudy();
     let roleCards: any[] = []
     let technologiesUsed: any[] = []
     roles.forEach((role: any) => {
         let {company, jobTitle, description, startDate, endDate, technologies} = role
         roleCards.push(
-            <Card key={company+jobTitle} sx={{ backgroundColor: '#3d3e3f', color: 'white', mb: 2 }}>
+            <Card key={company+jobTitle} sx={{ 
+                backgroundColor: '#3d3e3f', 
+                color: 'white', 
+                mb: 2,
+                ...(isGaudy && {
+                    border: '2px solid transparent',
+                    borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00) 1',
+                    boxShadow: '0 0 10px rgba(255, 0, 255, 0.3)',
+                })
+            }}>
                 <CardHeader 
                     title={jobTitle} 
                     sx={{ color: 'white' }}

@@ -136,6 +136,7 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
               ...(isGaudy && {
                 border: '4px solid',
                 borderImage: 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff, #00ff00, #ff0000, #0000ff, #ff00ff) 1',
+                borderRadius: '50%', // Make border circular
                 animation: 'neonBorder 3s linear infinite',
                 boxShadow: '0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #ffff00',
                 '@keyframes neonBorder': {
