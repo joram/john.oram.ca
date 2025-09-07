@@ -15,13 +15,13 @@ module.exports = {
                 test: /[\\/]node_modules[\\/]/,
                 name: 'vendors',
                 chunks: 'all',
-                maxSize: 244000, // ~240KB chunks
+                maxSize: 1024000, // ~1MB chunks
               },
               common: {
                 name: 'common',
                 minChunks: 2,
                 chunks: 'all',
-                maxSize: 244000,
+                maxSize: 1024000,
                 priority: 10,
                 reuseExistingChunk: true,
               },
@@ -39,11 +39,11 @@ module.exports = {
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         };
 
-        // Reduce memory usage during compilation
+        // Increase bundle size limits to 3MB
         webpackConfig.performance = {
           hints: 'warning',
-          maxEntrypointSize: 512000, // 500KB
-          maxAssetSize: 512000, // 500KB
+          maxEntrypointSize: 3072000, // 3MB
+          maxAssetSize: 3072000, // 3MB
         };
       }
 
