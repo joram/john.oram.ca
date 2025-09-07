@@ -6,27 +6,35 @@ services:
       context: ./app
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - "3000:3000"  # React frontend
+      - "5000:5000"  # Express backend
     volumes:
       # Mount the source code for hot reloading
       - ./app/src:/app/src
       - ./app/public:/app/public
+      - ./app/server:/app/server
       # Mount these files individually so they can be modified without rebuilding
       - ./app/package.json:/app/package.json
       - ./app/package-lock.json:/app/package-lock.json
       - ./app/tsconfig.json:/app/tsconfig.json
+      - ./app/craco.config.js:/app/craco.config.js
       # Let container use its own node_modules to avoid permission issues
+      # Exclude node_modules from host to prevent conflicts and reduce memory usage
+      - /app/node_modules
     environment:
       - WATCHPACK_POLLING=true  # Enable file watching in Docker on some systems
       - CHOKIDAR_USEPOLLING=true  # Enable polling for hot reload
       - NODE_OPTIONS=--max-old-space-size=512  # Limit Node.js memory usage
       - GENERATE_SOURCEMAP=false  # Disable source maps to save memory
       - DISABLE_ESLINT_PLUGIN=true  # Disable ESLint to save memory
+      - FAST_REFRESH=true  # Enable React Fast Refresh
+      - PORT=5000  # Backend server port
+      - NODE_ENV=development
     deploy:
       resources:
         limits:
           memory: 1G
         reservations:
-          memory: 512M
+          memory: 256M  # Reduced reservation for development
     stdin_open: true  # Required for react-scripts start
     tty: true  # Required for react-scripts start

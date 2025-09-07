@@ -21,11 +21,8 @@ RUN mkdir -p /app/node_modules/.cache && \
     chown -R node:node /app/node_modules
 
 # Install dependencies with memory optimization
-RUN npm ci --only=production --no-optional && \
-    npm cache clean --force
-
-# Install development dependencies separately
-RUN npm ci --only=dev --no-optional && \
+# Install all dependencies at once to reduce layers and memory usage
+RUN npm ci --no-optional && \
     npm cache clean --force
 
 # Copy the rest of the application
@@ -38,9 +35,13 @@ ENV CI=true
 ENV DISABLE_ESLINT_PLUGIN=true
 ENV GENERATE_SOURCEMAP=false
 ENV HOST=0.0.0.0
+# Optimize webpack for development
+ENV FAST_REFRESH=true
+ENV WATCHPACK_POLLING=true
+ENV CHOKIDAR_USEPOLLING=true
 
-# Expose port 3000 for the development server
-EXPOSE 3000
+# Expose ports for frontend and backend
+EXPOSE 3000 5000
 
-# Start the development server with memory optimization
-CMD ["npm", "start", "--", "--max-old-space-size=1024"]
+# Start both frontend and backend servers
+CMD ["npm", "run", "dev"]
