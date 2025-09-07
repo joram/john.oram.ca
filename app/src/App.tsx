@@ -21,6 +21,8 @@ import SEO from "./pages/thoughts/seo";
 import GuidingPrincipals from "./pages/thoughts/guidingPrincipals";
 import WorkEnvironment from "./pages/thoughts/workEnvironment";
 import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
+import Settings from "./pages/Settings";
+import { GaudyProvider } from './contexts/GaudyContext';
 import theme from './theme';
 
 function AppContent() {
@@ -68,6 +70,9 @@ function AppContent() {
 
             <Route path="/trip/2024/wapta_traverse" element={<WaptaTraverse/>}/>
 
+            {/*# Settings*/}
+            <Route path="/settings" element={<Settings/>}/>
+
             {/*# Trip Reports*/}
             <Route path="/trip/:year">
               <Route path=":slug" element={<TripReport/>}/>
@@ -88,7 +93,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppContent />
+      <GaudyProvider>
+        <AppContent />
+      </GaudyProvider>
     </ThemeProvider>
   );
 }
