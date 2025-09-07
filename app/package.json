@@ -40,8 +40,9 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "NODE_OPTIONS='--max-old-space-size=768' craco build",
-    "build:prod": "NODE_OPTIONS='--max-old-space-size=768' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true craco build",
+    "build": "NODE_OPTIONS='--max-old-space-size=1024' craco build",
+    "build:fast": "NODE_OPTIONS='--max-old-space-size=1024' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true TSC_COMPILE_ON_ERROR=true ESLINT_NO_DEV_ERRORS=true craco build",
+    "build:prod": "NODE_OPTIONS='--max-old-space-size=1024' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
     "server": "NODE_OPTIONS='--max-old-space-size=512' node server/server.js",

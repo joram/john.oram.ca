@@ -5,18 +5,33 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
+      # Build optimizations for maximum speed
+      args:
+        - BUILDKIT_INLINE_CACHE=1
+        - DOCKER_BUILDKIT=1
+      cache_from:
+        - node:20-alpine
+      # Use BuildKit for faster builds
+      x-bake:
+        platforms:
+          - linux/amd64
     ports:
       - "3000:3000"  # Express server serving React app
     environment:
       - NODE_ENV=production
-      - NODE_OPTIONS=--max-old-space-size=256
+      - NODE_OPTIONS=--max-old-space-size=1024  # Increased for faster builds
       - PORT=3000
+      # Build speed optimizations
+      - DOCKER_BUILDKIT=1
+      - BUILDKIT_PROGRESS=plain
     deploy:
       resources:
         limits:
-          memory: 512M  # Reduced from 1G
+          memory: 2G  # Increased for faster builds
+          cpus: '2.0'  # Allocate more CPU for builds
         reservations:
-          memory: 128M  # Minimal reservation
+          memory: 1G  # Increased reservation
+          cpus: '1.0'
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
@@ -29,3 +44,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    # Use tmpfs for faster file operations during build
+    tmpfs:
+      - /tmp:size=1G
+      - /app/node_modules/.cache:size=500M

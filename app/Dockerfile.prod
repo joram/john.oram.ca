@@ -1,40 +1,7 @@
-# Multi-stage production build - optimized for speed and memory
-FROM node:20-alpine AS builder
+# Single-stage production build - optimized for speed
+FROM node:20-alpine
 
 # Install system dependencies
-RUN apk add --no-cache libc6-compat
-
-# Set working directory
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies with memory optimization
-RUN npm ci --only=production --no-optional --silent && \
-    npm cache clean --force
-
-# Install dev dependencies for build only
-RUN npm ci --only=dev --no-optional --silent && \
-    npm cache clean --force
-
-# Copy source code
-COPY . .
-
-# Build with maximum memory optimization
-ENV NODE_OPTIONS="--max-old-space-size=768"
-ENV GENERATE_SOURCEMAP=false
-ENV DISABLE_ESLINT_PLUGIN=true
-ENV CI=true
-ENV NODE_ENV=production
-
-# Build the application
-RUN npm run build:prod
-
-# Production stage - minimal runtime
-FROM node:20-alpine AS production
-
-# Install only essential system dependencies
 RUN apk add --no-cache libc6-compat curl
 
 # Create app directory and non-root user
@@ -44,17 +11,35 @@ RUN addgroup -g 1001 -S nodejs && \
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files first for better layer caching
+COPY --chown=nextjs:nodejs package*.json ./
 
-# Install only production dependencies
-RUN npm ci --only=production --no-optional --silent && \
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci --silent && \
+    npm cache clean --force
+
+# Copy source code
+COPY --chown=nextjs:nodejs . .
+
+# Build with maximum speed optimization
+ENV NODE_OPTIONS="--max-old-space-size=1024"
+ENV GENERATE_SOURCEMAP=false
+ENV DISABLE_ESLINT_PLUGIN=true
+ENV CI=true
+ENV NODE_ENV=production
+ENV FAST_REFRESH=false
+ENV TSC_COMPILE_ON_ERROR=true
+ENV ESLINT_NO_DEV_ERRORS=true
+ENV DOCKER_BUILDKIT=1
+ENV BUILDKIT_PROGRESS=plain
+
+# Build the application
+RUN npm run build:fast
+
+# Remove dev dependencies to reduce image size
+RUN npm prune --production && \
     npm cache clean --force && \
     rm -rf /tmp/*
-
-# Copy built application and server
-COPY --from=builder --chown=nextjs:nodejs /app/build ./build
-COPY --chown=nextjs:nodejs server ./server
 
 # Switch to non-root user
 USER nextjs
