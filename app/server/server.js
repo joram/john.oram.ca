@@ -7,7 +7,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  // Disable HTTPS redirects and HSTS for HTTP-only deployment
+  hsts: false,
+  contentSecurityPolicy: false,
+  // Allow HTTP connections
+  forceHTTPS: false
+}));
 app.use(cors());
 app.use(express.json());
 

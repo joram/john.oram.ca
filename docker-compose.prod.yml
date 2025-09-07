@@ -21,6 +21,9 @@ services:
       - NODE_ENV=production
       - NODE_OPTIONS=--max-old-space-size=1024  # Increased for faster builds
       - PORT=3000
+      # HTTP-only configuration
+      - FORCE_HTTPS=false
+      - HTTPS_REDIRECT=false
       # Build speed optimizations
       - DOCKER_BUILDKIT=1
       - BUILDKIT_PROGRESS=plain

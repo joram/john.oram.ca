@@ -48,6 +48,9 @@ USER nextjs
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--max-old-space-size=256"
 ENV PORT=3000
+# HTTP-only configuration
+ENV FORCE_HTTPS=false
+ENV HTTPS_REDIRECT=false
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
