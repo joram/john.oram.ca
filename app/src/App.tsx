@@ -21,28 +21,33 @@ import GuidingPrincipals from "./pages/thoughts/guidingPrincipals";
 import WorkEnvironment from "./pages/thoughts/workEnvironment";
 import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
 import Settings from "./pages/Settings";
-import { GaudyProvider } from './contexts/GaudyContext';
+import { GaudyProvider, useGaudy } from './contexts/GaudyContext';
 import theme from './theme';
 
 function AppContent() {
   const themeInstance = useTheme();
   const isMobile = useMediaQuery(themeInstance.breakpoints.down('sm'));
+  const { isGaudy } = useGaudy();
 
   return (
     <BrowserRouter>
-      <div style={{
-        display: 'flex',
-        minHeight: '100vh',
-        backgroundColor: '#1b1c1d',
-      }}>
+      <div 
+        className={isGaudy ? 'gaudy-background' : ''}
+        style={{
+          display: 'flex',
+          minHeight: '100vh',
+          backgroundColor: isGaudy ? 'transparent' : '#1b1c1d',
+        }}
+      >
         <Sidebar isMobile={isMobile}/>
         
         <div style={{
           flex: 1,
           marginLeft: isMobile ? 0 : '200px',
           padding: '20px',
-          backgroundColor: '#2a2b2c',
+          backgroundColor: isGaudy ? 'rgba(42, 43, 44, 0.8)' : '#2a2b2c',
           color: '#ffffff',
+          backdropFilter: isGaudy ? 'blur(10px)' : 'none',
         }}>
           <Routes>
             <Route path="/" element={<AboutMe/>}/>

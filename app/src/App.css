@@ -6,3 +6,22 @@ div.markdown table th {
 div.markdown table td {
   border-bottom: solid 1px #ccc;
 }
+
+/* Gaudy mode color-shifting background animation */
+@keyframes colorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gaudy-background {
+  background: linear-gradient(-45deg, #ff00ff, #00ffff, #ffff00, #ff0000, #00ff00, #0000ff, #ff00ff);
+  background-size: 400% 400%;
+  animation: colorShift 8s ease infinite;
+}

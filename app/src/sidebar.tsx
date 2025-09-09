@@ -118,10 +118,11 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
 
   const sidebarContent = (
     <Box sx={{ 
-      backgroundColor: '#1b1c1d', 
+      backgroundColor: isGaudy ? 'rgba(27, 28, 29, 0.9)' : '#1b1c1d', 
       height: '100%', 
       color: 'white',
       width: isMobile ? '100%' : '200px',
+      backdropFilter: isGaudy ? 'blur(10px)' : 'none',
     }}>
       <Box sx={{ textAlign: 'center', py: 2 }}>
         <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
