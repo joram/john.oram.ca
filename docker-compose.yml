@@ -11,7 +11,6 @@ services:
       # Mount the source code for hot reloading
       - ./app/src:/app/src
       - ./app/public:/app/public
-      - ./app/server:/app/server
       # Mount these files individually so they can be modified without rebuilding
       - ./app/package.json:/app/package.json
       - ./app/package-lock.json:/app/package-lock.json
