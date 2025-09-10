@@ -35,8 +35,10 @@ services:
     deploy:
       resources:
         limits:
-          memory: 3G  # Increased memory limit
+          memory: 4G  # Increased memory limit to prevent OOM kills
         reservations:
           memory: 1G  # Increased memory reservation
+    tmpfs:
+      - /app/node_modules/.cache  # Use tmpfs for cache to reduce memory pressure
     stdin_open: true  # Required for react-scripts start
     tty: true  # Required for react-scripts start

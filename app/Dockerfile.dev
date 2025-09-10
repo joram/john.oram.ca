@@ -28,24 +28,20 @@ RUN npm install --no-optional && \
 # Copy the rest of the application
 COPY --chown=node:node . .
 
-# Set environment variables for memory optimization
+# Set environment variables for Vite development server
 ENV NODE_ENV=development
 ENV NODE_OPTIONS="--max-old-space-size=2048"
-ENV CI=true
-ENV DISABLE_ESLINT_PLUGIN=true
-ENV GENERATE_SOURCEMAP=false
 ENV HOST=0.0.0.0
-# Optimize webpack for development
-ENV FAST_REFRESH=true
-ENV WATCHPACK_POLLING=true
+ENV PORT=3000
+# Vite-specific environment variables
+ENV VITE_HOST=0.0.0.0
+ENV VITE_PORT=3000
+# Enable polling for file watching in containers
 ENV CHOKIDAR_USEPOLLING=true
-# Additional memory optimizations
-ENV TSC_COMPILE_ON_ERROR=true
-ENV ESLINT_NO_DEV_ERRORS=true
-ENV SKIP_PREFLIGHT_CHECK=true
+ENV WATCHPACK_POLLING=true
 
 # Expose port for frontend
 EXPOSE 3000
 
-# Start both frontend and backend servers
+# Start the Vite development server
 CMD ["npm", "run", "dev"]

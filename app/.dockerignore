@@ -70,3 +70,9 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+
+# Cache directories (reduce memory usage)
+node_modules/.cache
+build/photos
+build/course_notes
+build/trip_reports
