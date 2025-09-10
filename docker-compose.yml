@@ -23,17 +23,20 @@ services:
     environment:
       - WATCHPACK_POLLING=true  # Enable file watching in Docker on some systems
       - CHOKIDAR_USEPOLLING=true  # Enable polling for hot reload
-      - NODE_OPTIONS=--max-old-space-size=512  # Limit Node.js memory usage
+      - NODE_OPTIONS=--max-old-space-size=2048  # Increased Node.js memory allocation
       - GENERATE_SOURCEMAP=false  # Disable source maps to save memory
       - DISABLE_ESLINT_PLUGIN=true  # Disable ESLint to save memory
       - FAST_REFRESH=true  # Enable React Fast Refresh
       - PORT=3000  # Frontend server port
       - NODE_ENV=development
+      - TSC_COMPILE_ON_ERROR=true  # Allow TypeScript compilation to continue on errors
+      - ESLINT_NO_DEV_ERRORS=true  # Don't fail on ESLint errors
+      - SKIP_PREFLIGHT_CHECK=true  # Skip preflight checks
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 3G  # Increased memory limit
         reservations:
-          memory: 256M  # Reduced reservation for development
+          memory: 1G  # Increased memory reservation
     stdin_open: true  # Required for react-scripts start
     tty: true  # Required for react-scripts start

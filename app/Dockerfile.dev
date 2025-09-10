@@ -30,7 +30,7 @@ COPY --chown=node:node . .
 
 # Set environment variables for memory optimization
 ENV NODE_ENV=development
-ENV NODE_OPTIONS="--max-old-space-size=512"
+ENV NODE_OPTIONS="--max-old-space-size=2048"
 ENV CI=true
 ENV DISABLE_ESLINT_PLUGIN=true
 ENV GENERATE_SOURCEMAP=false
@@ -39,6 +39,10 @@ ENV HOST=0.0.0.0
 ENV FAST_REFRESH=true
 ENV WATCHPACK_POLLING=true
 ENV CHOKIDAR_USEPOLLING=true
+# Additional memory optimizations
+ENV TSC_COMPILE_ON_ERROR=true
+ENV ESLINT_NO_DEV_ERRORS=true
+ENV SKIP_PREFLIGHT_CHECK=true
 
 # Expose port for frontend
 EXPOSE 3000

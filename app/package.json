@@ -39,13 +39,13 @@
     "@craco/craco": "^7.1.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "NODE_OPTIONS='--max-old-space-size=2048' craco start",
     "build": "NODE_OPTIONS='--max-old-space-size=1024' craco build",
     "build:fast": "NODE_OPTIONS='--max-old-space-size=1024' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true TSC_COMPILE_ON_ERROR=true ESLINT_NO_DEV_ERRORS=true craco build",
     "build:prod": "NODE_OPTIONS='--max-old-space-size=1024' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "server": "NODE_OPTIONS='--max-old-space-size=512' node server/server.js",
+    "server": "NODE_OPTIONS='--max-old-space-size=1024' node server/server.js",
     "dev": "concurrently \"npm run server\" \"npm start\"",
     "start:prod": "NODE_OPTIONS='--max-old-space-size=256' node server/server.js"
   },
