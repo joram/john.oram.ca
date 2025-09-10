@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import './App.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, useMediaQuery, useTheme } from '@mui/material';
@@ -22,12 +22,31 @@ import WorkEnvironment from "./pages/thoughts/workEnvironment";
 import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
 import Settings from "./pages/Settings";
 import { GaudyProvider, useGaudy } from './contexts/GaudyContext';
+import { ConfettiProvider, useConfetti } from './contexts/ConfettiContext';
 import theme from './theme';
 
 function AppContent() {
   const themeInstance = useTheme();
   const isMobile = useMediaQuery(themeInstance.breakpoints.down('sm'));
   const { isGaudy } = useGaudy();
+  const { triggerConfetti, isConfettiEnabled } = useConfetti();
+
+  // Global click handler for confetti - triggers on any click
+  const handleGlobalClick = useCallback((event: MouseEvent) => {
+    const x = event.clientX / window.innerWidth;
+    const y = event.clientY / window.innerHeight;
+    triggerConfetti(x, y);
+  }, [triggerConfetti]);
+
+  // Add global click listener when confetti is enabled
+  useEffect(() => {
+    if (isConfettiEnabled) {
+      document.addEventListener('click', handleGlobalClick);
+      return () => {
+        document.removeEventListener('click', handleGlobalClick);
+      };
+    }
+  }, [isConfettiEnabled, handleGlobalClick]);
 
   return (
     <BrowserRouter>
@@ -37,6 +56,7 @@ function AppContent() {
           display: 'flex',
           minHeight: '100vh',
           backgroundColor: isGaudy ? 'transparent' : '#1b1c1d',
+          position: 'relative',
         }}
       >
         <Sidebar isMobile={isMobile}/>
@@ -87,6 +107,7 @@ function AppContent() {
             </Route>
           </Routes>
         </div>
+        
       </div>
     </BrowserRouter>
   );
@@ -97,7 +118,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <GaudyProvider>
-        <AppContent />
+        <ConfettiProvider>
+          <AppContent />
+        </ConfettiProvider>
       </GaudyProvider>
     </ThemeProvider>
   );
