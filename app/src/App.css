@@ -25,3 +25,20 @@ div.markdown table td {
   background-size: 400% 400%;
   animation: colorShift 8s ease infinite;
 }
+
+/* Ripple animation */
+@keyframes ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}

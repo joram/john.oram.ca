@@ -3,10 +3,12 @@ import BasePage from './BasePage';
 import { Box, Typography, Switch, FormControlLabel, Paper, Divider } from '@mui/material';
 import { useGaudy } from '../contexts/GaudyContext';
 import { useConfetti } from '../contexts/ConfettiContext';
+import { useRipples } from '../contexts/RipplesContext';
 
 function Settings() {
   const { isGaudy, toggleGaudy } = useGaudy();
   const { isConfettiEnabled, toggleConfetti } = useConfetti();
+  const { isRipplesEnabled, toggleRipples } = useRipples();
 
   return (
     <BasePage title="Settings">

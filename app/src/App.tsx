@@ -23,6 +23,7 @@ import WaptaTraverse from "./pages/trip_reports/WaptaTraverse";
 import Settings from "./pages/Settings";
 import { GaudyProvider, useGaudy } from './contexts/GaudyContext';
 import { ConfettiProvider, useConfetti } from './contexts/ConfettiContext';
+import { RipplesProvider, useRipples } from './contexts/RipplesContext';
 import theme from './theme';
 
 function AppContent() {
@@ -30,23 +31,25 @@ function AppContent() {
   const isMobile = useMediaQuery(themeInstance.breakpoints.down('sm'));
   const { isGaudy } = useGaudy();
   const { triggerConfetti, isConfettiEnabled } = useConfetti();
+  const { triggerRipple, isRipplesEnabled } = useRipples();
 
-  // Global click handler for confetti - triggers on any click
+  // Global click handler for confetti and ripples - triggers on any click
   const handleGlobalClick = useCallback((event: MouseEvent) => {
     const x = event.clientX / window.innerWidth;
     const y = event.clientY / window.innerHeight;
     triggerConfetti(x, y);
-  }, [triggerConfetti]);
+    triggerRipple(x, y);
+  }, [triggerConfetti, triggerRipple]);
 
-  // Add global click listener when confetti is enabled
+  // Add global click listener when confetti or ripples are enabled
   useEffect(() => {
-    if (isConfettiEnabled) {
+    if (isConfettiEnabled || isRipplesEnabled) {
       document.addEventListener('click', handleGlobalClick);
       return () => {
         document.removeEventListener('click', handleGlobalClick);
       };
     }
-  }, [isConfettiEnabled, handleGlobalClick]);
+  }, [isConfettiEnabled, isRipplesEnabled, handleGlobalClick]);
 
   return (
     <BrowserRouter>
@@ -119,7 +122,9 @@ function App() {
       <CssBaseline />
       <GaudyProvider>
         <ConfettiProvider>
-          <AppContent />
+          <RipplesProvider>
+            <AppContent />
+          </RipplesProvider>
         </ConfettiProvider>
       </GaudyProvider>
     </ThemeProvider>
