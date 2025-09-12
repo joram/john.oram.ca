@@ -93,6 +93,12 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
         { path: "/trip/", slug: "2024/5040_Peak", label: "5040 Peak (2024)" },
         { path: "/trip/", slug: "2024/Wapta_Traverse", label: "Wapta Traverse" },
       ]
+    },
+    {
+      title: "Settings",
+      items: [
+        { path: "/", slug: "settings", label: "Display Preferences" },
+      ]
     }
   ];
 
