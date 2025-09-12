@@ -107,6 +107,46 @@ function Settings() {
           />
         </Box>
         
+        <Divider sx={{ borderColor: 'white', my: 3 }} />
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box>
+            <Typography variant="h6" sx={{ color: 'white', mb: 1 }}>
+              Ripples Mode
+            </Typography>
+            <Typography variant="body2" sx={{ color: '#cccccc', maxWidth: '400px' }}>
+              Enable warping ripple effects that appear wherever you click.
+              Multiple ripples will intersect beautifully for a mesmerizing effect!
+            </Typography>
+          </Box>
+          
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isRipplesEnabled}
+                onChange={toggleRipples}
+                sx={{
+                  '& .MuiSwitch-switchBase.Mui-checked': {
+                    color: isRipplesEnabled ? '#4ecdc4' : '#1976d2',
+                    '&:hover': {
+                      backgroundColor: isRipplesEnabled ? 'rgba(78, 205, 196, 0.1)' : 'rgba(25, 118, 210, 0.1)',
+                    },
+                  },
+                  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                    backgroundColor: isRipplesEnabled ? '#4ecdc4' : '#1976d2',
+                    boxShadow: isRipplesEnabled ? '0 0 10px #4ecdc4' : 'none',
+                  },
+                  '& .MuiSwitch-track': {
+                    backgroundColor: '#555',
+                  },
+                }}
+              />
+            }
+            label=""
+            sx={{ ml: 2 }}
+          />
+        </Box>
+        
         {isGaudy && (
           <Box
             sx={{
@@ -139,6 +179,24 @@ function Settings() {
           >
             <Typography variant="body2" sx={{ color: '#ff6b6b', fontStyle: 'italic' }}>
               🎉 Confetti mode is active! Click anywhere on the page to see the magic! 🎉
+            </Typography>
+          </Box>
+        )}
+        
+        {isRipplesEnabled && (
+          <Box
+            sx={{
+              mt: 3,
+              p: 2,
+              backgroundColor: 'rgba(78, 205, 196, 0.05)',
+              border: '1px solid transparent',
+              borderImage: 'linear-gradient(45deg, #4ecdc4, #45b7d1, #96ceb4) 1',
+              borderRadius: '4px',
+              boxShadow: '0 0 10px rgba(78, 205, 196, 0.2)',
+            }}
+          >
+            <Typography variant="body2" sx={{ color: '#4ecdc4', fontStyle: 'italic' }}>
+              🌊 Ripples mode is active! Click anywhere to create beautiful wave effects! 🌊
             </Typography>
           </Box>
         )}

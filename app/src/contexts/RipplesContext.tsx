@@ -52,11 +52,12 @@ export const RipplesProvider: React.FC<RipplesProviderProps> = ({ children }) =>
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 30%, transparent 70%);
+      background: radial-gradient(circle, rgba(78, 205, 196, 0.4) 0%, rgba(69, 183, 209, 0.2) 30%, rgba(150, 206, 180, 0.1) 60%, transparent 80%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       z-index: 9998;
-      animation: ripple-expand 1.5s ease-out forwards;
+      animation: ripple-expand 2s ease-out forwards;
+      box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
     `;
 
     // Add the ripple to the document
@@ -68,7 +69,7 @@ export const RipplesProvider: React.FC<RipplesProviderProps> = ({ children }) =>
       if (element) {
         element.remove();
       }
-    }, 1500);
+    }, 2000);
   };
 
   return (
