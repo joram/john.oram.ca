@@ -6,12 +6,14 @@ import { useGaudy } from '../contexts/GaudyContext';
 import { useConfetti } from '../contexts/ConfettiContext';
 import { useRain, RainIntensity } from '../contexts/RainContext';
 import { useHamster } from '../contexts/HamsterContext';
+import { useLama } from '../contexts/LamaContext';
 
 function Settings() {
   const { isGaudy, toggleGaudy } = useGaudy();
   const { isConfettiEnabled, toggleConfetti } = useConfetti();
   const { isRainEnabled, rainIntensity, toggleRain, setRainIntensity } = useRain();
   const { isHamsterEnabled, toggleHamster } = useHamster();
+  const { isLamaEnabled, toggleLama } = useLama();
   
   const [expandedDescriptions, setExpandedDescriptions] = useState<{ [key: string]: boolean }>({});
 
@@ -213,6 +215,18 @@ function Settings() {
           settingName="hamster"
           color="#ffa500"
           activeMessage="🐹 Hamster mode is active! Watch the adorable hamsters dance around! 🐹"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Lama Mode"
+          description="Enable an animated cartoon llama that walks across the screen! The llama will randomly choose to walk from left to right or right to left, with smooth WebGL-powered animations and a walking cycle."
+          isEnabled={isLamaEnabled}
+          onToggle={toggleLama}
+          settingName="lama"
+          color="#8b4513"
+          activeMessage="🦙 Lama mode is active! Watch the cartoon llama walk across the screen! 🦙"
         />
       </Paper>
     </BasePage>
