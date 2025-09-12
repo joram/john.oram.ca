@@ -24,6 +24,8 @@ import Settings from "./pages/Settings";
 import { GaudyProvider, useGaudy } from './contexts/GaudyContext';
 import { ConfettiProvider, useConfetti } from './contexts/ConfettiContext';
 import { RainProvider, useRain } from './contexts/RainContext';
+import { HamsterProvider } from './contexts/HamsterContext';
+import DancingHamsters from './components/DancingHamsters';
 import theme from './theme';
 
 function AppContent() {
@@ -74,6 +76,7 @@ function AppContent() {
           color: '#ffffff',
           backdropFilter: isGaudy ? 'blur(10px)' : 'none',
         }}>
+          <DancingHamsters />
           <Routes>
             <Route path="/" element={<AboutMe/>}/>
 
@@ -146,7 +149,9 @@ function App() {
       <GaudyProvider>
         <ConfettiProvider>
           <RainProvider>
-            <AppContent />
+            <HamsterProvider>
+              <AppContent />
+            </HamsterProvider>
           </RainProvider>
         </ConfettiProvider>
       </GaudyProvider>

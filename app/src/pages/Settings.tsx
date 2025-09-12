@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import BasePage from './BasePage';
-import { Box, Typography, Switch, FormControlLabel, Paper, Divider, IconButton, Collapse, Slider, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import { Box, Typography, Switch, FormControlLabel, Paper, Divider, IconButton, Collapse, Select, MenuItem, FormControl } from '@mui/material';
 import { InfoOutlined } from '@mui/icons-material';
 import { useGaudy } from '../contexts/GaudyContext';
 import { useConfetti } from '../contexts/ConfettiContext';
 import { useRain, RainIntensity } from '../contexts/RainContext';
+import { useHamster } from '../contexts/HamsterContext';
 
 function Settings() {
   const { isGaudy, toggleGaudy } = useGaudy();
   const { isConfettiEnabled, toggleConfetti } = useConfetti();
   const { isRainEnabled, rainIntensity, toggleRain, setRainIntensity } = useRain();
+  const { isHamsterEnabled, toggleHamster } = useHamster();
   
   const [expandedDescriptions, setExpandedDescriptions] = useState<{ [key: string]: boolean }>({});
 
@@ -200,6 +202,18 @@ function Settings() {
             </Box>
           )}
         </SettingRow>
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Hamster Mode"
+          description="Enable dancing hamsters that bounce and wiggle around the screen! Multiple adorable hamsters will dance across your page with smooth animations and random movements."
+          isEnabled={isHamsterEnabled}
+          onToggle={toggleHamster}
+          settingName="hamster"
+          color="#ffa500"
+          activeMessage="🐹 Hamster mode is active! Watch the adorable hamsters dance around! 🐹"
+        />
       </Paper>
     </BasePage>
   );
