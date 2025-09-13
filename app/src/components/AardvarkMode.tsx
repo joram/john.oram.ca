@@ -41,7 +41,7 @@ const AardvarkMode: React.FC = () => {
       x: Math.random() * 100,
       y: Math.random() * 100,
       direction: Math.random() * 360,
-      speed: 0.05 + Math.random() * 0.1,
+      speed: 0.02 + Math.random() * 0.04,
       size: 40 + Math.random() * 20,
       isTunneling: false,
       tunnelDepth: 0,
@@ -80,7 +80,7 @@ const AardvarkMode: React.FC = () => {
           }
 
           // Random tunneling behavior
-          if (Math.random() < 0.01) {
+          if (Math.random() < 0.005) {
             aardvark.isTunneling = !aardvark.isTunneling;
             if (aardvark.isTunneling) {
               aardvark.tunnelDepth = 0;
@@ -99,7 +99,7 @@ const AardvarkMode: React.FC = () => {
           }
 
           // Random direction changes
-          if (Math.random() < 0.003) {
+          if (Math.random() < 0.001) {
             aardvark.direction += (Math.random() - 0.5) * 60;
           }
 
@@ -135,8 +135,8 @@ const AardvarkMode: React.FC = () => {
           }
 
           // Random ant movement
-          const newX = ant.x + (Math.random() - 0.5) * 0.3;
-          const newY = ant.y + (Math.random() - 0.5) * 0.3;
+          const newX = ant.x + (Math.random() - 0.5) * 0.15;
+          const newY = ant.y + (Math.random() - 0.5) * 0.15;
 
           return {
             ...ant,
@@ -147,7 +147,7 @@ const AardvarkMode: React.FC = () => {
       );
     };
 
-    const interval = setInterval(animate, 100);
+    const interval = setInterval(animate, 150);
 
     return () => clearInterval(interval);
   }, [isAardvarkEnabled, aardvarks]);
@@ -225,7 +225,19 @@ const AardvarkMode: React.FC = () => {
             zIndex: aardvark.isTunneling ? 1 : 2
           }}
         >
-          🦏
+          <div style={{
+            fontSize: `${aardvark.size * 0.4}px`,
+            fontFamily: 'monospace',
+            color: '#8B4513',
+            textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+            lineHeight: 0.8,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+            <div style={{ transform: 'rotate(-15deg)' }}>🐽</div>
+            <div style={{ marginLeft: '-2px', fontSize: '0.8em' }}>🐹</div>
+          </div>
         </div>
       ))}
 

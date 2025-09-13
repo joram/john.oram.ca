@@ -43,11 +43,11 @@ const ArdvarkMode: React.FC = () => {
       x: Math.random() * 100,
       y: Math.random() * 100,
       direction: Math.random() * 360,
-      speed: 0.08 + Math.random() * 0.12,
+      speed: 0.03 + Math.random() * 0.05,
       size: 35 + Math.random() * 25,
       trail: [],
       isSpinning: Math.random() > 0.5,
-      spinSpeed: 0.5 + Math.random() * 2,
+      spinSpeed: 0.2 + Math.random() * 0.8,
       cosmicPower: Math.random() * 100
     }));
 
@@ -74,7 +74,7 @@ const ArdvarkMode: React.FC = () => {
           let newY = aardvark.y + Math.sin(radians) * aardvark.speed;
 
           // Add floating effect
-          newY += Math.sin(Date.now() * 0.001 + aardvark.id.charCodeAt(0)) * 0.1;
+          newY += Math.sin(Date.now() * 0.0005 + aardvark.id.charCodeAt(0)) * 0.05;
 
           // Bounce off edges with cosmic energy
           if (newX <= 0 || newX >= 100) {
@@ -114,9 +114,9 @@ const ArdvarkMode: React.FC = () => {
           }));
 
           // Random spinning behavior
-          if (Math.random() < 0.02) {
+          if (Math.random() < 0.01) {
             aardvark.isSpinning = !aardvark.isSpinning;
-            aardvark.spinSpeed = 0.5 + Math.random() * 3;
+            aardvark.spinSpeed = 0.2 + Math.random() * 1.5;
           }
 
           // Update cosmic power
@@ -124,7 +124,7 @@ const ArdvarkMode: React.FC = () => {
           aardvark.cosmicPower = Math.max(0, Math.min(100, aardvark.cosmicPower));
 
           // Random direction changes
-          if (Math.random() < 0.005) {
+          if (Math.random() < 0.002) {
             aardvark.direction += (Math.random() - 0.5) * 90;
           }
 
@@ -142,7 +142,7 @@ const ArdvarkMode: React.FC = () => {
       setStars(prevStars => 
         prevStars.map(star => ({
           ...star,
-          twinklePhase: star.twinklePhase + 0.1
+          twinklePhase: star.twinklePhase + 0.05
         }))
       );
 
@@ -155,7 +155,7 @@ const ArdvarkMode: React.FC = () => {
       );
     };
 
-    const interval = setInterval(animate, 50);
+    const interval = setInterval(animate, 100);
 
     return () => clearInterval(interval);
   }, [isArdvarkEnabled, cosmicAardvarks]);
