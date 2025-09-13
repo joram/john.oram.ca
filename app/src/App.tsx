@@ -25,9 +25,9 @@ import { GaudyProvider, useGaudy } from './contexts/GaudyContext';
 import { ConfettiProvider, useConfetti } from './contexts/ConfettiContext';
 import { RainProvider, useRain } from './contexts/RainContext';
 import { HamsterProvider } from './contexts/HamsterContext';
-import { LamaProvider } from './contexts/LamaContext';
+import { LlamaProvider } from './contexts/LlamaContext';
 import DancingHamsters from './components/DancingHamsters';
-import WalkingLama from './components/WalkingLama';
+import WalkingLlama from './components/WalkingLlama';
 import theme from './theme';
 
 function AppContent() {
@@ -79,7 +79,7 @@ function AppContent() {
           backdropFilter: isGaudy ? 'blur(10px)' : 'none',
         }}>
           <DancingHamsters />
-          <WalkingLama />
+          <WalkingLlama />
           <Routes>
             <Route path="/" element={<AboutMe/>}/>
 
@@ -153,9 +153,9 @@ function App() {
         <ConfettiProvider>
           <RainProvider>
             <HamsterProvider>
-              <LamaProvider>
+              <LlamaProvider>
                 <AppContent />
-              </LamaProvider>
+              </LlamaProvider>
             </HamsterProvider>
           </RainProvider>
         </ConfettiProvider>

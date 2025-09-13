@@ -6,14 +6,14 @@ import { useGaudy } from '../contexts/GaudyContext';
 import { useConfetti } from '../contexts/ConfettiContext';
 import { useRain, RainIntensity } from '../contexts/RainContext';
 import { useHamster } from '../contexts/HamsterContext';
-import { useLama } from '../contexts/LamaContext';
+import { useLlama } from '../contexts/LlamaContext';
 
 function Settings() {
   const { isGaudy, toggleGaudy } = useGaudy();
   const { isConfettiEnabled, toggleConfetti } = useConfetti();
   const { isRainEnabled, rainIntensity, toggleRain, setRainIntensity } = useRain();
   const { isHamsterEnabled, toggleHamster } = useHamster();
-  const { isLamaEnabled, toggleLama } = useLama();
+  const { isLlamaEnabled, toggleLlama } = useLlama();
   
   const [expandedDescriptions, setExpandedDescriptions] = useState<{ [key: string]: boolean }>({});
 
@@ -220,13 +220,13 @@ function Settings() {
         <Divider sx={{ borderColor: 'white', my: 2 }} />
         
         <SettingRow
-          name="Lama Mode"
-          description="Enable an animated cartoon llama that walks across the screen! The llama will randomly choose to walk from left to right or right to left, with smooth WebGL-powered animations and a walking cycle."
-          isEnabled={isLamaEnabled}
-          onToggle={toggleLama}
-          settingName="lama"
+          name="Llama Mode"
+          description="Enable an animated cartoon llama that walks across the screen! The llama will randomly choose to walk from left to right or right to left, with smooth WebGL-powered animations and a walking cycle. The llama will periodically run across the screen at different heights every 3-15 seconds."
+          isEnabled={isLlamaEnabled}
+          onToggle={toggleLlama}
+          settingName="llama"
           color="#8b4513"
-          activeMessage="🦙 Lama mode is active! Watch the cartoon llama walk across the screen! 🦙"
+          activeMessage="🦙 Llama mode is active! Watch the cartoon llama walk across the screen! 🦙"
         />
       </Paper>
     </BasePage>

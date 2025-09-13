@@ -153,9 +153,9 @@ export const RainProvider: React.FC<RainProviderProps> = ({ children }) => {
     if (!isRainEnabled || rainIntensity === 'none') return;
 
     const intervals = {
-      light: 3000,      // Every 3 seconds
+      light: 33,        // ~30 drops per second (1000ms / 30)
       moderate: 1500,   // Every 1.5 seconds
-      heavy: 800,       // Every 0.8 seconds
+      heavy: 2,         // ~500 drops per second (1000ms / 500)
       downpour: 400     // Every 0.4 seconds
     };
 
