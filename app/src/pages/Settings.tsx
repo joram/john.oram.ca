@@ -7,6 +7,8 @@ import { useConfetti } from '../contexts/ConfettiContext';
 import { useRain, RainIntensity } from '../contexts/RainContext';
 import { useHamster } from '../contexts/HamsterContext';
 import { useLlama } from '../contexts/LlamaContext';
+import { useAardvark } from '../contexts/AardvarkContext';
+import { useArdvark } from '../contexts/ArdvarkContext';
 
 function Settings() {
   const { isGaudy, toggleGaudy } = useGaudy();
@@ -14,6 +16,8 @@ function Settings() {
   const { isRainEnabled, rainIntensity, toggleRain, setRainIntensity } = useRain();
   const { isHamsterEnabled, toggleHamster } = useHamster();
   const { isLlamaEnabled, toggleLlama } = useLlama();
+  const { isAardvarkEnabled, toggleAardvark } = useAardvark();
+  const { isArdvarkEnabled, toggleArdvark } = useArdvark();
   
   const [expandedDescriptions, setExpandedDescriptions] = useState<{ [key: string]: boolean }>({});
 
@@ -227,6 +231,30 @@ function Settings() {
           settingName="llama"
           color="#8b4513"
           activeMessage="🦙 Llama mode is active! Watch the cartoon llama walk across the screen! 🦙"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Aardvark Mode"
+          description="Enable tunneling aardvarks that dig holes and hunt ants! Watch as aardvarks waddle around the screen, randomly tunnel into the ground creating glowing holes, and hunt down scurrying ants. The aardvarks will periodically dig tunnels and feast on the ant population with realistic eating animations."
+          isEnabled={isAardvarkEnabled}
+          onToggle={toggleAardvark}
+          settingName="aardvark"
+          color="#8B4513"
+          activeMessage="🦏 Aardvark mode is active! Watch the aardvarks tunnel and hunt ants! 🦏"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Ardvark Mode"
+          description="Enable cosmic floating aardvarks with rainbow trails and twinkling stars! These magical aardvarks float through a cosmic background, leaving sparkling rainbow trails behind them. They spin, pulse with cosmic energy, and create rainbow particle explosions when they bounce off screen edges. Twinkling stars add to the mystical atmosphere."
+          isEnabled={isArdvarkEnabled}
+          onToggle={toggleArdvark}
+          settingName="ardvark"
+          color="#8A2BE2"
+          activeMessage="✨ Ardvark mode is active! Watch the cosmic aardvarks float through space! ✨"
         />
       </Paper>
     </BasePage>
