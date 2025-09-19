@@ -5,6 +5,13 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
+      x-bake:
+        platforms:
+          - linux/amd64
+        cache-from:
+          - type=gha
+        cache-to:
+          - type=gha,mode=max
     ports:
       - "3000:3000"  # Express server serving React app
     environment:
@@ -29,3 +36,4 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+        labels: "buildkit,builder"

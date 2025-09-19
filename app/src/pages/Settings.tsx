@@ -1,0 +1,264 @@
+import React, { useState } from 'react';
+import BasePage from './BasePage';
+import { Box, Typography, Switch, FormControlLabel, Paper, Divider, IconButton, Collapse, Select, MenuItem, FormControl } from '@mui/material';
+import { InfoOutlined } from '@mui/icons-material';
+import { useGaudy } from '../contexts/GaudyContext';
+import { useConfetti } from '../contexts/ConfettiContext';
+import { useRain, RainIntensity } from '../contexts/RainContext';
+import { useHamster } from '../contexts/HamsterContext';
+import { useLlama } from '../contexts/LlamaContext';
+import { useAardvark } from '../contexts/AardvarkContext';
+import { useArdvark } from '../contexts/ArdvarkContext';
+
+function Settings() {
+  const { isGaudy, toggleGaudy } = useGaudy();
+  const { isConfettiEnabled, toggleConfetti } = useConfetti();
+  const { isRainEnabled, rainIntensity, toggleRain, setRainIntensity } = useRain();
+  const { isHamsterEnabled, toggleHamster } = useHamster();
+  const { isLlamaEnabled, toggleLlama } = useLlama();
+  const { isAardvarkEnabled, toggleAardvark } = useAardvark();
+  const { isArdvarkEnabled, toggleArdvark } = useArdvark();
+  
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{ [key: string]: boolean }>({});
+
+  const toggleDescription = (settingName: string) => {
+    setExpandedDescriptions(prev => ({
+      ...prev,
+      [settingName]: !prev[settingName]
+    }));
+  };
+
+  const intensityLabels = {
+    none: 'None',
+    light: 'Light Rain',
+    moderate: 'Moderate Rain', 
+    heavy: 'Heavy Rain',
+    downpour: 'Downpour'
+  };
+
+  const SettingRow = ({ 
+    name, 
+    description, 
+    isEnabled, 
+    onToggle, 
+    settingName,
+    color = '#1976d2',
+    activeMessage,
+    children
+  }: {
+    name: string;
+    description: string;
+    isEnabled: boolean;
+    onToggle: () => void;
+    settingName: string;
+    color?: string;
+    activeMessage?: string;
+    children?: React.ReactNode;
+  }) => (
+    <Box>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 2 }}>
+        <Typography variant="h6" sx={{ color: 'white' }}>
+          {name}
+        </Typography>
+        
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isEnabled}
+                onChange={onToggle}
+                sx={{
+                  '& .MuiSwitch-switchBase.Mui-checked': {
+                    color: isEnabled ? color : '#1976d2',
+                    '&:hover': {
+                      backgroundColor: isEnabled ? `${color}1a` : 'rgba(25, 118, 210, 0.1)',
+                    },
+                  },
+                  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                    backgroundColor: isEnabled ? color : '#1976d2',
+                    boxShadow: isEnabled ? `0 0 10px ${color}` : 'none',
+                  },
+                  '& .MuiSwitch-track': {
+                    backgroundColor: '#555',
+                  },
+                }}
+              />
+            }
+            label=""
+          />
+          
+          <IconButton
+            size="small"
+            onClick={() => toggleDescription(settingName)}
+            sx={{ 
+              color: expandedDescriptions[settingName] ? color : '#cccccc',
+              backgroundColor: expandedDescriptions[settingName] ? `${color}20` : 'transparent',
+              '&:hover': { 
+                backgroundColor: expandedDescriptions[settingName] ? `${color}30` : 'rgba(255, 255, 255, 0.1)',
+                color: 'white'
+              },
+              transition: 'all 0.2s ease-in-out'
+            }}
+          >
+            <InfoOutlined fontSize="small" />
+          </IconButton>
+        </Box>
+      </Box>
+      
+      <Collapse in={expandedDescriptions[settingName]}>
+        <Box sx={{ mb: 2, pl: 1 }}>
+          <Typography variant="body2" sx={{ color: '#cccccc', mb: 1 }}>
+            {description}
+          </Typography>
+          {children}
+          {isEnabled && activeMessage && (
+            <Typography variant="body2" sx={{ color: color, fontStyle: 'italic', mt: 1 }}>
+              {activeMessage}
+            </Typography>
+          )}
+        </Box>
+      </Collapse>
+    </Box>
+  );
+
+  return (
+    <BasePage title="Settings">
+      <Paper 
+        elevation={3}
+        sx={{
+          p: 3,
+          backgroundColor: '#3d3e3f',
+          border: isGaudy ? '2px solid transparent' : '1px solid #555',
+          borderImage: isGaudy ? 'linear-gradient(45deg, #ff00ff, #00ffff, #ffff00) 1' : 'none',
+          borderRadius: '8px',
+          boxShadow: isGaudy ? '0 0 15px rgba(255, 0, 255, 0.3)' : '0 2px 8px rgba(0,0,0,0.3)',
+        }}
+      >
+        <Typography variant="h5" component="h2" sx={{ color: 'white', mb: 3 }}>
+          Display Preferences
+        </Typography>
+        
+        <Divider sx={{ borderColor: 'white', mb: 3 }} />
+        
+        <SettingRow
+          name="Gaudy Mode"
+          description="Enable or disable the flashy neon borders, gradients, and animations throughout the site. This setting is saved in your browser's local storage."
+          isEnabled={isGaudy}
+          onToggle={toggleGaudy}
+          settingName="gaudy"
+          color="#ff00ff"
+          activeMessage="✨ Gaudy mode is active! Enjoy the flashy styling! ✨"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Confetti Mode"
+          description="Enable confetti animations that trigger on any click anywhere on the page. Clicks will still work normally on all elements - confetti just adds extra fun!"
+          isEnabled={isConfettiEnabled}
+          onToggle={toggleConfetti}
+          settingName="confetti"
+          color="#ff6b6b"
+          activeMessage="🎉 Confetti mode is active! Click anywhere on the page to see the magic! 🎉"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Rain Mode"
+          description="Enable rain effects with variable intensity. Random rain drops appear across the page, and clicks create full-size ripples. The rain intensity is displayed in the bottom right corner."
+          isEnabled={isRainEnabled}
+          onToggle={toggleRain}
+          settingName="rain"
+          color="#4ecdc4"
+          activeMessage="🌧️ Rain mode is active! Watch the rain fall and click to create ripples! 🌧️"
+        >
+          {isRainEnabled && (
+            <Box sx={{ mt: 2, mb: 1 }}>
+              <Typography variant="body2" sx={{ color: '#cccccc', mb: 1 }}>
+                Rain Intensity:
+              </Typography>
+              <FormControl size="small" sx={{ minWidth: 150 }}>
+                <Select
+                  value={rainIntensity}
+                  onChange={(e) => setRainIntensity(e.target.value as RainIntensity)}
+                  sx={{
+                    color: 'white',
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#4ecdc4',
+                    },
+                    '&:hover .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#4ecdc4',
+                    },
+                    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#4ecdc4',
+                    },
+                    '& .MuiSvgIcon-root': {
+                      color: '#4ecdc4',
+                    },
+                  }}
+                >
+                  {Object.entries(intensityLabels).map(([value, label]) => (
+                    <MenuItem key={value} value={value} sx={{ color: 'white' }}>
+                      {label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+          )}
+        </SettingRow>
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Hamster Mode"
+          description="Enable dancing hamsters that bounce and wiggle around the screen! Multiple adorable hamsters will dance across your page with smooth animations and random movements."
+          isEnabled={isHamsterEnabled}
+          onToggle={toggleHamster}
+          settingName="hamster"
+          color="#ffa500"
+          activeMessage="🐹 Hamster mode is active! Watch the adorable hamsters dance around! 🐹"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Llama Mode"
+          description="Enable an animated cartoon llama that walks across the screen! The llama will randomly choose to walk from left to right or right to left, with smooth WebGL-powered animations and a walking cycle. The llama will periodically run across the screen at different heights every 3-15 seconds."
+          isEnabled={isLlamaEnabled}
+          onToggle={toggleLlama}
+          settingName="llama"
+          color="#8b4513"
+          activeMessage="🦙 Llama mode is active! Watch the cartoon llama walk across the screen! 🦙"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Aardvark Mode"
+          description="Enable tunneling aardvarks that dig holes and hunt ants! Watch as aardvarks waddle around the screen, randomly tunnel into the ground creating glowing holes, and hunt down scurrying ants. The aardvarks will periodically dig tunnels and feast on the ant population with realistic eating animations."
+          isEnabled={isAardvarkEnabled}
+          onToggle={toggleAardvark}
+          settingName="aardvark"
+          color="#8B4513"
+          activeMessage="🦏 Aardvark mode is active! Watch the aardvarks tunnel and hunt ants! 🦏"
+        />
+        
+        <Divider sx={{ borderColor: 'white', my: 2 }} />
+        
+        <SettingRow
+          name="Ardvark Mode"
+          description="Enable cosmic floating aardvarks with rainbow trails and twinkling stars! These magical aardvarks float through a cosmic background, leaving sparkling rainbow trails behind them. They spin, pulse with cosmic energy, and create rainbow particle explosions when they bounce off screen edges. Twinkling stars add to the mystical atmosphere."
+          isEnabled={isArdvarkEnabled}
+          onToggle={toggleArdvark}
+          settingName="ardvark"
+          color="#8A2BE2"
+          activeMessage="✨ Ardvark mode is active! Watch the cosmic aardvarks float through space! ✨"
+        />
+      </Paper>
+    </BasePage>
+  );
+}
+
+export default Settings;
