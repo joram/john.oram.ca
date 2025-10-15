@@ -31,45 +31,50 @@ ENV NODE_ENV=production
 # Build the application
 RUN npm run build:prod
 
-# Production stage - minimal runtime
-FROM node:20-alpine AS production
+# Production stage - nginx serving static files
+FROM nginx:alpine AS production
 
-# Install only essential system dependencies
-RUN apk add --no-cache libc6-compat curl
+# Install curl for health checks
+RUN apk add --no-cache curl
 
-# Create app directory and non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nextjs -u 1001
+# Copy built static files from builder stage
+COPY --from=builder /app/build /usr/share/nginx/html
 
-# Set working directory
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install only production dependencies
-RUN npm ci --only=production --no-optional --silent && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
-
-# Copy built application and server
-COPY --from=builder --chown=nextjs:nodejs /app/build ./build
-COPY --chown=nextjs:nodejs server ./server
-
-# Switch to non-root user
-USER nextjs
-
-# Set production environment
-ENV NODE_ENV=production
-ENV NODE_OPTIONS="--max-old-space-size=256"
-ENV PORT=3000
+# Create nginx configuration for React SPA
+RUN echo 'server { \
+    listen 80; \
+    server_name localhost; \
+    root /usr/share/nginx/html; \
+    index index.html; \
+    \
+    # Handle client-side routing \
+    location / { \
+        try_files $uri $uri/ /index.html; \
+    } \
+    \
+    # Cache static assets \
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ { \
+        expires 1y; \
+        add_header Cache-Control "public, immutable"; \
+    } \
+    \
+    # Security headers \
+    add_header X-Frame-Options "SAMEORIGIN" always; \
+    add_header X-Content-Type-Options "nosniff" always; \
+    add_header X-XSS-Protection "1; mode=block" always; \
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always; \
+}' > /etc/nginx/conf.d/default.conf
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:3000/health || exit 1
+  CMD curl -f http://localhost/ || exit 1
 
 # Expose port
-EXPOSE 3000
+EXPOSE 80
 
-# Start production server
-CMD ["npm", "run", "start:prod"]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
+
+
+
+

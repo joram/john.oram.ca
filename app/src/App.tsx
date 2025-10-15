@@ -26,12 +26,8 @@ import { ConfettiProvider, useConfetti } from './contexts/ConfettiContext';
 import { RainProvider, useRain } from './contexts/RainContext';
 import { HamsterProvider } from './contexts/HamsterContext';
 import { LlamaProvider } from './contexts/LlamaContext';
-import { AardvarkProvider } from './contexts/AardvarkContext';
-import { ArdvarkProvider } from './contexts/ArdvarkContext';
 import DancingHamsters from './components/DancingHamsters';
 import WalkingLlama from './components/WalkingLlama';
-import AardvarkMode from './components/AardvarkMode';
-import ArdvarkMode from './components/ArdvarkMode';
 import theme from './theme';
 
 function AppContent() {
@@ -84,8 +80,6 @@ function AppContent() {
         }}>
           <DancingHamsters />
           <WalkingLlama />
-          <AardvarkMode />
-          <ArdvarkMode />
           <Routes>
             <Route path="/" element={<AboutMe/>}/>
 
@@ -160,11 +154,7 @@ function App() {
           <RainProvider>
             <HamsterProvider>
               <LlamaProvider>
-                <AardvarkProvider>
-                  <ArdvarkProvider>
-                    <AppContent />
-                  </ArdvarkProvider>
-                </AardvarkProvider>
+                <AppContent />
               </LlamaProvider>
             </HamsterProvider>
           </RainProvider>
