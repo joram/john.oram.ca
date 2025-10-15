@@ -34,21 +34,10 @@ function AboutMe(){
         />
       </Box>
 
-      <Typography paragraph>
-        I'm a software developer with many professional interests and side hobbies.
-        My primary professional interest is in secure, scalable and resilient end to end systems.
-        This can be from all the way from system architecture, load balancing across databases, all the way to
-        dev team processes, on-call rotations, and culture.
-      </Typography>
-
-      <Typography paragraph>
-        My work experience speaks to my ability to organize a team, and architect distributed systems.
-      </Typography>
-
-      <Typography paragraph>
-        My side projects, a subset documented here, show my desire to learn, experiment, and put my skills to use.
-        Solving problems, even those that don't need such overly engineered solutions.
-      </Typography>
+      <Typography>John Oram is a software developer based in Victoria, British Columbia, with over a decade of experience designing and building secure, scalable, and resilient software systems.</Typography>
+      <Typography>He works across the full stack—from backend infrastructure and cloud orchestration to user-facing applications—focusing on performance, reliability, and maintainability.</Typography>
+      <Typography>Active in the Victoria tech community, John enjoys mentoring and sharing ideas with other developers.</Typography>
+      <Typography>He is also the founder of VeilStream, a platform that provides per-branch environments to help teams automate preview deployments and streamline their path from code to production.</Typography>
     </BasePage>
   );
 }
