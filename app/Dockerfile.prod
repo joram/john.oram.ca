@@ -22,7 +22,6 @@ RUN npm ci --only=dev --no-optional --silent && \
 COPY . .
 
 # Build with maximum memory optimization
-ENV NODE_OPTIONS="--max-old-space-size=768"
 ENV GENERATE_SOURCEMAP=false
 ENV DISABLE_ESLINT_PLUGIN=true
 ENV CI=true

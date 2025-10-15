@@ -23,7 +23,6 @@ ENV NODE_ENV=production
 ENV CI=true
 ENV DISABLE_ESLINT_PLUGIN=true
 ENV GENERATE_SOURCEMAP=false
-ENV NODE_OPTIONS="--max-old-space-size=512"
 
 # Build the application
 RUN npm run build
@@ -33,7 +32,6 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV NODE_OPTIONS="--max-old-space-size=512"
 
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
