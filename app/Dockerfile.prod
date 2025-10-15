@@ -11,12 +11,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies with memory optimization
-RUN npm ci --only=production --no-optional --silent && \
-    npm cache clean --force
-
-# Install dev dependencies for build only
-RUN npm ci --only=dev --no-optional --silent && \
-    npm cache clean --force
+RUN npm i && npm cache clean --force
 
 # Copy source code
 COPY . .
