@@ -35,9 +35,13 @@ function AboutMe(){
       </Box>
 
       <Typography>John Oram is a software developer based in Victoria, British Columbia, with over a decade of experience designing and building secure, scalable, and resilient software systems.</Typography>
+      <br/>
       <Typography>He works across the full stack—from backend infrastructure and cloud orchestration to user-facing applications—focusing on performance, reliability, and maintainability.</Typography>
+      <br/>
       <Typography>Active in the Victoria tech community, John enjoys mentoring and sharing ideas with other developers.</Typography>
+      <br/>
       <Typography>He is also the founder of VeilStream, a platform that provides per-branch environments to help teams automate preview deployments and streamline their path from code to production.</Typography>
+      <br/>
     </BasePage>
   );
 }
