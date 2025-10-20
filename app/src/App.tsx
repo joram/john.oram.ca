@@ -5,10 +5,15 @@ import { CssBaseline, useMediaQuery, useTheme, Typography, Box } from '@mui/mate
 import Sidebar from "./sidebar"
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AboutMe from "./pages/AboutMe"
+
+// Work
 import Sendwithus from "./pages/work/Sendwithus"
 import Socoloco from "./pages/work/Socoloco"
 import Tutela from "./pages/work/Tutela"
 import Certn from "./pages/work/Certn"
+import IntLabs from "./pages/work/IntLabs"
+
+// Projects
 import Distillery from "./pages/projects/Distillery"
 import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
