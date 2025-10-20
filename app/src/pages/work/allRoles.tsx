@@ -135,6 +135,20 @@ export let certn_staff = {
     technologies:["Python", "RDS", "SQS", "EC2", "ECS", "EKS", "Docker", "Lambdas", "Step Functions"],
 }
 
+export let intlabs_dev = {
+    company: "Intlabs",
+    jobTitle:'Senior Developer',
+    description: certn_staff_description,
+
+    startDate:"June 2023",
+    endDate:"Today",
+    technologies:["Kubernetes", "EKS", "SQS", "EC2", "Golang", "Docker"],
+}
+
+export let veilstream_founder = {
+
+}
+
 function AllRoles() {
   return <BaseCompanyPage
       companyName="All Roles"
