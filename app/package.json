@@ -3,61 +3,40 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.1",
-    "@mui/material": "^7.3.1",
+    "@mui/icons-material": "^7.3.6",
+    "@mui/material": "^7.3.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/canvas-confetti": "^1.9.0",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.17",
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19",
-    "canvas-confetti": "^1.9.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-markdown": "^9.0.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "canvas-confetti": "^1.9.4",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "react-markdown": "^10.1.0",
     "react-player": "^2.15.1",
-    "react-router-dom": "^6.22.0",
-    "react-scripts": "5.0.1",
+    "react-router-dom": "^7.10.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-raw": "^7.0.0",
     "rehype-slug": "^6.0.0",
-    "remark-gfm": "^4.0.0",
+    "remark-gfm": "^4.0.1",
     "remark-slug": "^6.1.0",
-    "typescript": "latest",
-    "web-vitals": "^2.1.4"
+    "typescript": "^5.9.3",
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
-    "start": "craco start",
-    "build": "NODE_OPTIONS='--max-old-space-size=768' craco build",
-    "build:prod": "NODE_OPTIONS='--max-old-space-size=768' GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject",
-    "server": "NODE_OPTIONS='--max-old-space-size=512' node server/server.js",
-    "dev": "concurrently \"npm run server\" \"npm start\"",
-    "start:prod": "NODE_OPTIONS='--max-old-space-size=256' node server/server.js"
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "build:prod": "vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-react": "^5.1.1",
+    "vite": "^7.2.6"
   }
 }

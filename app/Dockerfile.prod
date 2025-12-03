@@ -7,15 +7,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci --prefer-offline --no-audit && npm cache clean --force
 
-# Build with memory optimizations
+# Build with Vite (much faster and lower memory usage)
 COPY . .
-ENV NODE_ENV=production \
-    GENERATE_SOURCEMAP=false \
-    DISABLE_ESLINT_PLUGIN=true \
-    ESLINT_NO_DEV_ERRORS=true \
-    CI=true
-# Override memory limit (package.json has 768MB, increase to 1536MB)
-RUN NODE_OPTIONS="--max-old-space-size=1536" npm run build:prod && rm -rf node_modules .cache
+ENV NODE_ENV=production
+RUN npm run build && rm -rf node_modules .cache
 
 # Production - minimal nginx
 FROM nginx:alpine
