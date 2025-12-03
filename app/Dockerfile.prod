@@ -1,16 +1,21 @@
 # Multi-stage production build - optimized for speed and memory
-FROM node:24-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
 # Install dependencies (need all for build)
 COPY package*.json ./
-RUN npm ci && npm cache clean --force
+RUN npm ci --prefer-offline --no-audit && npm cache clean --force
 
-# Build
+# Build with memory optimizations
 COPY . .
-ENV NODE_ENV=production GENERATE_SOURCEMAP=false DISABLE_ESLINT_PLUGIN=true CI=true
-RUN npm run build:prod && rm -rf node_modules
+ENV NODE_ENV=production \
+    GENERATE_SOURCEMAP=false \
+    DISABLE_ESLINT_PLUGIN=true \
+    ESLINT_NO_DEV_ERRORS=true \
+    CI=true
+# Override memory limit (package.json has 768MB, increase to 1536MB)
+RUN NODE_OPTIONS="--max-old-space-size=1536" npm run build:prod && rm -rf node_modules .cache
 
 # Production - minimal nginx
 FROM nginx:alpine

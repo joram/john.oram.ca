@@ -5,6 +5,11 @@ module.exports = {
     configure: (webpackConfig, { env, paths }) => {
       // Memory optimization for production builds
       if (env === 'production') {
+        // Disable ESLint completely to save memory
+        webpackConfig.plugins = webpackConfig.plugins.filter(
+          plugin => plugin.constructor.name !== 'ESLintWebpackPlugin'
+        );
+
         // Reduce memory usage during build
         webpackConfig.optimization = {
           ...webpackConfig.optimization,
@@ -31,6 +36,15 @@ module.exports = {
 
         // Disable source maps in production to save memory
         webpackConfig.devtool = false;
+        
+        // Reduce parallelism to save memory
+        if (webpackConfig.optimization.minimizer) {
+          webpackConfig.optimization.minimizer.forEach(plugin => {
+            if (plugin.constructor.name === 'TerserPlugin') {
+              plugin.options.parallel = false;
+            }
+          });
+        }
 
         // Optimize module resolution
         webpackConfig.resolve = {
