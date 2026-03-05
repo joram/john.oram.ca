@@ -48,6 +48,7 @@ function Sidebar({ isMobile }: { isMobile: boolean }) {
         { path: "/work/", slug: "tutela", label: "Tutela" },
         { path: "/work/", slug: "certn", label: "Certn" },
         { path: "/work/", slug: "intlabs", label: "Intlabs" },
+        { path: "/work/", slug: "veilstream", label: "VeilStream" },
         { path: "/work/", slug: "all_roles", label: "All Roles" },
       ]
     },

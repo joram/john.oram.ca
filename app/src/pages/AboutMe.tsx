@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography, Divider, Avatar } from "@mui/material";
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon } from "@mui/icons-material";
 import BasePage from './BasePage';
+import CareerRoadmap from '../components/CareerRoadmap';
 
 function AboutMe(){
   const subtitle = (
@@ -42,6 +43,12 @@ function AboutMe(){
       <br/>
       <Typography>He is also the founder of VeilStream, a platform that provides per-branch environments to help teams automate preview deployments and streamline their path from code to production.</Typography>
       <br/>
+
+      <Divider sx={{ my: 3, borderColor: 'white' }}>
+        <Typography variant="h6" sx={{ color: 'white' }}>Career Journey</Typography>
+      </Divider>
+
+      <CareerRoadmap />
     </BasePage>
   );
 }

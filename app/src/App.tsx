@@ -9,6 +9,8 @@ import Sendwithus from "./pages/work/Sendwithus"
 import Socoloco from "./pages/work/Socoloco"
 import Tutela from "./pages/work/Tutela"
 import Certn from "./pages/work/Certn"
+import Intlabs from "./pages/work/Intlabs"
+import VeilStream from "./pages/work/VeilStream"
 import Distillery from "./pages/projects/Distillery"
 import Moistlywet from "./pages/projects/Moistlywet"
 import Triptracks from "./pages/projects/Triptracks"
@@ -88,6 +90,8 @@ function AppContent() {
             <Route path="/work/tutela" element={<Tutela/>}/>
             <Route path="/work/sendwithus" element={<Sendwithus/>}/>
             <Route path="/work/socoloco" element={<Socoloco/>}/>
+            <Route path="/work/intlabs" element={<Intlabs/>}/>
+            <Route path="/work/veilstream" element={<VeilStream/>}/>
             <Route path="/work/all_roles" element={<AllRoles/>}/>
 
             {/*# Projects*/}
