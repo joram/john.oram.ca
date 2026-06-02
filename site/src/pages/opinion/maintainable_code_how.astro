@@ -3,12 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import Sidebar from '../../components/Sidebar.astro';
 ---
 
-<Layout title="Make Safe Change the Default — John Oram">
+<Layout title="Make Safe Change the Default - John Oram">
   <Sidebar slot="sidebar" />
 
   <div class="max-w-2xl mx-auto">
     <div class="text-center my-8">
-      <p class="text-white/40 text-sm mb-2"><a href="/opinion/maintainable_code" class="hover:text-white/60 transition-colors">Maintainable Code</a></p>
       <h1 class="text-3xl font-bold text-white mb-4">Make Safe Change the Default</h1>
       <hr class="border-white/40" />
     </div>
@@ -38,7 +37,7 @@ import Sidebar from '../../components/Sidebar.astro';
       Observability is not only about production reliability. It is also how engineers understand a system without depending on tribal memory.
     </p>
     <p class="text-white/80 mb-4 leading-relaxed">
-      Errors show where reality diverges from assumptions. Logs should help engineers reconstruct what happened — good logs preserve operational intent: what the system tried to do, what context it had, and why it failed. Metrics like rollback frequency and deployment frequency reveal whether changes feel safe. Distributed traces reveal whether anyone actually understands the path a request takes.
+      Errors show where reality diverges from assumptions. Logs should help engineers reconstruct what happened. Good logs preserve operational intent: what the system tried to do, what context it had, and why it failed. Metrics like rollback frequency and deployment frequency reveal whether changes feel safe. Distributed traces reveal whether anyone actually understands the path a request takes.
     </p>
     <p class="text-white/80 mb-4 leading-relaxed">
       Noisy alerts train engineers to ignore the system. Missing alerts turn users into the monitoring layer. Alerting defines what the organization has committed to noticing.
@@ -72,7 +71,7 @@ import Sidebar from '../../components/Sidebar.astro';
 
     <h2 class="text-xl font-bold text-white mt-10 mb-3">Pay debt down incrementally</h2>
     <p class="text-white/80 mb-4 leading-relaxed">
-      The safest way to improve maintainability is usually not a heroic rewrite. Big rewrites are often organizational attempts to avoid understanding the existing system — and they introduce their own risks: feature parity gaps, recreated bugs, migration complexity, parallel systems, lost operational knowledge.
+      The safest way to improve maintainability is usually not a heroic rewrite. Big rewrites are often organizational attempts to avoid understanding the existing system. They introduce their own risks: feature parity gaps, recreated bugs, migration complexity, parallel systems, lost operational knowledge.
     </p>
     <p class="text-white/80 mb-4 leading-relaxed">
       Instead, make ordinary work leave the system slightly easier to change next time. Add a regression test when fixing a bug. Improve a log when debugging an incident. Add a runbook note after resolving an outage. Rename confusing concepts while working nearby. Document a decision when making an architectural tradeoff.
@@ -118,12 +117,12 @@ import Sidebar from '../../components/Sidebar.astro';
       Bus factor is not a static number. It changes constantly. People leave the company, forget why decisions were made, or outgrow the original architecture. New engineers learn the current behaviour but not the historical reasons. The question is not whether key people will leave or move on. The question is whether the system will still be intelligible when they do.
     </p>
     <p class="text-white/80 mb-4 leading-relaxed">
-      Documentation should be versioned, reviewed, and close to the system it describes. In AI-assisted development, it becomes operational context for coding agents and review tools — stale or missing docs force AI tools to infer architecture from code alone, which means poorly documented constraints get violated at higher speed. In an AI-assisted codebase, stale documentation is not passive. It becomes fuel for bad changes.
+      Documentation should be versioned, reviewed, and close to the system it describes. In AI-assisted development, it becomes operational context for coding agents and review tools. Stale or missing docs force AI tools to infer architecture from code alone, which means poorly documented constraints get violated at higher speed. In an AI-assisted codebase, stale documentation is not passive. It becomes fuel for bad changes.
     </p>
 
     <h2 class="text-xl font-bold text-white mt-10 mb-3">Maintainability is the system's ability to keep changing</h2>
     <p class="text-white/80 mb-4 leading-relaxed">
-      Maintainability is observable. Maintainability is operational. Maintainability is social. It depends on tests, documentation, review, telemetry, ownership, and incident learning — none of which operates well in isolation.
+      Maintainability is observable. Maintainability is operational. Maintainability is social. It depends on tests, documentation, review, telemetry, ownership, and incident learning, none of which operates well in isolation.
     </p>
     <p class="text-white/80 mb-8 leading-relaxed">
       The goal is not perfection. The goal is sustained ability to change. A maintainable codebase is not one that never breaks. It is one that a team can understand, repair, and evolve without fear.
