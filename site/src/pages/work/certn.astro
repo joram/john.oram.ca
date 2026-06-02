@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { certn_dev, certn_staff } from '../../data/roles';
+---
+
+<Layout title="Certn — John Oram">
+  <Sidebar slot="sidebar" />
+  <CompanyPage
+    companyName="Certn"
+    description="The company runs many types of background checks, direct to consumer, or on behalf of a company looking to have some trust before interacting with the person."
+    roles={[certn_dev, certn_staff]}
+  />
+</Layout>

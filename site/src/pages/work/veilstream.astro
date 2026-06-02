@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { veilstream_cto } from '../../data/roles';
+---
+
+<Layout title="VeilStream — John Oram">
+  <Sidebar slot="sidebar" />
+  <CompanyPage
+    companyName="VeilStream"
+    description="A developer tooling platform providing data sanitization for dynamic per-branch preview environments, giving each environment realistic prod-like data without exposing sensitive information."
+    roles={[veilstream_cto]}
+  />
+</Layout>

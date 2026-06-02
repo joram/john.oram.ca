@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { tutela_devops, tutela_lead } from '../../data/roles';
+---
+
+<Layout title="Tutela — John Oram">
+  <Sidebar slot="sidebar" />
+  <CompanyPage
+    companyName="Tutela"
+    description="Tutela collects and analyzes mobile network performance data from millions of devices worldwide, providing operators and regulators with real-world insights into network quality."
+    roles={[tutela_devops, tutela_lead]}
+  />
+</Layout>

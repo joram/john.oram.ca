@@ -1,0 +1,101 @@
+---
+import { allRoles, companyColors } from '../data/roles';
+---
+
+<div class="relative my-8">
+  <!-- Center line (desktop) -->
+  <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-white/15 z-0"></div>
+  <!-- Left line (mobile) -->
+  <div class="md:hidden absolute left-3.5 top-0 bottom-0 w-0.5 bg-white/15"></div>
+
+  {allRoles.map((role, index) => {
+    const color = companyColors[role.company] ?? '#ffffff';
+    const isLeft = index % 2 === 0;
+    return (
+      <div class="relative mb-3 pl-7 md:pl-0 md:grid md:grid-cols-[1fr_40px_1fr] md:items-center">
+        {isLeft ? (
+          <>
+            <div>
+              {role.link ? (
+                <a href={role.link} class="block no-underline group">
+                  <div
+                    class="bg-[#3d3e3f] rounded-lg p-3 border-r-[3px] transition-transform duration-150 group-hover:scale-[1.02]"
+                    style={`border-color: ${color}`}
+                  >
+                    <span class="block text-xs font-bold" style={`color: ${color}`}>
+                      {role.startDate} – {role.endDate}
+                    </span>
+                    <span class="block text-sm font-bold text-white leading-tight mt-0.5">{role.company}</span>
+                    <span class="block text-xs text-white/70">{role.jobTitle}</span>
+                  </div>
+                </a>
+              ) : (
+                <div
+                  class="bg-[#3d3e3f] rounded-lg p-3 border-r-[3px]"
+                  style={`border-color: ${color}`}
+                >
+                  <span class="block text-xs font-bold" style={`color: ${color}`}>
+                    {role.startDate} – {role.endDate}
+                  </span>
+                  <span class="block text-sm font-bold text-white leading-tight mt-0.5">{role.company}</span>
+                  <span class="block text-xs text-white/70">{role.jobTitle}</span>
+                </div>
+              )}
+            </div>
+            <!-- dot (desktop) -->
+            <div class="hidden md:flex justify-center z-10">
+              <span
+                class="w-3.5 h-3.5 rounded-full flex-shrink-0"
+                style={`background-color: ${color}; box-shadow: 0 0 8px ${color}`}
+              ></span>
+            </div>
+            <div class="hidden md:block"></div>
+          </>
+        ) : (
+          <>
+            <div class="hidden md:block"></div>
+            <!-- dot (desktop) -->
+            <div class="hidden md:flex justify-center z-10">
+              <span
+                class="w-3.5 h-3.5 rounded-full flex-shrink-0"
+                style={`background-color: ${color}; box-shadow: 0 0 8px ${color}`}
+              ></span>
+            </div>
+            <div>
+              {role.link ? (
+                <a href={role.link} class="block no-underline group">
+                  <div
+                    class="bg-[#3d3e3f] rounded-lg p-3 border-l-[3px] transition-transform duration-150 group-hover:scale-[1.02]"
+                    style={`border-color: ${color}`}
+                  >
+                    <span class="block text-xs font-bold" style={`color: ${color}`}>
+                      {role.startDate} – {role.endDate}
+                    </span>
+                    <span class="block text-sm font-bold text-white leading-tight mt-0.5">{role.company}</span>
+                    <span class="block text-xs text-white/70">{role.jobTitle}</span>
+                  </div>
+                </a>
+              ) : (
+                <div
+                  class="bg-[#3d3e3f] rounded-lg p-3 border-l-[3px]"
+                  style={`border-color: ${color}`}
+                >
+                  <span class="block text-xs font-bold" style={`color: ${color}`}>
+                    {role.startDate} – {role.endDate}
+                  </span>
+                  <span class="block text-sm font-bold text-white leading-tight mt-0.5">{role.company}</span>
+                  <span class="block text-xs text-white/70">{role.jobTitle}</span>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+        <!-- dot (mobile only) -->
+        <span
+          class="md:hidden absolute left-1.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full"
+          style={`background-color: ${color}; box-shadow: 0 0 8px ${color}`}
+        ></span>
+      </div>
+    );
+  })}
+</div>

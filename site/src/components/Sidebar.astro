@@ -1,0 +1,107 @@
+---
+const currentPath = Astro.url.pathname;
+
+const sections = [
+  {
+    title: "Work",
+    items: [
+      { href: "/work/socoloco", label: "Socoloco" },
+      { href: "/work/sendwithus", label: "Sendwithus" },
+      { href: "/work/tutela", label: "Tutela" },
+      { href: "/work/certn", label: "Certn" },
+      { href: "/work/intlabs", label: "Intlabs" },
+      { href: "/work/veilstream", label: "VeilStream" },
+      { href: "/work/all_roles", label: "All Roles" },
+    ],
+  },
+  {
+    title: "Opinions",
+    items: [
+      { href: "/opinion/guiding_principals", label: "Guiding Principals" },
+      { href: "/opinion/maintainable_code", label: "Maintainable Code" },
+    ],
+  },
+  {
+    title: "Projects",
+    items: [
+      { href: "/project/distillery", label: "Distillery" },
+      { href: "/project/moistlywet", label: "Moistlywet" },
+      { href: "/project/triptracks", label: "Triptracks" },
+      { href: "/project/recipes", label: "Recipes" },
+    ],
+  },
+  {
+    title: "Courses",
+    items: [
+      { href: "/course/2021/AST1", label: "AST1" },
+      { href: "/course/2024/Wilderness_First_Aid", label: "Wilderness First Aid" },
+    ],
+  },
+  {
+    title: "Trips",
+    items: [
+      { href: "/trip/2014/Bugaboos", label: "Bugaboos (2014)" },
+      { href: "/trip/2016/Bugaboos", label: "Bugaboos (2016)" },
+      { href: "/trip/2016/Maniacs_Temptation", label: "Maniacs Temptation" },
+      { href: "/trip/2021/Elkhorn", label: "Elkhorn" },
+      { href: "/trip/2021/Red_Pillar", label: "Red Pillar" },
+      { href: "/trip/2021/Warden_and_Victoria_Peak", label: "Warden and Victoria Peak" },
+      { href: "/trip/2022/5040_Peak", label: "5040 Peak (2022)" },
+      { href: "/trip/2022/Bedwell_Lake", label: "Bedwell Lake" },
+      { href: "/trip/2022/Marble_Meadows", label: "Marble Meadows" },
+      { href: "/trip/2023/Elfin_Lakes", label: "Elfin Lakes" },
+      { href: "/trip/2023/Rainier", label: "Rainier" },
+      { href: "/trip/2023/Redwall", label: "Redwall" },
+      { href: "/trip/2024/5040_Peak", label: "5040 Peak (2024)" },
+      { href: "/trip/2024/Wapta_Traverse", label: "Wapta Traverse" },
+    ],
+  },
+];
+---
+
+<div class="flex flex-col h-full">
+  <!-- Profile header -->
+  <div class="text-center py-5 px-4">
+    <a href="/" class="block no-underline text-white">
+      <img
+        src="/static/profile.jpg"
+        alt="John Oram"
+        class="w-16 h-16 rounded-full mx-auto mb-2 object-cover border-2 border-white/20"
+      />
+      <span class="text-base font-semibold">John Oram</span>
+    </a>
+  </div>
+
+  <!-- Nav sections -->
+  <nav class="flex-1">
+    {sections.map((section) => {
+      const isOpen = section.items.some((item) => currentPath === item.href || currentPath.startsWith(item.href + '/'));
+      return (
+        <details open={isOpen} class="group border-t border-white/10">
+          <summary class="flex items-center justify-between px-4 py-2 text-sm font-bold cursor-pointer select-none hover:bg-white/5 list-none [&::-webkit-details-marker]:hidden">
+            {section.title}
+            <span class="text-xs opacity-60 group-open:rotate-180 transition-transform duration-200">▼</span>
+          </summary>
+          <ul class="pb-1">
+            {section.items.map((item) => {
+              const active = currentPath === item.href;
+              return (
+                <li>
+                  <a
+                    href={item.href}
+                    class:list={[
+                      "block px-8 py-1.5 text-sm no-underline hover:bg-white/5 transition-colors",
+                      active ? "bg-white/10 text-white" : "text-white/80",
+                    ]}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </details>
+      );
+    })}
+  </nav>
+</div>

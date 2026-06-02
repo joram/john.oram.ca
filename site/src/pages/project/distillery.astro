@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<Layout title="Distillery — John Oram">
+  <Sidebar slot="sidebar" />
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center my-8">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <img src="/static/distillery.png" alt="Distillery icon" class="w-8 h-8" />
+        <h1 class="text-3xl font-bold text-white">Distillery</h1>
+      </div>
+      <hr class="border-white/40" />
+    </div>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A distillery is a simple device that splits a mixture of liquid based on the differing evaporation temperatures of the materials.
+      I've been working on a distillery that is controlled by: a raspberry pi, 8 temperature probes, 3 float sensors, 2 liquid pumps, and 2 valves.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A web interface updated via a web-socket, showing the realtime temperature of the system, and allowing the user to manually control valves and pumps.
+      Once it's been put through its paces manually, we'll move to PID loops to automate the valves as well.
+    </p>
+    <p class="text-white/80 mb-4">
+      You can see the code here: <a href="https://github.com/joram/distillery" class="text-sky-400 hover:underline">https://github.com/joram/distillery</a>
+    </p>
+  </div>
+</Layout>

@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<Layout title="The Slow Collapse — John Oram">
+  <Sidebar slot="sidebar" />
+
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center my-8">
+      <p class="text-white/40 text-sm mb-2"><a href="/opinion/maintainable_code" class="hover:text-white/60 transition-colors">Maintainable Code</a></p>
+      <h1 class="text-3xl font-bold text-white mb-2">The Slow Collapse</h1>
+      <p class="text-white/50 italic">Move fast, but don't destroy your ability to keep moving.</p>
+      <hr class="border-white/40 mt-6" />
+    </div>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">Maintainability is not polish</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Maintainability is not about aesthetic code preferences or engineering purity. It is the property that lets a team continue changing a system safely.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Bad maintainability does not show up all at once. It accumulates quietly, then starts to dominate every feature, incident, and planning conversation.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">Maintainability is sustained delivery speed</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Short-term speed is how fast you can ship today. Sustained speed is how safely you can keep shipping as the system, team, and product grow.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Unmaintainable code is borrowed speed. Eventually, the debt is repaid through slower delivery, riskier releases, longer incidents, and fewer people who can safely change the system.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">Why bad code gets worse faster</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Unmaintainability compounds. Each unclear change becomes part of the environment for the next change. Each workaround creates more exceptions. Each missing test increases fear. Each undocumented decision becomes something future engineers must rediscover.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      For a while, the system still moves. Then the team crosses a threshold where ordinary changes require extraordinary effort.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">Fear is a signal</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Engineers know maintainability is degrading when they become afraid to change things. They fear touching billing. They fear upgrading dependencies. They fear deleting unused code. They fear deploying on Friday. They fear changing small things because no one can predict the side effects.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Fear is the emotional interface to technical debt.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">The rebuild threshold</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Eventually, a team may lose confidence in its ability to change the existing system safely. That is the rebuild threshold.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A rewrite is often not just a technical decision. It is a vote of no confidence in the current system's intelligibility. But rebuilds are expensive — the organization must keep the old system alive while recreating its behaviour elsewhere, including all the undocumented edge cases no one remembers until they break.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">Incidents become archaeology</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      During an incident, maintainability is the difference between debugging a system and excavating one.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      In a maintainable system, the team can detect, localize, understand, and mitigate failure quickly. In an unmaintainable system, incident response slows down because ownership is unclear, logs are insufficient, abstractions leak, tests cannot be trusted, and the people who understand the failure path may not be available.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">How maintainability degrades</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Maintainability usually does not collapse because of one catastrophic decision. It degrades through repeated local choices that seem reasonable in isolation.
+    </p>
+
+    <h3 class="text-lg font-semibold text-white mt-6 mb-2">Changing code without understanding the system</h3>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A change can be locally correct and globally harmful. Engineers degrade maintainability when they patch symptoms without understanding causes, copy patterns without understanding why they exist, or add special cases that weaken the underlying model.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      AI did not create this problem. It made the problem faster and cheaper to scale.
+    </p>
+
+    <h3 class="text-lg font-semibold text-white mt-6 mb-2">Knowledge silos turn code into territory</h3>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A codebase is not maintainable if it can only be safely changed by people who remember its history. When ownership, architecture, and rationale live in individual heads, the team becomes smaller than it looks. Ten engineers may become two effective maintainers and eight people waiting for context.
+    </p>
+
+    <h3 class="text-lg font-semibold text-white mt-6 mb-2">High coupling increases blast radius</h3>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Coupling turns small changes into system-wide negotiations. When components depend too deeply on each other, teams cannot reason locally. Every change requires checking distant consequences, and the cost of understanding grows with every new dependency.
+    </p>
+
+    <h3 class="text-lg font-semibold text-white mt-6 mb-2">Poor abstraction boundaries relocate complexity</h3>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A good abstraction reduces what the caller needs to know. A bad abstraction hides the wrong thing, leaks implementation details, or spreads business rules across layers. Poor boundaries make the system harder to reason about because responsibility becomes unclear.
+    </p>
+
+    <h3 class="text-lg font-semibold text-white mt-6 mb-2">Dependency drift turns maintenance into migration</h3>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Dependencies age. Frameworks move. Runtime versions expire. Security patches accumulate. When routine upgrades are deferred too long, they stop being maintenance tasks and become risky migration projects.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">The business cost: lost options</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The deepest cost of unmaintainable code is not the time spent fixing it. It is the work the organization stops attempting.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Teams avoid valuable changes because they are too risky. They defer product improvements because the system is too fragile. They keep old behaviour because no one knows whether removing it will break customers.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Unmaintainable code narrows the company's future.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-8 mb-3">Maintainability preserves the ability to change</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Maintainability matters because software is never done.
+    </p>
+    <p class="text-white/80 mb-8 leading-relaxed">
+      A maintainable codebase lets a team understand, change, validate, and recover the system without heroics or hidden knowledge. Moving fast is good. But the codebase is the thing that lets you move. Break that, and eventually speed becomes impossible.
+    </p>
+
+    <div class="border-t border-white/10 pt-8 mt-8">
+      <p class="text-white/40 text-sm mb-4">Ready to act on this?</p>
+      <a href="/opinion/maintainable_code_how" class="inline-block text-white/70 hover:text-white text-sm border border-white/20 hover:border-white/40 rounded px-4 py-2 transition-colors no-underline">
+        Make Safe Change the Default →
+      </a>
+    </div>
+  </div>
+</Layout>

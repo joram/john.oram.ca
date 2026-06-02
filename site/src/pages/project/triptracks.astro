@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<Layout title="Triptracks — John Oram">
+  <Sidebar slot="sidebar" />
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center my-8">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <img src="/static/triptracks.png" alt="Triptracks icon" class="w-8 h-8" />
+        <h1 class="text-3xl font-bold text-white">Triptracks</h1>
+      </div>
+      <hr class="border-white/40" />
+    </div>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      This is a project to help with mountaineering trips. Specifically concentrating on gps tracks.
+      Currently the functionality is limited to browsing routes via a web interface, or a mobile app.
+      This has been a testbed project for different geo databases, and graphql over lambda functions (works surprisingly well).
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The future features list is extensive, and includes offline caching of routes and map tiles for areas you are interested (there is likely no internet access on the trip).
+      Trip planning, including: shared packing lists, inviting partners, forecast alerts, and generated trip plan documents to leave with someone in case search and rescue needs to be called.
+    </p>
+    <p class="text-white/80 mb-2">
+      You can see the code here: <a href="https://github.com/joram/triptracks" class="text-sky-400 hover:underline">https://github.com/joram/triptracks</a>
+    </p>
+    <p class="text-white/80">
+      and the website here: <a href="https://app.triptracks.io" class="text-sky-400 hover:underline">app.triptracks.io</a>
+    </p>
+  </div>
+</Layout>

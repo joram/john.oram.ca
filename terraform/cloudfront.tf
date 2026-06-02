@@ -12,8 +12,15 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   aliases = [aws_s3_bucket.john_oram_ca.bucket]
 
   origin {
-    domain_name = aws_s3_bucket.john_oram_ca.bucket_domain_name
+    domain_name = aws_s3_bucket_website_configuration.john_oram_ca.website_endpoint
     origin_id   = local.s3_origin_id
+
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
   }
 
   custom_error_response {

@@ -1,0 +1,47 @@
+---
+export interface Props {
+  title?: string;
+}
+const { title = "John Oram" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="bg-[#2a2b2c] text-white min-h-screen">
+    <!-- Hidden checkbox — must precede sidebar for peer-checked to work -->
+    <input type="checkbox" id="sidebar-toggle" class="sr-only peer" />
+
+    <!-- Hamburger button (mobile only) -->
+    <label
+      for="sidebar-toggle"
+      class="md:hidden fixed top-3 left-3 z-50 p-2 bg-[#1b1c1d]/90 text-white rounded cursor-pointer text-xl leading-none select-none"
+      aria-label="Toggle navigation"
+    >☰</label>
+
+    <!-- Click-outside overlay to close sidebar on mobile -->
+    <label
+      for="sidebar-toggle"
+      class="hidden peer-checked:block md:hidden fixed inset-0 bg-black/50 z-30 cursor-pointer"
+      aria-hidden="true"
+    ></label>
+
+    <!-- Sidebar -->
+    <nav
+      class="fixed left-0 top-0 bottom-0 w-52 bg-[#1b1c1d] overflow-y-auto z-40 transition-transform duration-300
+             -translate-x-full peer-checked:translate-x-0 md:translate-x-0"
+    >
+      <slot name="sidebar" />
+    </nav>
+
+    <!-- Main content -->
+    <main class="md:ml-52 min-h-screen bg-[#2a2b2c] p-5 pt-14 md:pt-5">
+      <slot />
+    </main>
+  </body>
+</html>

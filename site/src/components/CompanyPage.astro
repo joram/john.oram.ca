@@ -1,0 +1,59 @@
+---
+import type { Role } from '../data/roles';
+
+export interface Props {
+  companyName: string;
+  description: string;
+  roles: Role[];
+}
+
+const { companyName, description, roles } = Astro.props;
+
+const allTech = [...new Set(roles.flatMap((r) => r.technologies ?? []))];
+const techChunks: string[][] = [];
+for (let i = 0; i < allTech.length; i += 5) {
+  techChunks.push(allTech.slice(i, i + 5));
+}
+---
+
+<div class="max-w-2xl mx-auto">
+  <div class="text-center my-8">
+    <h1 class="text-3xl font-bold text-white mb-4">{companyName}</h1>
+    <hr class="border-white/40" />
+  </div>
+
+  {description && (
+    <p class="text-center mb-6 text-white/90">{description}</p>
+  )}
+
+  <div class="flex items-center gap-3 my-6">
+    <hr class="flex-1 border-white/30" />
+    <span class="text-base font-semibold text-white">Roles</span>
+    <hr class="flex-1 border-white/30" />
+  </div>
+
+  <div class="space-y-4 mb-6">
+    {roles.map((role) => (
+      <div class="bg-[#3d3e3f] rounded-lg p-4">
+        <h2 class="text-lg font-semibold text-white mb-2">{role.jobTitle}</h2>
+        <p class="text-sm text-white/80 mb-2">{role.description}</p>
+        <p class="text-xs text-white/50">{role.startDate} – {role.endDate}</p>
+      </div>
+    ))}
+  </div>
+
+  {allTech.length > 0 && (
+    <>
+      <div class="flex items-center gap-3 my-6">
+        <hr class="flex-1 border-white/30" />
+        <span class="text-base font-semibold text-white">Technologies Used</span>
+        <hr class="flex-1 border-white/30" />
+      </div>
+      <div class="text-center space-y-1 mb-8">
+        {techChunks.map((chunk) => (
+          <p class="text-sm text-white/80">{chunk.join(", ")}</p>
+        ))}
+      </div>
+    </>
+  )}
+</div>

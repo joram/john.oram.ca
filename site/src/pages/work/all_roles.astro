@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { allRoles } from '../../data/roles';
+---
+
+<Layout title="All Roles — John Oram">
+  <Sidebar slot="sidebar" />
+  <CompanyPage
+    companyName="All Roles"
+    description=""
+    roles={allRoles}
+  />
+</Layout>

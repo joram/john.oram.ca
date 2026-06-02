@@ -19,14 +19,18 @@ resource "aws_s3_bucket" "john_oram_ca" {
     mfa_delete = false
   }
 
-  website {
-    index_document = "index.html"
-  }
-
   tags = merge(
     var.default_tags,
     {
       Name = "john.oram.ca"
     }
   )
+}
+
+resource "aws_s3_bucket_website_configuration" "john_oram_ca" {
+  bucket = aws_s3_bucket.john_oram_ca.id
+
+  index_document {
+    suffix = "index.html"
+  }
 }

@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { swu_dev, swu_lead } from '../../data/roles';
+---
+
+<Layout title="Sendwithus — John Oram">
+  <Sidebar slot="sidebar" />
+  <CompanyPage
+    companyName="Sendwithus/Dyspatch"
+    description="The company has two products: Sendwithus and Dyspatch. Sendwithus is an email template management, rendering and delivery SaaS product. Dyspatch is an enterprise email template management and workflow SaaS product."
+    roles={[swu_dev, swu_lead]}
+  />
+</Layout>

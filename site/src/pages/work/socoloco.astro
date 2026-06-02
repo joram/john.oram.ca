@@ -1,0 +1,15 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { socoloco_dev, socoloco_lead } from '../../data/roles';
+---
+
+<Layout title="Socoloco — John Oram">
+  <Sidebar slot="sidebar" />
+  <CompanyPage
+    companyName="Socoloco"
+    description="A marketplace platform connecting local businesses with consumers."
+    roles={[socoloco_dev, socoloco_lead]}
+  />
+</Layout>
