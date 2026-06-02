@@ -75,7 +75,12 @@ const sections = [
   <!-- Nav sections -->
   <nav class="flex-1">
     {sections.map((section) => {
-      const isOpen = section.items.some((item) => currentPath === item.href || currentPath.startsWith(item.href + '/'));
+      const isOpen = section.items.some(
+        (item) =>
+          currentPath === item.href ||
+          currentPath.startsWith(item.href + '/') ||
+          currentPath.startsWith(item.href + '_'),
+      );
       return (
         <details open={isOpen} class="group border-t border-white/10">
           <summary class="flex items-center justify-between px-4 py-2 text-sm font-bold cursor-pointer select-none hover:bg-white/5 list-none [&::-webkit-details-marker]:hidden">
@@ -84,7 +89,9 @@ const sections = [
           </summary>
           <ul class="pb-1">
             {section.items.map((item) => {
-              const active = currentPath === item.href;
+              const active =
+                currentPath === item.href ||
+                currentPath.startsWith(item.href + '_');
               return (
                 <li>
                   <a
