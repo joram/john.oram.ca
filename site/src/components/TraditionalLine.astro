@@ -1,0 +1,137 @@
+---
+interface LineNode {
+  label: string;
+  group: 'development' | 'operation';
+}
+
+interface Props {
+  id: string;
+  description: string;
+  nodes: LineNode[];
+}
+
+const { id, description, nodes } = Astro.props;
+
+const pillH = 32;
+const pillY = 36;
+const gap = 20;
+const groupGap = 48;
+const padX = 12;
+const accent = '#e8a04a';
+const ring = 'rgba(255,255,255,0.32)';
+const font = 'ui-sans-serif, system-ui, sans-serif';
+
+function pillWidth(label: string) {
+  return Math.max(76, Math.round(label.length * 8.1 + 28));
+}
+
+let cursor = padX;
+const placed = nodes.map((node, i) => {
+  const w = pillWidth(node.label);
+  const cx = cursor + w / 2;
+  cursor += w;
+  if (i < nodes.length - 1) {
+    cursor += node.group === nodes[i + 1].group ? gap : groupGap;
+  }
+  return { ...node, cx, w };
+});
+
+const width = cursor + padX;
+const underlineY = pillY + pillH / 2 + 22;
+const height = underlineY + 32;
+
+const groups = (['development', 'operation'] as const).map((group) => {
+  const members = placed.filter((node) => node.group === group);
+  const start = members[0].cx - members[0].w / 2;
+  const end = members[members.length - 1].cx + members[members.length - 1].w / 2;
+  return { group, start, end, mid: (start + end) / 2 };
+});
+---
+
+<figure class="block my-2">
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    role="img"
+    aria-labelledby={`${id}-title ${id}-desc`}
+    class="w-full h-auto"
+  >
+    <title id={`${id}-title`}>{description}</title>
+    <desc id={`${id}-desc`}>
+      {nodes.map((node) => node.label).join(', then ')}. First half is development, second half is operation.
+    </desc>
+
+    {placed.slice(0, -1).map((node, i) => {
+      const next = placed[i + 1];
+      const x1 = node.cx + node.w / 2;
+      const x2 = next.cx - next.w / 2;
+      const mid = (x1 + x2) / 2;
+      return (
+        <g>
+          <line x1={x1} y1={pillY} x2={x2} y2={pillY} stroke={ring} stroke-width="1.5" />
+          <g transform={`translate(${mid} ${pillY})`}>
+            <path
+              d="M -6 -4 L 5 0 L -6 4"
+              fill="none"
+              stroke="rgba(255,255,255,0.55)"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+        </g>
+      );
+    })}
+
+    {placed.map((node) => (
+      <g>
+        <rect
+          x={node.cx - node.w / 2}
+          y={pillY - pillH / 2}
+          width={node.w}
+          height={pillH}
+          rx={pillH / 2}
+          fill="#3d3e3f"
+          stroke="rgba(255,255,255,0.22)"
+          stroke-width="1"
+        />
+        <text
+          x={node.cx}
+          y={pillY + 1}
+          text-anchor="middle"
+          dominant-baseline="middle"
+          fill="#f4f4f4"
+          font-size="14"
+          font-weight="600"
+          font-family={font}
+        >
+          {node.label}
+        </text>
+      </g>
+    ))}
+
+    {groups.map(({ group, start, end, mid }) => (
+      <g>
+        <line
+          x1={start}
+          y1={underlineY}
+          x2={end}
+          y2={underlineY}
+          stroke={accent}
+          stroke-width="1.5"
+        />
+        <text
+          x={mid}
+          y={underlineY + 16}
+          text-anchor="middle"
+          fill={accent}
+          font-size="11"
+          font-weight="700"
+          letter-spacing="0.14em"
+          font-family={font}
+        >
+          {group.toUpperCase()}
+        </text>
+      </g>
+    ))}
+  </svg>
+</figure>

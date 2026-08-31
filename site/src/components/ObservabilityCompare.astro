@@ -1,0 +1,134 @@
+---
+const accent = '#e8a04a';
+const ring = 'rgba(255,255,255,0.32)';
+const font = 'ui-sans-serif, system-ui, sans-serif';
+const pillH = 30;
+
+function pill(x: number, y: number, label: string, highlight = false) {
+  const w = Math.max(76, Math.round(label.length * 8.1 + 28));
+  return { x, y, w, label, highlight };
+}
+
+const line = [
+  pill(70, 78, 'Software'),
+  pill(250, 78, 'Telemetry'),
+  pill(430, 78, 'Human', true),
+];
+
+const feedY = 183;
+const human = pill(58, feedY, 'Human', true);
+const spec = pill(168, feedY, 'Spec');
+const loop = [
+  pill(340, 183, 'Agent', true),
+  pill(402.4, 291, 'Software'),
+  pill(277.7, 291, 'Telemetry'),
+];
+const agent = loop[0];
+---
+
+<figure class="block my-2">
+  <svg
+    viewBox="0 0 500 348"
+    role="img"
+    aria-labelledby="obs-title obs-desc"
+    class="w-full h-auto"
+  >
+    <title id="obs-title">Observability as a line versus a loop</title>
+    <desc id="obs-desc">
+      Human-developed software: software, then telemetry, then a human. Self-improving software: a human writes a spec, an agent reads it, and software, telemetry, and the agent form a closed circle.
+    </desc>
+
+    <text x="0" y="18" fill="rgba(255,255,255,0.45)" font-size="11" font-weight="700" letter-spacing="0.14em" font-family={font}>
+      HUMAN-DEVELOPED
+    </text>
+
+    <line x1={line[0].x + line[0].w / 2} y1={line[0].y} x2={line[1].x - line[1].w / 2} y2={line[1].y} stroke={ring} stroke-width="1.5" />
+    <line x1={line[1].x + line[1].w / 2} y1={line[1].y} x2={line[2].x - line[2].w / 2} y2={line[2].y} stroke={ring} stroke-width="1.5" />
+    <g transform={`translate(${(line[0].x + line[0].w / 2 + line[1].x - line[1].w / 2) / 2} ${line[0].y})`}>
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g transform={`translate(${(line[1].x + line[1].w / 2 + line[2].x - line[2].w / 2) / 2} ${line[1].y})`}>
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    {line.map((node) => (
+      <g>
+        <rect
+          x={node.x - node.w / 2}
+          y={node.y - pillH / 2}
+          width={node.w}
+          height={pillH}
+          rx={pillH / 2}
+          fill="#3d3e3f"
+          stroke={node.highlight ? accent : 'rgba(255,255,255,0.22)'}
+          stroke-width={node.highlight ? 1.5 : 1}
+        />
+        <text
+          x={node.x}
+          y={node.y + 1}
+          text-anchor="middle"
+          dominant-baseline="middle"
+          fill={node.highlight ? accent : '#f4f4f4'}
+          font-size="13"
+          font-weight={node.highlight ? '700' : '600'}
+          font-family={font}
+        >
+          {node.label}
+        </text>
+      </g>
+    ))}
+
+    <text x="0" y="148" fill="rgba(255,255,255,0.45)" font-size="11" font-weight="700" letter-spacing="0.14em" font-family={font}>
+      SELF-IMPROVING
+    </text>
+
+    <circle cx="340" cy="255" r="72" fill="none" stroke={ring} stroke-width="1.5" />
+
+    <g transform="translate(402.4, 219.0) rotate(60)">
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g transform="translate(340.0, 327.0) rotate(180)">
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g transform="translate(277.7, 219.0) rotate(-60)">
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Human → Spec → Agent -->
+    <line x1={human.x + human.w / 2} y1={feedY} x2={spec.x - spec.w / 2} y2={feedY} stroke={ring} stroke-width="1.5" />
+    <g transform={`translate(${(human.x + human.w / 2 + spec.x - spec.w / 2) / 2} ${feedY})`}>
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <line x1={spec.x + spec.w / 2} y1={feedY} x2={agent.x - agent.w / 2} y2={feedY} stroke={ring} stroke-width="1.5" />
+    <g transform={`translate(${(spec.x + spec.w / 2 + agent.x - agent.w / 2) / 2} ${feedY})`}>
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    {[human, spec, ...loop].map((node) => (
+      <g>
+        <rect
+          x={node.x - node.w / 2}
+          y={node.y - pillH / 2}
+          width={node.w}
+          height={pillH}
+          rx={pillH / 2}
+          fill="#3d3e3f"
+          stroke={node.highlight ? accent : 'rgba(255,255,255,0.22)'}
+          stroke-width={node.highlight ? 1.5 : 1}
+        />
+        <text
+          x={node.x}
+          y={node.y + 1}
+          text-anchor="middle"
+          dominant-baseline="middle"
+          fill={node.highlight ? accent : '#f4f4f4'}
+          font-size="13"
+          font-weight={node.highlight ? '700' : '600'}
+          font-family={font}
+        >
+          {node.label}
+        </text>
+      </g>
+    ))}
+  </svg>
+</figure>

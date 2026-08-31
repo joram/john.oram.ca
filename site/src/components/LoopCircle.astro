@@ -1,0 +1,209 @@
+---
+interface CycleNode {
+  label: string;
+}
+
+interface Props {
+  id: string;
+  description: string;
+  humanLabel?: string;
+  specLabel?: string;
+  agentLabel?: string;
+  nodes: CycleNode[];
+}
+
+const {
+  id,
+  description,
+  humanLabel = 'Human',
+  specLabel = 'Spec',
+  agentLabel = 'Agent',
+  nodes,
+} = Astro.props;
+
+const n = nodes.length;
+const width = 520;
+const ringR = 132;
+const pillH = 32;
+const cx = width / 2;
+const humanY = 22;
+const specY = 92;
+const agentY = 162;
+const cy = agentY + 70 + ringR;
+const height = cy + ringR + 36;
+const startAngle = -90;
+const accent = '#e8a04a';
+const ring = 'rgba(255,255,255,0.32)';
+const muted = 'rgba(255,255,255,0.22)';
+const font = 'ui-sans-serif, system-ui, sans-serif';
+
+function polar(angleDeg: number, radius: number) {
+  const rad = (angleDeg * Math.PI) / 180;
+  return {
+    x: cx + radius * Math.cos(rad),
+    y: cy + radius * Math.sin(rad),
+    rot: (Math.atan2(Math.cos(rad), -Math.sin(rad)) * 180) / Math.PI,
+  };
+}
+
+function pillWidth(label: string) {
+  return Math.max(76, Math.round(label.length * 8.1 + 28));
+}
+
+const nodeAngles = nodes.map((_, i) => startAngle + i * (360 / n));
+const arrowAngles = nodes.map((_, i) => startAngle + (i + 0.5) * (360 / n));
+const implement = polar(startAngle, ringR);
+
+const stack = [
+  { label: humanLabel, y: humanY, highlight: true },
+  { label: specLabel, y: specY, highlight: false },
+  { label: agentLabel, y: agentY, highlight: true },
+];
+
+const connectors = [
+  { from: humanY, to: specY, verb: 'writes' },
+  { from: specY, to: agentY, verb: 'reads' },
+];
+---
+
+<figure class="block my-2">
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    role="img"
+    aria-labelledby={`${id}-title ${id}-desc`}
+    class="w-full h-auto"
+  >
+    <title id={`${id}-title`}>{description}</title>
+    <desc id={`${id}-desc`}>
+      A highlighted human writes the spec. {agentLabel} reads it and runs {nodes.map((node) => node.label).join(', then ')}.
+    </desc>
+
+    {connectors.map(({ from, to, verb }) => (
+      <g>
+        <line
+          x1={cx}
+          y1={from + pillH / 2}
+          x2={cx}
+          y2={to - pillH / 2 - 2}
+          stroke={ring}
+          stroke-width="1.25"
+        />
+        <polygon
+          points={`${cx},${to - pillH / 2 - 1} ${cx - 4.5},${to - pillH / 2 - 11} ${cx + 4.5},${to - pillH / 2 - 11}`}
+          fill="rgba(255,255,255,0.55)"
+        />
+        <text
+          x={cx + 10}
+          y={(from + pillH / 2 + to - pillH / 2) / 2 + 4}
+          fill="rgba(255,255,255,0.5)"
+          font-size="12"
+          font-family={font}
+        >
+          {verb}
+        </text>
+      </g>
+    ))}
+
+    {stack.map((node) => {
+      const w = pillWidth(node.label);
+      return (
+        <g>
+          <rect
+            x={cx - w / 2}
+            y={node.y - pillH / 2}
+            width={w}
+            height={pillH}
+            rx={pillH / 2}
+            fill="#3d3e3f"
+            stroke={node.highlight ? accent : muted}
+            stroke-width={node.highlight ? 1.5 : 1}
+          />
+          <text
+            x={cx}
+            y={node.y + 1}
+            text-anchor="middle"
+            dominant-baseline="middle"
+            fill={node.highlight ? accent : '#f4f4f4'}
+            font-size="14"
+            font-weight={node.highlight ? '700' : '600'}
+            font-family={font}
+          >
+            {node.label}
+          </text>
+        </g>
+      );
+    })}
+
+    <!-- Agent → cycle -->
+    <line
+      x1={cx}
+      y1={agentY + pillH / 2}
+      x2={cx}
+      y2={implement.y - pillH / 2 - 2}
+      stroke={ring}
+      stroke-width="1.25"
+    />
+    <polygon
+      points={`${cx},${implement.y - pillH / 2 - 1} ${cx - 4.5},${implement.y - pillH / 2 - 11} ${cx + 4.5},${implement.y - pillH / 2 - 11}`}
+      fill="rgba(255,255,255,0.55)"
+    />
+    <text
+      x={cx + 10}
+      y={(agentY + pillH / 2 + implement.y - pillH / 2) / 2 + 4}
+      fill="rgba(255,255,255,0.5)"
+      font-size="12"
+      font-family={font}
+    >
+      runs
+    </text>
+
+    <circle cx={cx} cy={cy} r={ringR} fill="none" stroke={ring} stroke-width="1.5" />
+
+    {arrowAngles.map((angle) => {
+      const pt = polar(angle, ringR);
+      return (
+        <g transform={`translate(${pt.x} ${pt.y}) rotate(${pt.rot})`}>
+          <path
+            d="M -7 -5 L 6 0 L -7 5"
+            fill="none"
+            stroke="rgba(255,255,255,0.55)"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </g>
+      );
+    })}
+
+    {nodes.map((node, i) => {
+      const pt = polar(nodeAngles[i], ringR);
+      const w = pillWidth(node.label);
+      return (
+        <g>
+          <rect
+            x={pt.x - w / 2}
+            y={pt.y - pillH / 2}
+            width={w}
+            height={pillH}
+            rx={pillH / 2}
+            fill="#3d3e3f"
+            stroke={muted}
+            stroke-width="1"
+          />
+          <text
+            x={pt.x}
+            y={pt.y + 1}
+            text-anchor="middle"
+            dominant-baseline="middle"
+            fill="#f4f4f4"
+            font-size="14"
+            font-weight="600"
+            font-family={font}
+          >
+            {node.label}
+          </text>
+        </g>
+      );
+    })}
+  </svg>
+</figure>
