@@ -1,0 +1,133 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+---
+
+<Layout title="Self-Improving Software - John Oram">
+  <Sidebar slot="sidebar" />
+
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center my-8">
+      <h1 class="text-3xl font-bold text-white mb-4">Where the Effort Goes in Self-Improving Software</h1>
+      <hr class="border-white/40" />
+    </div>
+
+    <p class="text-white/70 italic mb-2 leading-relaxed">
+      As implementation effort falls, specification and verification absorb more of the engineering effort.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The thesis</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Software development today is mostly the work of humans converting intent into code. The next shift is software that can increasingly observe, modify, test, and improve itself. The point of this comparison is not to argue that engineering effort disappears. It is to show how that effort moves.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The engineering problem stops being producing each implementation. It becomes designing and governing the loop that produces implementations.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Implementation stops being the scarce resource</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Historically, turning an idea into working code consumed a large amount of engineering capacity. If implementation becomes dramatically cheaper, engineering effort does not disappear. It moves toward deciding what should be built, what must never change, how success is measured, and how changes are proven safe.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The traditional loop</h2>
+    <pre class="text-white/80 text-sm leading-relaxed mb-6 overflow-x-auto">Requirements
+     ↓
+ Developers
+     ↓
+Implementation
+     ↓
+ Tests
+     ↓
+Deployment
+     ↓
+Production
+     ↓
+Telemetry
+     ↓
+ Humans</pre>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Humans are responsible for interpreting most of the feedback and deciding what happens next.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The self-improving loop</h2>
+    <pre class="text-white/80 text-sm leading-relaxed mb-6 overflow-x-auto">              Goals
+                ↓
+          Constraints
+                ↓
+         ┌────────────┐
+         │   Agent    │
+         └─────┬──────┘
+               ↓
+            Change
+               ↓
+           Evaluate
+          ↙    ↓    ↘
+      Tests Metrics Policies
+          \    |    /
+           Deploy
+               ↓
+          Production
+               ↓
+           Telemetry
+               │
+               └──────────────→ Agent</pre>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The engineering problem shifts from producing each implementation to defining an environment the software is allowed to change itself within.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Tests change their role</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      In human-developed systems, tests verify the code developers wrote. In self-improving systems, tests help define the boundary of what the software is allowed to become.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      This expands testing beyond unit and integration tests into security invariants, compatibility guarantees, performance budgets, cost budgets, data-access policies, regulatory requirements, and product outcome metrics. Tests become executable policy or constitutional law.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Observability becomes an input, not just an output</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The traditional model is software, then telemetry, then a human deciding what to do. In a self-improving system, logs, metrics, traces, user behaviour, cost, and business outcomes feed directly back into the agent that proposes the next change.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Observability moves from operational tooling to a core development interface. Telemetry is no longer just how you diagnose. It is how the system learns.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Architecture defines safe optimization surfaces</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Good architecture is no longer only about maintainability for humans. It also determines which parts of the system may change independently, what permissions an agent needs, what contracts must remain stable, and how much damage an incorrect change can cause.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Modularity becomes a mechanism for bounded autonomy. Contracts, blast-radius control, and ownership boundaries become the way you give an agent freedom without handing it the whole system.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Where the effort shifts</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The development process does not get simpler. Each step changes what is asked of the people on the team.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Defining the problem shifts toward making intent explicit and machine-readable. Requirements shift from shared human understanding to explicit specification. Design shifts toward creating safe modification boundaries. Planning implementation matters less; defining the search space and its constraints matters more.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Review shifts from inspecting every change toward reviewing the change-generation system itself: the evaluation suites, the constraints, the permissions, the telemetry quality, the rollback behaviour, and the boundaries a change is allowed to cross.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      CI becomes less a gate and more an experimentation platform where alternatives are generated, tested, and compared. Deployment gains far more emphasis on safe, progressive rollout and bounded autonomy. Recovery must be predictable, automatic, and heavily tested.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Product metrics become part of the control loop rather than retrospective reporting, automatically deciding whether a change is kept, rolled back, or iterated on. The whole development lifecycle becomes a continuous feedback loop.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Code review becomes system review</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Today the question is often "is this PR correct?" With self-improving software, the higher-level question becomes: is the system that generated, tested, evaluated, and deployed this change trustworthy?
+    </p>
+    <p class="text-white/80 mb-8 leading-relaxed">
+      The most important engineering work in a self-improving system may not be writing the next version of the software. It may be defining the environment in which the software is allowed to write its next version.
+    </p>
+
+    <div class="border-t border-white/10 pt-8 mt-8">
+      <a href="/opinion/maintainable_code" class="inline-block text-white/40 hover:text-white/60 text-sm transition-colors no-underline">
+        ← Opinion
+      </a>
+    </div>
+  </div>
+</Layout>
