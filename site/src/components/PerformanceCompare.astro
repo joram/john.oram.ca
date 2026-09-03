@@ -1,0 +1,278 @@
+---
+const accent = '#e8a04a';
+const ring = 'rgba(255,255,255,0.32)';
+const muted = 'rgba(255,255,255,0.22)';
+const font = 'ui-sans-serif, system-ui, sans-serif';
+const pillH = 32;
+const width = 520;
+const cx = width / 2;
+
+function pillWidth(label: string) {
+  return Math.max(76, Math.round(label.length * 8.1 + 28));
+}
+
+type Frame = {
+  name: string;
+  base: number;
+  cand: number;
+  children?: Frame[];
+};
+
+const tree: Frame = {
+  name: 'handle',
+  base: 84,
+  cand: 99,
+  children: [
+    {
+      name: 'query',
+      base: 38,
+      cand: 56,
+      children: [
+        { name: '', base: 12, cand: 12 },
+        { name: '', base: 8, cand: 8 },
+        { name: 'fetch', base: 18, cand: 36 },
+      ],
+    },
+    {
+      name: 'render',
+      base: 28,
+      cand: 22,
+      children: [
+        { name: '', base: 16, cand: 12 },
+        { name: '', base: 12, cand: 10 },
+      ],
+    },
+    {
+      name: 'auth',
+      base: 18,
+      cand: 21,
+    },
+  ],
+};
+
+const maxMs = tree.cand;
+const graphW = 214;
+const scale = graphW / maxMs;
+const rowH = 22;
+const rowGap = 2;
+const depths = 3;
+const graphH = depths * rowH + (depths - 1) * rowGap;
+
+type Laid = {
+  name: string;
+  ms: number;
+  x: number;
+  y: number;
+  w: number;
+  depth: number;
+  delta: number;
+  version: 'base' | 'cand';
+};
+
+function layout(frame: Frame, x: number, y: number, version: 'base' | 'cand', depth: number): Laid[] {
+  const ms = version === 'base' ? frame.base : frame.cand;
+  const w = ms * scale;
+  const delta = frame.cand - frame.base;
+  const nodes: Laid[] = [{ name: frame.name, ms, x, y, w, depth, delta, version }];
+  let childX = x;
+  for (const child of frame.children ?? []) {
+    nodes.push(...layout(child, childX, y + rowH + rowGap, version, depth + 1));
+    childX += (version === 'base' ? child.base : child.cand) * scale;
+  }
+  return nodes;
+}
+
+const testsW = pillWidth('Same tests');
+const testsY = 22;
+const headerY = 78;
+const graphY = 118;
+const leftX = 28;
+const rightX = 278;
+const leftFrames = layout(tree, leftX, graphY, 'base', 0);
+const rightFrames = layout(tree, rightX, graphY, 'cand', 0);
+
+function fillFor(frame: Laid) {
+  if (frame.version === 'cand' && frame.delta > 4) return 'rgba(232,160,74,0.42)';
+  return 'rgba(255,255,255,0.12)';
+}
+
+function strokeFor(frame: Laid) {
+  if (frame.version === 'cand' && frame.delta > 4) return accent;
+  return muted;
+}
+
+function labelFits(frame: Laid) {
+  if (!frame.name) return false;
+  return frame.w > frame.name.length * 6.2 + 8;
+}
+
+const height = graphY + graphH + 48;
+---
+
+<figure class="block my-2">
+  <svg
+    viewBox={`0 0 ${width} ${height}`}
+    role="img"
+    aria-labelledby="perf-title perf-desc"
+    class="w-full h-auto"
+  >
+    <title id="perf-title">Baseline and candidate profiles compared under the same tests</title>
+    <desc id="perf-desc">
+      The same tests exercise current code and new code. Each run produces a profile. Fetch grew from 18ms to 36ms, so the candidate is slower. That delta is the performance change.
+    </desc>
+
+    <rect
+      x={cx - testsW / 2}
+      y={testsY - pillH / 2}
+      width={testsW}
+      height={pillH}
+      rx={pillH / 2}
+      fill="#3d3e3f"
+      stroke={muted}
+      stroke-width="1"
+    />
+    <text
+      x={cx}
+      y={testsY + 1}
+      text-anchor="middle"
+      dominant-baseline="middle"
+      fill="#f4f4f4"
+      font-size="14"
+      font-weight="600"
+      font-family={font}
+    >
+      Same tests
+    </text>
+
+    <line x1={cx} y1={testsY + pillH / 2} x2={cx} y2={52} stroke={ring} stroke-width="1.25" />
+    <line x1={leftX + graphW / 2} y1={52} x2={rightX + graphW / 2} y2={52} stroke={ring} stroke-width="1.25" />
+    <line
+      x1={leftX + graphW / 2}
+      y1={52}
+      x2={leftX + graphW / 2}
+      y2={headerY - 16}
+      stroke={ring}
+      stroke-width="1.25"
+    />
+    <line
+      x1={rightX + graphW / 2}
+      y1={52}
+      x2={rightX + graphW / 2}
+      y2={headerY - 16}
+      stroke={ring}
+      stroke-width="1.25"
+    />
+    <g transform={`translate(${leftX + graphW / 2} ${headerY - 16}) rotate(90)`}>
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g transform={`translate(${rightX + graphW / 2} ${headerY - 16}) rotate(90)`}>
+      <path d="M -6 -4 L 5 0 L -6 4" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <text
+      x={leftX}
+      y={headerY}
+      fill="rgba(255,255,255,0.45)"
+      font-size="11"
+      font-weight="700"
+      letter-spacing="0.14em"
+      font-family={font}
+    >
+      BASELINE
+    </text>
+    <text
+      x={leftX + graphW}
+      y={headerY}
+      text-anchor="end"
+      fill="rgba(255,255,255,0.7)"
+      font-size="11"
+      font-weight="600"
+      font-family={font}
+    >
+      84ms
+    </text>
+    <text
+      x={rightX}
+      y={headerY}
+      fill="rgba(255,255,255,0.45)"
+      font-size="11"
+      font-weight="700"
+      letter-spacing="0.14em"
+      font-family={font}
+    >
+      CANDIDATE
+    </text>
+    <text
+      x={rightX + graphW}
+      y={headerY}
+      text-anchor="end"
+      fill={accent}
+      font-size="11"
+      font-weight="700"
+      font-family={font}
+    >
+      99ms
+    </text>
+
+    <!-- Baseline width ghost on the candidate root -->
+    <rect
+      x={rightX}
+      y={graphY}
+      width={tree.base * scale}
+      height={rowH}
+      fill="none"
+      stroke="rgba(255,255,255,0.28)"
+      stroke-width="1"
+      stroke-dasharray="3 3"
+    />
+
+    {[...leftFrames, ...rightFrames].map((frame) => (
+      <g>
+        <rect
+          x={frame.x}
+          y={frame.y}
+          width={Math.max(frame.w - 1.5, 1)}
+          height={rowH}
+          rx="3"
+          fill={fillFor(frame)}
+          stroke={strokeFor(frame)}
+          stroke-width={frame.version === 'cand' && frame.delta > 4 ? 1.25 : 0.75}
+        />
+        {labelFits(frame) && (
+          <text
+            x={frame.x + 6}
+            y={frame.y + rowH / 2 + 1}
+            dominant-baseline="middle"
+            fill={frame.version === 'cand' && frame.delta > 4 ? accent : '#f4f4f4'}
+            font-size="11"
+            font-weight={frame.version === 'cand' && frame.delta > 4 ? '700' : '600'}
+            font-family={font}
+          >
+            {frame.name}
+          </text>
+        )}
+      </g>
+    ))}
+
+    <text
+      x={rightX}
+      y={graphY + graphH + 22}
+      fill={accent}
+      font-size="12"
+      font-weight="700"
+      font-family={font}
+    >
+      fetch +18ms
+    </text>
+    <text
+      x={rightX + 92}
+      y={graphY + graphH + 22}
+      fill="rgba(255,255,255,0.4)"
+      font-size="12"
+      font-weight="600"
+      font-family={font}
+    >
+      render −6ms
+    </text>
+  </svg>
+</figure>

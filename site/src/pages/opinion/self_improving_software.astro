@@ -4,6 +4,128 @@ import Sidebar from '../../components/Sidebar.astro';
 import LoopCircle from '../../components/LoopCircle.astro';
 import TraditionalLine from '../../components/TraditionalLine.astro';
 import ObservabilityCompare from '../../components/ObservabilityCompare.astro';
+import PerformanceCompare from '../../components/PerformanceCompare.astro';
+
+type Shift = { practice: string; up: boolean; why: string };
+type Phase = { stage: string; items: Shift[] };
+
+const phases: Phase[] = [
+  {
+    stage: 'Specify',
+    items: [
+      {
+        practice: 'Requirements',
+        up: true,
+        why: 'The spec is the loop\'s input. Intent has to be explicit and machine-readable, not held in someone\'s head.',
+      },
+      {
+        practice: 'Modular architecture',
+        up: true,
+        why: 'Guard rails that scope the agent to the area of interest. Without them, the whole codebase is in play.',
+      },
+      {
+        practice: 'Documentation',
+        up: true,
+        why: 'Context the agent reads. Stale docs become wrong changes, faster.',
+      },
+    ],
+  },
+  {
+    stage: 'Implement',
+    items: [
+      {
+        practice: 'Implementation',
+        up: false,
+        why: 'The agent writes the code. Producing each change is no longer the scarce work.',
+      },
+      {
+        practice: 'Refactoring',
+        up: false,
+        why: 'The agent can rewrite. Humans decide whether the rewrite stayed in bounds.',
+      },
+    ],
+  },
+  {
+    stage: 'Evaluate',
+    items: [
+      {
+        practice: 'Unit tests',
+        up: true,
+        why: 'Fast, cheap rubric for local behaviour. The agent has to pass them on every loop.',
+      },
+      {
+        practice: 'Integration tests',
+        up: true,
+        why: 'Prove the pieces still work together. Harder for the agent to satisfy by editing the test.',
+      },
+      {
+        practice: 'Contract tests',
+        up: true,
+        why: 'Executable boundaries between modules. They keep the agent from breaking surfaces it was not allowed to change.',
+      },
+      {
+        practice: 'End-to-end tests',
+        up: true,
+        why: 'Closest executable version of the spec. Did the user-facing behaviour actually happen?',
+      },
+      {
+        practice: 'Performance tests',
+        up: true,
+        why: 'Profile the current code, then the new code, under the same tests. The delta is the evidence.',
+      },
+      {
+        practice: 'Security tests',
+        up: true,
+        why: 'Permissions and invariants have to fail the loop, not wait for a human gate.',
+      },
+    ],
+  },
+  {
+    stage: 'Ship',
+    items: [
+      {
+        practice: 'Code review',
+        up: false,
+        why: 'Reading every generated line does not scale. Review the spec, the tests, and the boundaries.',
+      },
+      {
+        practice: 'CI',
+        up: true,
+        why: 'Where the loop runs. Less a merge gate, more a place to try alternatives and keep the ones that pass.',
+      },
+      {
+        practice: 'Preview environments',
+        up: true,
+        why: 'Where the agent refines a feature, with telemetry it can reach over a REST API or MCP.',
+      },
+      {
+        practice: 'Deployment',
+        up: true,
+        why: 'Progressive rollout and automatic rollback are how you give the agent bounded autonomy.',
+      },
+    ],
+  },
+  {
+    stage: 'Operate',
+    items: [
+      {
+        practice: 'Telemetry',
+        up: true,
+        why: 'Triggers the next loop. Not a report someone reads later.',
+      },
+      {
+        practice: 'Product metrics',
+        up: true,
+        why: 'Part of the rubric. They decide whether a change is kept, rolled back, or tried again.',
+      },
+      {
+        practice: 'Incident recovery',
+        up: true,
+        why: 'The loop will ship more often. Rollback and recovery have to be automatic and tested.',
+      },
+    ],
+  },
+];
 ---
 
 <Layout title="Self-Improving Software - John Oram">
@@ -11,25 +133,17 @@ import ObservabilityCompare from '../../components/ObservabilityCompare.astro';
 
   <div class="max-w-2xl mx-auto">
     <div class="text-center my-8">
-      <h1 class="text-3xl font-bold text-white mb-4">Where the Effort Goes in Self-Improving Software</h1>
+      <h1 class="text-3xl font-bold text-white mb-4">Self-Improving Software</h1>
       <hr class="border-white/40" />
     </div>
 
     <p class="text-white/70 italic mb-2 leading-relaxed">
-      As implementation effort falls, specification and verification absorb more of the engineering effort.
+      Software development is going to move to an LLM loop that keeps running until the project meets the spec. Spec updates and telemetry are what trigger it to run again.
     </p>
 
     <h2 class="text-xl font-bold text-white mt-10 mb-3">The thesis</h2>
     <p class="text-white/80 mb-4 leading-relaxed">
-      Software development today is mostly the work of humans converting intent into code. The next shift is software that can increasingly observe, modify, test, and improve itself. The point of this comparison is not to argue that engineering effort disappears. It is to show how that effort moves.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      The engineering problem stops being producing each implementation. It becomes designing and governing the harness: the loop that produces implementations.
-    </p>
-
-    <h2 class="text-xl font-bold text-white mt-10 mb-3">Implementation stops being the scarce resource</h2>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Historically, turning an idea into working code consumed a large amount of engineering capacity. If implementation becomes dramatically cheaper, engineering effort does not disappear. It moves toward deciding what should be built, what must never change, how success is measured, and how changes are proven safe.
+      Today, humans convert intent into code. Next, an agent loops: implement, evaluate, ship, read telemetry, go again — until the software matches the spec. When the spec changes, or telemetry shows the software is off, the loop starts over.
     </p>
 
     <h2 class="text-xl font-bold text-white mt-10 mb-3">The traditional line</h2>
@@ -66,60 +180,68 @@ import ObservabilityCompare from '../../components/ObservabilityCompare.astro';
       ]}
     />
     <p class="text-white/80 mb-4 leading-relaxed">
-      Implement, evaluate against tests, ship to production, read telemetry, and go again. The engineering problem shifts from producing each implementation to defining the spec and the environment the agent is allowed to change the software within.
+      Implement, evaluate against tests, ship, read telemetry, and go again. Spec updates and new telemetry are the triggers. The engineering work is writing the spec, and giving the agent a way to prove it has been met.
     </p>
 
-    <h2 class="text-xl font-bold text-white mt-10 mb-3">Tests change their role</h2>
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Where priorities have shifted</h2>
     <p class="text-white/80 mb-4 leading-relaxed">
-      In human-developed systems, tests verify the code developers wrote. In the self-improving loop, evaluate and tests are a step the agent has to pass before production. They help define the boundary of what the software is allowed to become.
+      The old practices are still there. What changed is which ones absorb the effort.
     </p>
+    <div class="mb-4">
+      {phases.map(({ stage, items }) => (
+        <div class="mt-8 first:mt-0">
+          <h3 class="text-[#e8a04a] text-xs font-bold tracking-[0.14em] uppercase mb-1">{stage}</h3>
+          <div class="divide-y divide-white/10">
+            {items.map(({ practice, up, why }) => (
+              <div class="flex gap-3 py-3">
+                <span
+                  class:list={[
+                    'w-5 shrink-0 font-bold text-lg leading-none mt-0.5',
+                    up ? 'text-[#e8a04a]' : 'text-white/35',
+                  ]}
+                >
+                  {up ? '+' : '−'}
+                </span>
+                <div>
+                  <div class="font-semibold text-white">{practice}</div>
+                  <p class="text-white/70 text-sm leading-relaxed mt-0.5 mb-0">{why}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Tests and telemetry are the rubric</h2>
     <p class="text-white/80 mb-4 leading-relaxed">
-      This expands testing beyond unit and integration tests into security invariants, compatibility guarantees, performance budgets, cost budgets, data-access policies, regulatory requirements, and product outcome metrics. Tests become executable policy or constitutional law.
+      Tests say whether a change is allowed. Telemetry says whether it actually worked. Together they are the rubric the agent is graded against — not a human reading the diff.
     </p>
 
-    <h2 class="text-xl font-bold text-white mt-10 mb-3">Observability becomes an input, not just an output</h2>
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Performance is a comparison</h2>
+    <p class="text-white/80 mb-2 leading-relaxed">
+      A correctness test passes or fails. Performance has to be compared.
+    </p>
+    <PerformanceCompare />
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Exercise the current code with a fixed set of tests and capture a profile — CPU, allocations, queries, whatever the system can record. That profile is the baseline. Run the same tests against the new version and capture the same profile. Side by side, the two profiles are the performance change: what got slower, what got more expensive, what moved.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The agent does not get a dashboard. It gets a delta it can read, and a rule for whether that delta is allowed. A change that is behaviourally correct and slower still fails evaluation, unless the spec said otherwise.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Observability becomes an input</h2>
     <p class="text-white/80 mb-2 leading-relaxed">
       The difference is where telemetry goes.
     </p>
     <ObservabilityCompare />
     <p class="text-white/80 mb-4 leading-relaxed">
-      In the human-developed line, software emits telemetry and a human decides what happens next. In the self-improving loop, a human still writes the spec, but telemetry returns to the agent. Logs, metrics, traces, user behaviour, cost, and business outcomes become the input to the next change, not a report someone reads later.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Observability moves from operational tooling to a core development interface. Telemetry is no longer just how you diagnose. It is how the system learns.
+      In the line, telemetry goes to a human. In the loop, it goes back to the agent. Branch environments should carry their own telemetry so the agent can refine a feature before it ships — reachable over a REST API or MCP, not a dashboard a person has to click through.
     </p>
 
-    <h2 class="text-xl font-bold text-white mt-10 mb-3">Architecture defines safe optimization surfaces</h2>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Good architecture is no longer only about maintainability for humans. It also determines which parts of the system may change independently, what permissions an agent needs, what contracts must remain stable, and how much damage an incorrect change can cause.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Modularity becomes a mechanism for bounded autonomy. Contracts, blast-radius control, and ownership boundaries become the way you give an agent freedom without handing it the whole system.
-    </p>
-
-    <h2 class="text-xl font-bold text-white mt-10 mb-3">Where the effort shifts</h2>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      The development process does not get simpler. Each step changes what is asked of the people on the team.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Defining the problem shifts toward making intent explicit and machine-readable. Requirements shift from shared human understanding to explicit specification. Design shifts toward creating safe modification boundaries. Planning implementation matters less; defining the search space and its constraints matters more.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Review shifts from inspecting every change toward reviewing the change-generation system itself: the evaluation suites, the constraints, the permissions, the telemetry quality, the rollback behaviour, and the boundaries a change is allowed to cross.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      CI becomes less a gate and more an experimentation platform where alternatives are generated, tested, and compared. Deployment gains far more emphasis on safe, progressive rollout and bounded autonomy. Recovery must be predictable, automatic, and heavily tested.
-    </p>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Product metrics become part of the control loop rather than retrospective reporting, automatically deciding whether a change is kept, rolled back, or iterated on. The whole development lifecycle becomes a continuous feedback loop.
-    </p>
-
-    <h2 class="text-xl font-bold text-white mt-10 mb-3">Code review becomes system review</h2>
-    <p class="text-white/80 mb-4 leading-relaxed">
-      Today the question is often "is this PR correct?" With self-improving software, the higher-level question becomes: is the system that generated, tested, evaluated, and deployed this change trustworthy?
-    </p>
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Modular architecture is the guard rail</h2>
     <p class="text-white/80 mb-8 leading-relaxed">
-      The most important engineering work in a self-improving system may not be writing the next version of the software. It may be defining the environment in which the software is allowed to write its next version.
+      Modular architecture scopes the agent to the area of interest. Guard rails define which parts of the system it may change, which contracts must stay stable, and how much damage a bad change can do. Without them, the loop has the whole codebase as its search space.
     </p>
 
     <div class="border-t border-white/10 pt-8 mt-8">
