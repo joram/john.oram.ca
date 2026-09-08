@@ -1,0 +1,248 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import LoopCircle from '../../components/LoopCircle.astro';
+
+type Level = { level: string; title: string; body: string };
+
+const levels: Level[] = [
+  {
+    level: 'Level 1',
+    title: 'The software improves',
+    body: 'Agents complete tickets and change the code. This is ordinary software development, even when the developer is a model.',
+  },
+  {
+    level: 'Level 2',
+    title: 'Project knowledge improves',
+    body: 'Agents preserve what they discovered. The next agent inherits the answer instead of paying for the investigation again.',
+  },
+  {
+    level: 'Level 3',
+    title: 'Coordination improves',
+    body: 'Ticket state and memory are shared across models and machines. Parallel work stops depending on one agent guessing what another is doing.',
+  },
+  {
+    level: 'Level 4',
+    title: 'The process improves',
+    body: 'Usage signals show which learnings and procedures actually helped. Memory gets ranked, merged, and cleaned instead of only growing.',
+  },
+  {
+    level: 'Level 5',
+    title: 'The loop improves itself',
+    body: 'Agents change the operating skill that future agents run. Those changes are measured against outcomes and kept or rolled back.',
+  },
+];
+
+const signals = [
+  { signal: 'Useful retrieval', effect: 'Increase relevance' },
+  { signal: 'Repeatedly useful', effect: 'Promote and preserve' },
+  { signal: 'Unused for a long time', effect: 'Deprioritize' },
+  { signal: 'Contradicted later', effect: 'Supersede or revise' },
+  { signal: 'Duplicate', effect: 'Merge or remove' },
+];
+
+const questions = [
+  'How should the usefulness of a learning be scored?',
+  'How aggressively should unused learnings decay?',
+  'Should trigger matching stay textual, become semantic, or both?',
+  'How much does ephemeral agent-to-agent messaging actually help?',
+  'Which parts of the operating skill should agents be allowed to change?',
+  'How long should a skill change run before it is judged?',
+  'How is ticket difficulty normalized when comparing token cost?',
+  'Which learnings are project-specific, and which generalize?',
+];
+---
+
+<Layout title="AI Agent Loop - John Oram">
+  <Sidebar slot="sidebar" />
+
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center my-8">
+      <h1 class="text-3xl font-bold text-white mb-4">AI Agent Loop</h1>
+      <hr class="border-white/40" />
+    </div>
+
+    <p class="text-white/70 italic mb-2 leading-relaxed">
+      A loop that forgets is just a faster line. The interesting property is not that agents write the software. It is that each cycle can make the next one cheaper.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The thesis</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Most agent setups start every cycle from zero. The model reads the code, forms a theory, tries something, fails, tries again, and eventually gets there. Then the session ends and all of that reasoning is thrown away. The next agent, on the next ticket, pays for the same investigation a second time.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The fix is not a bigger model or a bigger context window. It is a place for the loop to put what it learned, and a cheap way for the next agent to find it. That turns a completed ticket into more than a commit. It produces knowledge, follow-up work, and eventually changes to how agents work at all.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The cycle</h2>
+    <p class="text-white/80 mb-2 leading-relaxed">
+      A human writes tickets. An agent claims one and runs the cycle.
+    </p>
+    <LoopCircle
+      id="memory-loop"
+      description="A human writes tickets. An agent claims a ticket, searches memory, implements, validates, and records a learning before starting again."
+      specLabel="Tickets"
+      nodes={[
+        { label: 'Claim ticket' },
+        { label: 'Search memory' },
+        { label: 'Implement' },
+        { label: 'Validate' },
+        { label: 'Record learning' },
+      ]}
+    />
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Searching memory before the work and recording a learning after it are the two steps that make this different from running an agent in a terminal. Everything between them is normal engineering. The value is that the last step of one cycle is an input to the first step of the next.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Tickets are the shared state</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      When several agents run at once, on several machines, under several models, they need to know what is already being worked on. Git does not answer that question. A branch tells you what someone finished, not what someone started twenty minutes ago.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A shared ticket system does answer it. Claim state is centralized and updated immediately, so allocation is something an agent reads rather than infers. That is what makes concurrency across machines tolerable instead of a merge problem.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Learnings are the memory</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A learning is a small structured record: a title, a trigger, a body, and the project and ticket it came from. The trigger is the important part. It is one sentence describing when this knowledge is relevant — not the knowledge itself.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Agents do not load every learning. They load an index of triggers, which is cheap, and retrieve a full body only when a trigger matches the work in front of them.
+    </p>
+    <div class="my-6 border border-white/15 rounded-lg divide-y divide-white/10">
+      <div class="flex gap-4 px-5 py-3 items-baseline">
+        <span class="text-[#e8a04a] text-xs font-bold tracking-[0.14em] uppercase w-24 shrink-0">Cheap</span>
+        <p class="text-white/80 text-sm leading-relaxed mb-0">Load the trigger index. Small, loaded every time.</p>
+      </div>
+      <div class="flex gap-4 px-5 py-3 items-baseline">
+        <span class="text-[#e8a04a] text-xs font-bold tracking-[0.14em] uppercase w-24 shrink-0">Selective</span>
+        <p class="text-white/80 text-sm leading-relaxed mb-0">Match a trigger against the work at hand.</p>
+      </div>
+      <div class="flex gap-4 px-5 py-3 items-baseline">
+        <span class="text-[#e8a04a] text-xs font-bold tracking-[0.14em] uppercase w-24 shrink-0">Expensive</span>
+        <p class="text-white/80 text-sm leading-relaxed mb-0">Retrieve the full learning, only when it is likely to be used.</p>
+      </div>
+    </div>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The goal is not to accumulate knowledge. It is to accumulate knowledge without making every future prompt larger. A project that has run for a year should be able to hold a year of hard-won detail without every agent paying to carry all of it.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The metric is tokens per correct ticket</h2>
+    <p class="text-white/80 mb-2 leading-relaxed">
+      Without memory, a cycle looks like <span class="text-white/60">inspect, hypothesize, test, fail, inspect again, discover</span>. With it, the cycle can be <span class="text-white/60">search, retrieve, continue</span>. If that substitution is real, it shows up as a curve.
+    </p>
+    <figure class="block my-6">
+      <svg viewBox="0 0 520 220" role="img" aria-labelledby="cost-curve-title cost-curve-desc" class="w-full h-auto">
+        <title id="cost-curve-title">Tokens per correct ticket falling as tickets are completed</title>
+        <desc id="cost-curve-desc">
+          A curve starting high on the left and flattening out low on the right, showing token cost per correct ticket declining as more tickets are completed and more learnings accumulate.
+        </desc>
+        <line x1="56" y1="24" x2="56" y2="172" stroke="rgba(255,255,255,0.32)" stroke-width="1.5" />
+        <line x1="56" y1="172" x2="492" y2="172" stroke="rgba(255,255,255,0.32)" stroke-width="1.5" />
+        <path
+          d="M 64 36 C 150 132, 230 156, 492 164"
+          fill="none"
+          stroke="#e8a04a"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        />
+        <text x="46" y="34" text-anchor="end" fill="rgba(255,255,255,0.5)" font-size="12" font-family="ui-sans-serif, system-ui, sans-serif">Tokens per</text>
+        <text x="46" y="50" text-anchor="end" fill="rgba(255,255,255,0.5)" font-size="12" font-family="ui-sans-serif, system-ui, sans-serif">correct ticket</text>
+        <text x="274" y="198" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="12" font-family="ui-sans-serif, system-ui, sans-serif">Tickets completed</text>
+      </svg>
+    </figure>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Tokens and wall-clock time per successfully completed ticket are the numbers worth watching, alongside retries, retrieval frequency, and how often a ticket gets reopened. Tickets are not equally hard, so the raw curve needs normalizing before it means much. But the expected direction is not ambiguous.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Correctness is a constraint, not a trade</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The objective is not to trade quality for speed. Correctness is mandatory. Among correct solutions, minimize tokens and elapsed time.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      That framing only works on a project where correctness can actually be decided — where a ticket either works or it does not. Cost optimization on top of a system that cannot tell whether it is right is just a cheaper way to be wrong.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Where the memory lives</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      There is a good argument for keeping tickets and learnings inside the repository. Documentation stays most accurate when it lives next to the code it describes, and putting memory in Git gives it version history, proximity, and review for free. <a href="https://github.com/mrinalwadhwa/fluent" class="text-sky-400 hover:underline">Fluent</a>, a project I came across through the Self-Improving Software meetup in San Francisco, stores learnings in Git. It does not currently store tickets there, though its author is intrigued by that idea.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      I am testing the other option. Memory outside the repository is visible to every agent immediately, on any machine, without waiting for a branch or a commit. An agent learns that work has started, or that a discovery was made, while it is still relevant.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      That is a hypothesis, not a conclusion. External memory trades reviewability and version history for immediacy. Which side of that trade wins is exactly the kind of thing this experiment should be able to answer.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Memory has to decay</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      A memory that only grows becomes a liability. Learnings go stale, contradict each other, and duplicate. Today a human reviews them, which does not scale and will not survive a few thousand entries.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The self-regulating version uses retrieval itself as the signal.
+    </p>
+    <div class="my-6 divide-y divide-white/10 border-t border-b border-white/10">
+      {signals.map(({ signal, effect }) => (
+        <div class="flex gap-4 py-2.5 items-baseline">
+          <span class="text-white/80 text-sm w-52 shrink-0">{signal}</span>
+          <span class="text-[#e8a04a] text-sm">{effect}</span>
+        </div>
+      ))}
+    </div>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Memory should be able to forget, consolidate, and correct itself. Accumulation is the easy half.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The skill is process memory</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Every agent loads a shared operating skill before it starts. It is separate from project knowledge, and it answers a different question. The learning store answers <span class="text-white/60">what has this project already learned?</span> The skill answers <span class="text-white/60">how should an agent work inside this system?</span>
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Today that skill is human-maintained scaffolding: load the index, search before hard work, claim a ticket, record what you found, check for duplicates, commit, tell other agents when it matters. The interesting step is letting agents change it. At that point the system is no longer only learning facts about the codebase. It is learning how its agents should work.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      That has to be measured self-modification, not free self-editing. A skill change is a change like any other: it gets evaluated against tokens, time, and completion outcomes, and it gets rolled back when it makes things worse. The rollback path is what makes the autonomy safe to grant.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">Five levels of self-improvement</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      "Self-improving" gets used loosely. It is worth separating what is actually being claimed.
+    </p>
+    <div class="divide-y divide-white/10 mb-4">
+      {levels.map(({ level, title, body }) => (
+        <div class="py-3">
+          <div class="text-[#e8a04a] text-xs font-bold tracking-[0.14em] uppercase mb-1">{level}</div>
+          <div class="font-semibold text-white">{title}</div>
+          <p class="text-white/70 text-sm leading-relaxed mt-0.5 mb-0">{body}</p>
+        </div>
+      ))}
+    </div>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Most of what gets called self-improving software is Level 1. The gap between Level 1 and Level 2 is where the compounding starts, and the gap between Level 4 and Level 5 is where the system stops being a collection of coding agents.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">The test project</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      The first serious test is a project of roughly 250 tickets: a web and Wasm interpreter that can execute and render mobile iOS applications, aimed at giving VeilStream mobile preview environments without pushing customers toward Mac hardware, simulators, or device farms.
+    </p>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      It is a good test bed because it is hard, large enough that rediscovery gets expensive, parallel enough for several agents, and deterministic enough that correctness can be decided. Three or four agents run concurrently on one machine, more from a co-founder's, across Codex, Cursor, Claude, and whatever else is worth trying. Which model runs a ticket is deliberately not part of the architecture. The shared tickets, memory, repositories, and skill are the continuity layer.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">What is still open</h2>
+    <ul class="text-white/80 mb-4 leading-relaxed list-disc pl-5 space-y-1.5">
+      {questions.map((question) => <li>{question}</li>)}
+    </ul>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      These are not gaps in the implementation so much as the next round of experiments.
+    </p>
+
+    <h2 class="text-xl font-bold text-white mt-10 mb-3">A working definition</h2>
+    <p class="text-white/80 mb-4 leading-relaxed">
+      Self-improving software is a development system where the output of one cycle improves the cost, speed, knowledge, or operating process of the next, while correctness stays a hard constraint.
+    </p>
+    <p class="text-white/80 mb-8 leading-relaxed">
+      If it works, the project should not just contain more finished code after 250 tickets. It should contain a better development organization than it had at ticket one: more useful knowledge, less repeated investigation, better coordination, better procedures, and a lower marginal cost for the next correct change.
+    </p>
+  </div>
+</Layout>
